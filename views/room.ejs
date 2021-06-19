@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+    <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
+    <script defer src='script.js'></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="splash.css">
+    <title>Arkē</title>
+    <script>
+        const ROOM_ID = "<%= roomId %>"
+    </script>
+</head>
+<body>
+    <div class="splash-screen" id="splash">
+        <div class="splash-title">
+            <span class="letter let1">A</span>  
+            <span class="letter let2">r</span>  
+            <span class="letter let3">k</span>  
+            <span class="letter let4">ē</span>  
+        <!--     <span class="let5">i</span>  
+            <span class="let6">n</span>  
+            <span class="let7">g</span>   -->
+          </div>
+        <div class='wing'>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+          </div>
+          <div class='wing'>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+            <div class='feather'></div>
+          </div>
+    </div>
+    <div class="form-vignette" id="userNameForm">
+        <div class="form-block">
+            <span class="instruct">Enter a display name to join room</span>
+            <input type="text" class="user-name" id="userName" placeholder="Display Name">
+            <button class="user-name-btn" id="userNameBtn">Join Room</button>
+        </div>
+    </div>
+    <section class="title">
+        <span class="app-name">Arkē</span>
+    </section>
+    <section class="chat">
+        <div class="chat-wrapper" id="messageList">
+    
+        </div>
+    </section>
+    <section class="input">
+        <div class="input-box">
+            <div class="input-area">
+                <textarea class="message-box" id="messageBox" placeholder="Message @room"></textarea>
+            </div>
+            <button class="send-button" id="send">
+            <i class="fas fa-paper-plane send-icon"></i>
+        </button>
+        </div>
+    </section>
+</body>
+</html>
