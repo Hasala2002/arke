@@ -95,7 +95,7 @@ function snackbarUrl(text) {
 
 $('#inviteUrlCopy').click(()=>{
     const el = document.createElement('textarea');
-    el.value = `Join my private Arkē Chatroom here
+    el.value = `Join my private Arkē Disposable Chatroom here
 ${window.location.href}
 
 Create your own chatroom by visiting ${window.location.origin}`;
