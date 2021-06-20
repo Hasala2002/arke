@@ -8,8 +8,6 @@ const peerServer = ExpressPeerServer(server,{
     debug: true
 })
 
-console.log('helllo')
-
 app.set('view engine','ejs')
 app.use(express.static('public'))
 app.use('/peerjs',peerServer)
@@ -23,17 +21,22 @@ app.get('/:room', (req, res) => {
 })
 
 io.on('connection', socket => {
-  socket.on('join-room', (roomId, userId) => {
+  // console.log(server._clients)
+  socket.on('join-room', (roomId, userId, uname) => {
     socket.join(roomId)
-    socket.to(roomId).emit('user-connected', userId);
+    socket.to(roomId).emit('user-connected', userId, uname);
     // messages
-    socket.on('message', (message,userName) => {
+    // console.log((io.sockets.adapter.sids).size)
+    io.to(roomId).emit('updatePeerCount',(io.sockets.adapter.sids).size)
+    socket.on('message', (message,userName,uid) => {
       //send message to the same room
-      io.to(roomId).emit('createMessage', message,userName)
+      io.to(roomId).emit('createMessage', message,userName,uid)
   }); 
 
     socket.on('disconnect', () => {
-      socket.to(roomId).emit('user-disconnected', userId)
+      socket.to(roomId).emit('user-disconnected', userId, uname)
+      // console.log((io.sockets.adapter.sids).size)
+      io.to(roomId).emit('updatePeerCount',(io.sockets.adapter.sids).size)
     })
   })
 })
