@@ -6,7 +6,7 @@ setTimeout(()=>{
     $('#splash').hide()
 },4000)
 
-console.log(window.location.href)
+// console.log(window.location.href)
 
 const userHasSumbmittedName = () => {
     const peer = new Peer(undefined, {
@@ -95,7 +95,10 @@ function snackbarUrl(text) {
 
 $('#inviteUrlCopy').click(()=>{
     const el = document.createElement('textarea');
-    el.value = window.location.href;
+    el.value = `Join my private Arkē Chatroom here
+${window.location.href}
+
+Create your own chatroom by visiting ${window.location.origin}`;
     el.setAttribute('readonly', '');
     el.style.position = 'absolute';
     el.style.left = '-9999px';
