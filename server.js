@@ -16,27 +16,28 @@ app.get('/', (req, res) => {
   res.redirect(`/${uuidv4()}`)
 })
 
+function NumClientsInRoom(namespace, room) {
+  var clients = io.nsps[namespace].adapter.rooms[room];
+  return Object.keys(clients).length;
+}
+
 app.get('/:room', (req, res) => {
   res.render('room', { roomId: req.params.room })
 })
 
 io.on('connection', socket => {
-  // console.log(server._clients)
   socket.on('join-room', (roomId, userId, uname) => {
     socket.join(roomId)
     socket.to(roomId).emit('user-connected', userId, uname);
-    // messages
-    // console.log((io.sockets.adapter.sids).size)
-    io.to(roomId).emit('updatePeerCount',(io.sockets.adapter.sids).size)
+    // console.log(((io.sockets.adapter.rooms).get(roomId)).size);
+    io.to(roomId).emit('updatePeerCount',((io.sockets.adapter.rooms).get(roomId)).size)
     socket.on('message', (message,userName,uid) => {
-      //send message to the same room
       io.to(roomId).emit('createMessage', message,userName,uid)
   }); 
 
     socket.on('disconnect', () => {
       socket.to(roomId).emit('user-disconnected', userId, uname)
-      // console.log((io.sockets.adapter.sids).size)
-      io.to(roomId).emit('updatePeerCount',(io.sockets.adapter.sids).size)
+      io.to(roomId).emit('reduceCount')
     })
   })
 })

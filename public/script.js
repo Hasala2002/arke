@@ -1,6 +1,7 @@
 const socket = io('/')
 var userName;
 var userIdNumber;
+var userCount;
 
 setTimeout(()=>{
     $('#splash').hide()
@@ -53,6 +54,12 @@ socket.on('createMessage',(message,name,uid)=>{
 
   socket.on('updatePeerCount',(peerCount)=>{
       $('#userCount').text(peerCount)
+      userCount = peerCount
+  })
+ 
+  socket.on('reduceCount',()=>{
+    userCount--
+    $('#userCount').text(userCount)
   })
  
 let text = $('#messageBox')
