@@ -3,6 +3,9 @@ var userName;
 var userIdNumber;
 var userCount;
 
+var audioEnter = document.getElementById('enterAudio')
+var audioSMS = document.getElementById('smsNot')
+
 setTimeout(()=>{
     $('#splash').hide()
 },4000)
@@ -24,10 +27,12 @@ const userHasSumbmittedName = () => {
 
 socket.on('user-connected',(userId,uName)=>{
     snackbarJoin(uName)
+    audioEnter.play()
 })
 
 socket.on('user-disconnected', (userId,uName) => {
     snackbarLeave(uName)
+    audioEnter.play()
   })
 
 
@@ -40,6 +45,7 @@ socket.on('createMessage',(message,name,uid)=>{
                 ${message}
                 </span>
             </div>`)
+            audioSMS.play()
     }else{
         $('#messageList').append(`
         <div class="chat-messages-personal">
