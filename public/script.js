@@ -35,27 +35,50 @@ socket.on('user-disconnected', (userId,uName) => {
     audioEnter.play()
   })
 
+const checkLastMessage = (uid) =>{
+  if($('#messageList').html()!==''){
+    return ($('#messageList .chat-messages:last-child').attr('data-id'))===uid
+  }else{return false}
+}
+
 
 socket.on('createMessage',(message,name,uid)=>{
     if(uid!==userIdNumber){
-    $('#messageList').append(`
-    <div class="chat-messages">
-                <span class="chat-user">${name}:</span>
-                <span class="chat-message">
-                ${message}
-                </span>
-            </div>`)
+    if(checkLastMessage(uid)===false){
+      $('#messageList').append(`
+      <div class="chat-messages" data-id="${uid}">
+      <span class="chat-user">${name}:</span>
+      <span class="chat-message">
+      ${message}
+      </span>
+      </div>`)
+    }else{
+      $('#messageList').append(`
+      <div class="chat-messages w-o-name" data-id="${uid}">
+      <span class="chat-message">
+      ${message}
+      </span>
+      </div>`)
+    }
             audioSMS.play()
     }else{
+      if(checkLastMessage(uid)===false){
         $('#messageList').append(`
-        <div class="chat-messages-personal">
-                    <span class="chat-user">${name}:</span>
-                    <span class="chat-message">
-                    ${message}
-                    </span>
-                </div>`)
+        <div class="chat-messages personal" data-id="${uid}">
+        <span class="chat-user">${name}:</span>
+        <span class="chat-message">
+        ${message}
+        </span>
+        </div>`)}
+        else{
+          $('#messageList').append(`
+          <div class="chat-messages personal w-o-name" data-id="${uid}">
+          <span class="chat-message">
+          ${message}
+          </span>
+          </div>`)
+        }
     }
-    // scrollToBottom()
   })
 
   socket.on('updatePeerCount',(peerCount)=>{

@@ -73,18 +73,12 @@ body{
     /* background-color:red; */
 }
 
-.chat-messages-personal{
-    width: 100%;
-    height: fit-content;
-    min-height: 50px;
-    display: flex;
-    flex-direction: column;
+.w-o-name{
+    min-height: 30px;
+}
+
+.personal{
     align-items: flex-end;
-    padding: 2.5px;
-    padding-bottom: 5px;
-    margin: 5px 0;
-    border-bottom: 1px solid #f2f2f210;
-    /* background-color:red; */
 }
 
 .chat-user{
