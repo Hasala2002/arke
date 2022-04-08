@@ -1,4 +1,4 @@
-const socket = io('/')
+const socket = io();
 var userName;
 var userIdNumber;
 var userCount;
@@ -16,7 +16,7 @@ const userHasSumbmittedName = () => {
     const peer = new Peer(undefined, {
         path: '/peerjs',
         host: '/',
-        port: '443',
+        port: window.location.origin==='https://arkechat.herokuapp.com'?'443':'3000',
         // secure: 'true'
     })
     peer.on('open',id=>{
