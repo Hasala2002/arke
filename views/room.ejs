@@ -12,6 +12,7 @@
     <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
     <script defer src='script.js'></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js" integrity="sha512-ZDSPMa/JM1D+7kdg2x3BsruQ6T/JpJo3jWDWkCZsP+5yVyp1KfESqLI+7RqB5k24F7p2cV7i2YHh/890y6P6Sw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="splash.css">
     <title>Arkē</title>
@@ -20,9 +21,6 @@
     </script>
 </head>
 <body>
-    <audio id="enterAudio" src="enter.wav" preload></audio>
-    <audio id="smsNot" src="sms.wav" preload></audio>
-    <div id="snackbar">User Joined</div>
     <div class="splash-screen" id="splash">
         <div class="splash-title">
             <span class="letter let1">A</span>  
@@ -80,11 +78,27 @@
     </div>
     <div class="form-vignette" id="userNameForm">
         <div class="form-block">
-            <span class="instruct">Enter a display name to join room</span>
+            <img class="form-logo" src="./logo.png" alt="logo">
+            <span class="instruct">Please Enter a Display Name</span>
             <input type="text" class="user-name" id="userName" placeholder="Display Name">
             <button class="user-name-btn" id="userNameBtn">Join Room</button>
         </div>
     </div>
+    <div class="arke-welcome">
+        <span class="welcome-name">
+            Hi <span class="nameplate"></span>,
+        </span>
+        <div class="welcome-title">
+            Welcome to Arkē Chat.
+        </div>
+        <div id="placeHolder"></div>
+        <div class="current-room-number-title">You are currently in room id:</div>
+        <div class="current-room-number"></div>
+    </div>
+    <div class="arkechat">
+    <audio id="enterAudio" src="enter.wav" preload></audio>
+    <audio id="smsNot" src="sms.wav" preload></audio>
+    <div id="snackbar">User Joined</div>
     <section class="title">
         <span class="app-name">Arkē</span>
         <div class="room-data">
@@ -110,5 +124,7 @@
         </button>
         </div>
     </section>
+</div>
+
 </body>
 </html>

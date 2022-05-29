@@ -23,6 +23,8 @@ const userHasSumbmittedName = () => {
         userIdNumber = id
         socket.emit('join-room',ROOM_ID, id, userName)
     })
+    $('.nameplate').text(`@${userName}`)
+    $('.current-room-number').text(`${ROOM_ID}`)
 }
 
 socket.on('user-connected',(userId,uName)=>{
@@ -93,6 +95,16 @@ socket.on('createMessage',(message,name,uid)=>{
  
 let text = $('#messageBox')
 
+$(text).keypress(function (e) {
+  if(e.which === 13 && !e.shiftKey) {
+      e.preventDefault();
+      if(text.val().length !== 0){
+        socket.emit('message',text.val(),userName,userIdNumber)
+        text.val('')
+      }
+  }
+});
+
 $( "#send" ).click(function() {
     if(text.val().length !== 0){
         socket.emit('message',text.val(),userName,userIdNumber)
@@ -144,3 +156,10 @@ Create your own chatroom by visiting ${window.location.origin}`;
     document.body.removeChild(el)
     snackbarUrl('Invite Link Copied!')
 })
+
+var typeNumber = 0;
+var errorCorrectionLevel = 'M';
+var qr = qrcode(typeNumber, errorCorrectionLevel);
+qr.addData(`${window.location.href}`);
+qr.make();
+document.getElementById('placeHolder').innerHTML = qr.createImgTag();
