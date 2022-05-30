@@ -1,3 +1,10 @@
+// const linkifyHtml = require('linkify-html');
+const options = {
+  attributes: {
+    target: '_blank'
+  }
+};
+
 const socket = io();
 var userName;
 var userIdNumber;
@@ -8,6 +15,7 @@ var audioSMS = document.getElementById('smsNot')
 
 setTimeout(()=>{
     $('#splash').hide()
+    $('#userName').focus()
 },4000)
 
 // console.log(window.location.href)
@@ -63,24 +71,26 @@ socket.on('createMessage',(message,name,uid)=>{
       </div>`)
     }
             audioSMS.play()
+            $('.chat').scrollTop($('.chat')[0].scrollHeight)
     }else{
       if(checkLastMessage(uid)===false){
         $('#messageList').append(`
         <div class="chat-messages personal" data-id="${uid}">
-        <span class="chat-user">${name}:</span>
+        <span class="chat-user">You:</span>
         <span class="chat-message">
-        ${message}
+        ${linkifyHtml(message,options)}
         </span>
         </div>`)}
         else{
           $('#messageList').append(`
           <div class="chat-messages personal w-o-name" data-id="${uid}">
           <span class="chat-message">
-          ${message}
+          ${linkifyHtml(message,options)}
           </span>
           </div>`)
         }
     }
+    $('.chat').scrollTop($('.chat')[0].scrollHeight)
   })
 
   socket.on('updatePeerCount',(peerCount)=>{
@@ -102,6 +112,16 @@ $(text).keypress(function (e) {
         socket.emit('message',text.val(),userName,userIdNumber)
         text.val('')
       }
+  }
+});
+
+$('#userName').keypress(function (e) {
+  if(e.which === 13 && !e.shiftKey) {
+  if(($('#userName').val()).length>0){
+    userName = $('#userName').val()
+    $('#userNameForm').hide()
+    userHasSumbmittedName(userName)
+    }
   }
 });
 
@@ -156,6 +176,16 @@ Create your own chatroom by visiting ${window.location.origin}`;
     document.body.removeChild(el)
     snackbarUrl('Invite Link Copied!')
 })
+
+$('.enter-chat').click(()=>{
+  $('.arke-welcome').toggleClass('close')
+})
+
+$('.menu-button').click(()=>{
+  $('.arke-welcome').toggleClass('close')
+})
+
+
 
 var typeNumber = 0;
 var errorCorrectionLevel = 'M';

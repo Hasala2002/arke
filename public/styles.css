@@ -58,6 +58,20 @@
     font-family: var(--font-jakarta);
 }
 
+.room-data div{
+    display: flex;
+    align-items: center;
+}
+
+.room-data div ion-icon {
+    font-size: 1.75em;
+    margin-right: 2.5px;
+}
+
+ion-icon {
+    font-size: 1em;
+  }
+
 ::-webkit-scrollbar{
     width: 5px;
     background-color: transparent;
@@ -79,6 +93,10 @@ body{
     display: flex;
 }
 
+.enter-chat{
+    display: none;
+}
+
 .arkechat{
     width: 412px;
     height: 100%;
@@ -94,7 +112,7 @@ body{
     padding-left: 1rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     background-color: #000;
     border-radius: 0 0 .5em .5em;
 }
@@ -102,6 +120,18 @@ body{
 .app-name{
     font-size:1.5em;
     font-weight: 600;
+}
+
+.menu-button{
+    width: 30px;
+    aspect-ratio: 1/1;
+    background-color: #040404;
+    border-radius: 50px;
+    border: 1px solid #f2f2f280;
+    margin-right: 20px;
+    display: grid;
+    place-items: center;
+    display: none;
 }
 
 .chat{
@@ -146,6 +176,7 @@ body{
     margin-right: 0;
     margin-left: auto;
     border-radius: .5rem 0 .5rem .5rem;
+    background-color: rgb(12, 12, 12);
 }
 
 .chat-user{
@@ -156,7 +187,20 @@ body{
     padding-top: 2.5px;
     font-weight: 400;
     padding-left: 7.5px;
+    word-break: break-word;
+    text-align: left;
+    display: flow-root;
+    unicode-bidi: plaintext;
 }
+
+.personal .chat-message{
+    text-align: right;
+}
+
+.chat-message a{
+    color: #f2f2f280;
+}
+
 .input{
     width: 100%;
     height: 10%;
@@ -200,10 +244,14 @@ body{
     min-width: 47.5px;
 }
 
-.send-icon{transition:.25s}
+.send-icon{
+    font-size: 1.25em;
+    transition:.25s;
+    transform: rotate(-25deg) scale(1);
+}
 
 .send-button:hover .send-icon{
-    transform: rotate(25deg) scale(1.05);
+    transform: rotate(0deg) scale(1.05);
 }
 
 .message-box{
@@ -298,7 +346,7 @@ body{
     visibility: hidden; /* Hidden by default. Visible on click */
     min-width: 250px; /* Set a default minimum width */
     margin-left: -125px; /* Divide value of min-width by 2 */
-    background-color: #000; /* Black background color */
+    background-color: #040404; /* Black background color */
     color: #fff; /* White text color */
     text-align: center; /* Centered text */
     border-radius: 2px; /* Rounded borders */
@@ -342,6 +390,8 @@ body{
   }
 
   .room-data{
+     margin-right: 0;
+     margin-left: auto;
       width: 50%;
       height: 100%;
       display: flex;
@@ -400,14 +450,14 @@ body{
 .welcome-title{
     font-size: 3em;
     font-weight: 600;
-    margin-bottom: 0.75em;
+    margin-bottom: 0.5em;
     color: #f2f2f210
 }
 
 #placeHolder{
     width: fit-content;
     height: fit-content;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
 }
 
   #placeHolder img{
@@ -427,15 +477,108 @@ body{
 .current-room-number{
     font-size: 1em;
     /* font-weight: 600; */
-    margin-bottom: 0.75em;
+    margin-bottom: 1em;
     color: #f2f2f280
+}
+
+.instructions-section{
+    width: 60%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+}
+
+.instruction-point{
+    display: flex;
+    margin-bottom: 1em;
+}
+
+.bullet{
+    background-color: #f2f2f280;
+    margin-top: 2.5px;
+    font-weight: 600;
+    height: 17.5px;
+    font-size: 0.75em;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    color: #040404;
+    margin-right: 10px;
+}
+
+.instruction-line{
+    color: #f2f2f280;
+    text-align: left;
+    font-size: 0.975em;
+}
+
+.instruction-line b{
+    color: #f2f2f280;
 }
 
 @media screen and (max-width: 850px) {
     .arke-welcome{
-        display: none;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 3;
+        transition: 0.5s ease-in-out;
     }
+
+    .close{
+        transform: translateX(-100%)
+    }
+
     .arkechat{
         width: 100%;
     }
+
+    .welcome-title{
+        font-size: 2.5em;
+    }
+
+    .welcome-name{
+        font-size: 2em;
+    }
+
+    .current-room-number-title{
+        font-size: 1.25em;
+    }
+
+    .current-room-number{
+        font-size: 0.9em;
+    }
+
+    .enter-chat{
+        background-color: #040404;
+        color: #f2f2f280;
+        text-align: center;
+        border-radius: 0.5em;
+        padding: 12.5px;
+        border: 1px solid #f2f2f280;
+        outline-width: 0px;
+        font-size: 0.8em;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .enter-chat:hover{
+        background-color: #101010;
+    }
+
+    .enter-chat ion-icon{
+        margin-left: 10px;
+        color: #f2f2f280;
+        font-size: 1.75em;
+    }
+
+    .menu-button{
+        display: grid;
+    }
+
 }

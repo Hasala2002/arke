@@ -10,9 +10,13 @@
     <!-- <script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script> -->
     <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
     <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
     <script defer src='script.js'></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js" integrity="sha512-ZDSPMa/JM1D+7kdg2x3BsruQ6T/JpJo3jWDWkCZsP+5yVyp1KfESqLI+7RqB5k24F7p2cV7i2YHh/890y6P6Sw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="linkify.js"></script>
+    <script src="linkify-html.js"></script>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="splash.css">
     <title>Arkē</title>
@@ -91,19 +95,38 @@
         <div class="welcome-title">
             Welcome to Arkē Chat.
         </div>
-        <div id="placeHolder"></div>
         <div class="current-room-number-title">You are currently in room id:</div>
         <div class="current-room-number"></div>
+        <div id="placeHolder"></div>
+
+        <div class="instructions-section">
+            <div class="instruction-point">
+                <div class="bullet">1</div>
+                <span class="instruction-line">You are inside a <b>disposable</b> chatroom. Nothing is saved. It's peer-to-peer.</span>
+            </div>
+            <div class="instruction-point">
+                <div class="bullet">2</div>
+                <span class="instruction-line">Invite anyone to this chatroom by sharing the <b>QR Code</b> above or copying the invite link by clicking on the <b>button</b> in the top right.</span>
+            </div>
+            <div class="instruction-point">
+                <div class="bullet">3</div>
+                <span class="instruction-line">Enjoy!</span>
+            </div>
+        </div>
+        <button class="enter-chat">Go to chat <ion-icon name="arrow-forward-circle"></ion-icon></button>
     </div>
     <div class="arkechat">
     <audio id="enterAudio" src="enter.wav" preload></audio>
     <audio id="smsNot" src="sms.wav" preload></audio>
     <div id="snackbar">User Joined</div>
     <section class="title">
+        <div class="menu-button">
+            <ion-icon name="grid"></ion-icon>
+        </div>
         <span class="app-name">Arkē</span>
         <div class="room-data">
             <div>
-        <i class="fa fa-user user-icon" aria-hidden="true"></i>
+                <ion-icon name="people-circle"></ion-icon>
         <span class="user-count" id='userCount'>0</span>
     </div>
         <button class="invite-link" id="inviteUrlCopy">Invite</button>
@@ -120,7 +143,7 @@
                 <textarea class="message-box" id="messageBox" placeholder="Message @room"></textarea>
             </div>
             <button class="send-button" id="send">
-            <i class="fas fa-paper-plane send-icon"></i>
+                <ion-icon name="send" class="send-icon"></ion-icon>
         </button>
         </div>
     </section>
