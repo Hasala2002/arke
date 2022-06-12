@@ -4,6 +4,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,300&display=swap');
 @import url("https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/plus-jakarta-display.min.css");
 
+:root{
+    --emoji-picker-window-height: 400px;
+}
+
 @font-face {
     font-family: 'Nimbus Sans L';
     src: url('/fonts/nimbus/NimbusSanL-RegIta.woff2') format('woff2'),
@@ -166,6 +170,29 @@ body{
     /* background-color:red; */
 }
 
+.chat-images{
+    width: 75%;
+    height: fit-content;
+    min-height: 50px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+    margin: 10px 0;
+    background-color: rgb(8, 8, 8);
+    border-radius: 0 .5rem .5rem .5rem;
+}
+
+.chat-images img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: .5rem;
+    background-color:#000;
+}
+
+.chat-images .chat-user{
+    margin-bottom: 5px;
+}
 
 .w-o-name{
     min-height: 30px;
@@ -205,6 +232,7 @@ body{
     width: 100%;
     height: 10%;
     padding: .5rem .75rem;
+    position: relative;
 }
 
 .input-box{
@@ -231,7 +259,7 @@ body{
     place-items: center;
 }
 
-.send-button{
+.send-button, .happy-button, .attach-button{
     height:100%;
     width:5%;
     display: grid;
@@ -250,8 +278,26 @@ body{
     transform: rotate(-25deg) scale(1);
 }
 
+.happy-icon{
+    font-size: 1.25em;
+    transition:.4s;
+    transform: rotate(0deg) scale(1);
+}
+.attach-icon{
+    font-size: 1.25em;
+    transition:.25s;
+    transform: rotate(0deg) scale(1);
+}
+
 .send-button:hover .send-icon{
     transform: rotate(0deg) scale(1.05);
+}
+
+.happy-button:hover .happy-icon{
+    transform: rotate(720deg) scale(1.1);
+}
+.attach-button:not(.block):hover .attach-icon{
+    transform: scale(1.5);
 }
 
 .message-box{
@@ -518,6 +564,164 @@ body{
     color: #f2f2f280;
 }
 
+.emoji-picker-window{
+    width: 344px;
+    height: var(--emoji-picker-window-height);
+    background-color: #101010;
+    right: 0.75rem;
+    top: calc(-20px - var(--emoji-picker-window-height));
+    position: absolute;
+    border-radius: .5rem;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(25px);
+    transition: 0.25s ease-out;
+    /* overflow: hidden; */
+}
+
+.image-send-confirm-modal{
+    width: 344px;
+    height: var(--emoji-picker-window-height);
+    background-color: #101010;
+    left: 50%;
+    /* transform: translateX(-50%); */
+    top: calc(-20px - var(--emoji-picker-window-height));
+    position: absolute;
+    border-radius: .5rem;
+    display: flex;
+    flex-direction: column;
+    padding: .5rem;
+    gap: 10px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(25px) translateX(-50%);
+    transition: 0.25s ease-out;
+}
+
+.image-send-preview{
+    width: 100%;
+    flex: 1 1 0;
+    background-color: #000;
+    overflow: hidden;
+    border-radius: .5rem;
+    position: relative;
+}
+
+.img-compress-loader{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.img-compress-loader ion-icon {
+    font-size: 1.5em;
+    animation: compressing 2s linear infinite;
+}
+
+@keyframes compressing {
+    0%{
+        transform: scale(1) rotate(0deg);
+    }
+    50%{
+        transform: scale(1.1) rotate(180deg)
+    }
+    100%{
+        transform: scale(1) rotate(360deg)
+    }
+}
+
+.img-compress-loader span{
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 0.8em;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.image-send-preview img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: .5rem;
+}
+
+.image-send-options{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.image-send-cancel{
+    font-size: 2em;
+    cursor: pointer;
+}
+
+.img-send-btn{
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    background-color: #040404;
+    text-transform: uppercase;
+    border: none;
+    outline: none;
+    border-radius: .5rem;
+    letter-spacing: 1.5px;
+    border: 3px solid #040404;
+    transition: 0.25s ease-in-out;
+    cursor: pointer;
+}
+
+.emoji-picker-window.show{
+    opacity: 1;
+    pointer-events: unset;
+    transform: translateY(0px);
+}
+.image-send-confirm-modal.show{
+    opacity: 1;
+    pointer-events: unset;
+    transform: translateY(0px) translateX(-50%);
+}
+
+.emoji-picker-box{
+    width: 100%;
+    height: 100%;
+    border-radius: .5rem;
+    overflow: hidden;
+}
+
+.emoji-picker-tail{
+    position: absolute;
+    bottom: -14px;
+    left: calc(344px*75/100);
+}
+
+.image-confirm-tail{
+    position: absolute;
+    bottom: -14px;
+    left: calc(344px*67.5/100);
+}
+
+emoji-picker {
+    --background: #101010 !important;
+    --border-color: #101010 !important;
+}
+
+#imageInput{
+    display: none !important;
+}
+
+.block{
+    cursor:not-allowed;
+}
+
 @media screen and (max-width: 850px) {
     .arke-welcome{
         position: absolute;
@@ -532,6 +736,7 @@ body{
     }
 
     .arkechat{
+        min-width: 350px;
         width: 100%;
     }
 

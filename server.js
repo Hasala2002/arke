@@ -33,7 +33,10 @@ io.on('connection', socket => {
     io.to(roomId).emit('updatePeerCount',((io.sockets.adapter.rooms).get(roomId)).size)
     socket.on('message', (message,userName,uid) => {
       io.to(roomId).emit('createMessage', message,userName,uid)
-  }); 
+    }); 
+    socket.on('image', (base64,userName,uid) => {
+      io.to(roomId).emit('createImage', base64,userName,uid)
+    }); 
 
     socket.on('disconnect', () => {
       socket.to(roomId).emit('user-disconnected', userId, uname)

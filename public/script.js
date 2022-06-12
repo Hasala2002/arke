@@ -1,4 +1,14 @@
 // const linkifyHtml = require('linkify-html');
+
+function getBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+}
+
 const options = {
   attributes: {
     target: '_blank'
@@ -13,11 +23,23 @@ var userCount;
 var audioEnter = document.getElementById('enterAudio')
 var audioSMS = document.getElementById('smsNot')
 
+// $('.emoji-picker-window').hide()
+
+$('#happy').click(()=>{
+  $('.emoji-picker-window').toggleClass("show")
+  $('.emoji-picker-window').hasClass("show") ? $('#happy ion-icon').attr("name","close") : $('#happy ion-icon').attr("name","happy")
+})
+
+// $('#attach').click(()=>{
+//   $('.emoji-picker-window').toggleClass("show")
+//   $('.emoji-picker-window').hasClass("show") ? $('#happy ion-icon').attr("name","close") : $('#happy ion-icon').attr("name","happy")
+// })
+
 setTimeout(()=>{
     $('#splash').hide()
     $('#userName').focus()
-},4000)
-
+},1000)
+// $('#userNameForm').hide()
 // console.log(window.location.href)
 
 const userHasSumbmittedName = () => {
@@ -47,7 +69,15 @@ socket.on('user-disconnected', (userId,uName) => {
 
 const checkLastMessage = (uid) =>{
   if($('#messageList').html()!==''){
-    return ($('#messageList .chat-messages:last-child').attr('data-id'))===uid
+    if(($('#messageList .chat-messages:last-child').attr('data-id'))===uid){
+      return true
+    }
+    else if(($('#messageList .chat-images:last-child').attr('data-id'))===uid){
+      return true
+    }
+    else{
+      return false
+    }
   }else{return false}
 }
 
@@ -87,6 +117,40 @@ socket.on('createMessage',(message,name,uid)=>{
           <span class="chat-message">
           ${linkifyHtml(message,options)}
           </span>
+          </div>`)
+        }
+    }
+    $('.chat').scrollTop($('.chat')[0].scrollHeight)
+  })
+
+
+  socket.on('createImage',(base64,name,uid)=>{
+    if(uid!==userIdNumber){
+    if(checkLastMessage(uid)===false){
+      $('#messageList').append(`
+      <div class="chat-images" data-id="${uid}">
+      <span class="chat-user">${name}:</span>
+      <img src="${base64}">
+      </div>`)
+    }else{
+      $('#messageList').append(`
+      <div class="chat-images w-o-name" data-id="${uid}">
+      <img src="${base64}">
+      </div>`)
+    }
+            audioSMS.play()
+            $('.chat').scrollTop($('.chat')[0].scrollHeight)
+    }else{
+      if(checkLastMessage(uid)===false){
+        $('#messageList').append(`
+        <div class="chat-images personal" data-id="${uid}">
+        <span class="chat-user">You:</span>
+        <img src="${base64}">
+        </div>`)}
+        else{
+          $('#messageList').append(`
+          <div class="chat-images personal w-o-name" data-id="${uid}">
+          <img src="${base64}">
           </div>`)
         }
     }
@@ -185,7 +249,10 @@ $('.menu-button').click(()=>{
   $('.arke-welcome').toggleClass('close')
 })
 
-
+document.querySelector('emoji-picker')
+  .addEventListener('emoji-click', event => {
+    $(text).val(text.val()+event.detail.unicode)
+  });
 
 var typeNumber = 0;
 var errorCorrectionLevel = 'M';
@@ -193,3 +260,43 @@ var qr = qrcode(typeNumber, errorCorrectionLevel);
 qr.addData(`${window.location.href}`);
 qr.make();
 document.getElementById('placeHolder').innerHTML = qr.createImgTag();
+
+const optionsForCompression = {
+  maxSizeMB: 0.7,
+  useWebWorker: true
+}
+
+document.getElementById('imageInput').addEventListener('change', async function() {
+  const reader = new FileReader();
+  reader.onload = async function() {
+    const base64 = this.result;
+    // socket.emit('image', base64);
+    $("#img-prvw").attr('src',`${base64}`)
+    $(".image-send-confirm-modal").addClass("show")
+  };
+  reader.readAsDataURL(this.files[0]);
+  $('.img-compress-loader').hide()
+})
+
+$(".image-send-cancel").click(function(){
+  $(".image-send-confirm-modal").removeClass("show")
+})
+
+$(".img-send-btn").click(async function(){
+  $('.img-compress-loader').show()
+  $("#imageInput").prop("disabled",true)
+  $(".attach-button").addClass("block")
+  $("")
+  let images = document.getElementById("imageInput")
+  const reader = new FileReader();
+  const compressedFile = await imageCompression(images.files[0], optionsForCompression);
+  reader.readAsDataURL(compressedFile)
+  reader.onloadend = function() {
+    var base64data = reader.result;                
+    socket.emit('image',base64data,userName,userIdNumber)
+  }
+  $(".image-send-confirm-modal").removeClass("show")
+  $("#imageInput").prop("disabled",false)
+  $('.img-compress-loader').hide()
+  $(".attach-button").removeClass("block")
+})

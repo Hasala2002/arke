@@ -15,6 +15,8 @@
     <script defer src='script.js'></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js" integrity="sha512-ZDSPMa/JM1D+7kdg2x3BsruQ6T/JpJo3jWDWkCZsP+5yVyp1KfESqLI+7RqB5k24F7p2cV7i2YHh/890y6P6Sw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/browser-image-compression/1.0.9/browser-image-compression.min.js" integrity="sha512-128I8ehvlxR/VevkH/PuNWyGFzaXl3rx8vR+Bgslveukipa85ieAqI1pncOExpEbQNpTW/S23ni/j7blz7/EGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="linkify.js"></script>
     <script src="linkify-html.js"></script>
     <link rel="stylesheet" href="styles.css">
@@ -134,14 +136,52 @@
     </section>
     <section class="chat">
         <div class="chat-wrapper" id="messageList">
-    
+
         </div>
     </section>
     <section class="input">
+        <div class="image-send-confirm-modal">
+            <svg class="image-confirm-tail" width="30" height="14" viewBox="0 0 30 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M30 0H0L11.5 11.5C14.3 14.3 17.3333 12.6667 18.5 11.5L30 0Z" fill="#101010"/>
+                </svg>
+                <div class="image-send-preview">
+                    <div class="img-compress-loader">
+                        <ion-icon name="sync-outline"></ion-icon>
+                        <span>compressing</span>
+                    </div>
+                    <img id="img-prvw" src="./bg.png" alt="">
+                </div>
+                <div class="image-send-options">
+                    <div class="image-send-cancel">
+                        <ion-icon name="close" class="close-icon"></ion-icon>
+                    </div>
+                    <button class="img-send-btn">
+                        send
+                    </button>
+                </div>
+        </div>
+        <div class="emoji-picker-window">
+            <svg class="emoji-picker-tail" width="30" height="14" viewBox="0 0 30 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M30 0H0L11.5 11.5C14.3 14.3 17.3333 12.6667 18.5 11.5L30 0Z" fill="#101010"/>
+                </svg>
+                <div class="emoji-picker-box">
+                    <emoji-picker></emoji-picker>
+                </div>
+        </div>
+
         <div class="input-box">
+            <input type="file"
+            id="imageInput" name="imageInput"
+            accept="image/png, image/jpeg">
             <div class="input-area">
                 <textarea class="message-box" id="messageBox" placeholder="Message @room"></textarea>
             </div>
+            <label class="attach-button" id="attach" for="imageInput">
+                <ion-icon name="image" class="attach-icon"></ion-icon>
+        </label>
+            <button class="happy-button" id="happy">
+                <ion-icon name="happy" class="happy-icon"></ion-icon>
+        </button>
             <button class="send-button" id="send">
                 <ion-icon name="send" class="send-icon"></ion-icon>
         </button>
