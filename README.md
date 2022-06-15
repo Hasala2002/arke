@@ -29,6 +29,7 @@ Images are compressed to a maximum of 700kb.
 3. UUID
 4. Express
 5. EJS
+6. @hasala2002/chronos
 
 **Frontend**
 

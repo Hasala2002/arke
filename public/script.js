@@ -180,7 +180,7 @@ socket.on('user-disconnected', (userId,uName) => {
 
 // 3. When client gets a text message 
 
-socket.on('createMessage',(message,name,uid)=>{
+socket.on('createMessage',(message,time,name,uid)=>{
     // message = escapeHtml(message)
     if(uid!==userIdNumber){
     if(checkLastMessage(uid)===false){
@@ -190,6 +190,7 @@ socket.on('createMessage',(message,name,uid)=>{
       <span class="chat-message">
       ${message}
       </span>
+      <span class="chat-time">${time}</span>
       </div>`)
     }else{
       $('#messageList').append(`
@@ -197,6 +198,7 @@ socket.on('createMessage',(message,name,uid)=>{
       <span class="chat-message">
       ${message}
       </span>
+      <span class="chat-time">${time}</span>
       </div>`)
     }
             audioSMS.play()
@@ -209,6 +211,7 @@ socket.on('createMessage',(message,name,uid)=>{
         <span class="chat-message">
         ${linkifyHtml(message,options)}
         </span>
+        <span class="chat-time">${time}</span>
         </div>`)}
         else{
           $('#messageList').append(`
@@ -216,6 +219,7 @@ socket.on('createMessage',(message,name,uid)=>{
           <span class="chat-message">
           ${linkifyHtml(message,options)}
           </span>
+          <span class="chat-time">${time}</span>
           </div>`)
         }
     }
@@ -224,18 +228,20 @@ socket.on('createMessage',(message,name,uid)=>{
 
 // 4. When client gets an image  
 
-  socket.on('createImage',(base64,name,uid)=>{
+  socket.on('createImage',(base64,time,name,uid)=>{
     if(uid!==userIdNumber){
     if(checkLastMessage(uid)===false){
       $('#messageList').append(`
       <div class="chat-images" data-id="${uid}">
       <span class="chat-user">${name}:</span>
       <img src="${base64}">
+      <span class="chat-time">${time}</span>
       </div>`)
     }else{
       $('#messageList').append(`
       <div class="chat-images w-o-name" data-id="${uid}">
       <img src="${base64}">
+      <span class="chat-time">${time}</span>
       </div>`)
     }
             audioSMS.play()
@@ -246,11 +252,13 @@ socket.on('createMessage',(message,name,uid)=>{
         <div class="chat-images personal" data-id="${uid}">
         <span class="chat-user">You:</span>
         <img src="${base64}">
+        <span class="chat-time">${time}</span>
         </div>`)}
         else{
           $('#messageList').append(`
           <div class="chat-images personal w-o-name" data-id="${uid}">
           <img src="${base64}">
+          <span class="chat-time">${time}</span>
           </div>`)
         }
     }

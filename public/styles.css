@@ -118,6 +118,7 @@ body{
     margin: 10px 0;
     background-color: rgb(8, 8, 8);
     border-radius: 0 .5rem .5rem .5rem;
+    border: 1px solid #f2f2f20a;
     /* border-bottom: 1px solid rgba(242, 242, 242, 0.063); */
     /* background-color:red; */
 }
@@ -132,6 +133,7 @@ body{
     margin: 10px 0;
     background-color: rgb(8, 8, 8);
     border-radius: 0 .5rem .5rem .5rem;
+    border: 1px solid #f2f2f218;
 }
 
 .chat-images img{
@@ -140,6 +142,7 @@ body{
     object-fit: contain;
     border-radius: .5rem;
     background-color:#000;
+    border: 1px solid #f2f2f218;
 }
 
 .chat-images .chat-user{
@@ -170,6 +173,11 @@ body{
     text-align: left;
     display: flow-root;
     unicode-bidi: plaintext;
+}
+
+.chat-time{
+    margin-top: 5px;
+    font-size: 0.6em;
 }
 
 .personal .chat-message{

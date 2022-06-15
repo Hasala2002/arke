@@ -5,6 +5,7 @@ const app = express()
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
 const {v4: uuidv4 } = require('uuid')
+const chronos = require('@hasala2002/chronos');
 const { ExpressPeerServer } = require('peer')
 const peerServer = ExpressPeerServer(server,{
     debug: true
@@ -59,10 +60,10 @@ io.on('connection', socket => {
     io.to(roomId).emit('updatePeerCount',((io.sockets.adapter.rooms).get(roomId)).size)
     socket.on('message', (message,userName,uid) => {
       message = escapeHtml(message)
-      io.to(roomId).emit('createMessage', message,userName,uid)
+      io.to(roomId).emit('createMessage', message,chronos.format('hh:mm:cc'),userName,uid)
     }); 
     socket.on('image', (base64,userName,uid) => {
-      io.to(roomId).emit('createImage', base64,userName,uid)
+      io.to(roomId).emit('createImage',base64,chronos.format('hh:mm:cc'),userName,uid)
     }); 
 
     socket.on('disconnect', () => {
