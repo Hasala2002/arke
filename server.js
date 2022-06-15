@@ -23,6 +23,16 @@ function htmlEncode(str){
   });
 }
 
+function escapeHtml(unsafe)
+{
+    return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+ }
+
 // Setting up middlewares
 
 app.set('view engine','ejs')
@@ -43,12 +53,12 @@ app.get('/:room', (req, res) => {
 
 io.on('connection', socket => {
   socket.on('join-room', (roomId, userId, uname) => {
-    uname = htmlEncode(uname)
+    uname = escapeHtml(uname)
     socket.join(roomId)
     socket.to(roomId).emit('user-connected', userId, uname);
     io.to(roomId).emit('updatePeerCount',((io.sockets.adapter.rooms).get(roomId)).size)
     socket.on('message', (message,userName,uid) => {
-      message = htmlEncode(message)
+      message = escapeHtml(message)
       io.to(roomId).emit('createMessage', message,userName,uid)
     }); 
     socket.on('image', (base64,userName,uid) => {

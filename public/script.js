@@ -16,11 +16,15 @@ setTimeout(()=>{
 
 // Utility Functions
 
-function htmlEncode(str){
-  return String(str).replace(/[^\w. ]/gi, function(c){
-      return '&#'+c.charCodeAt(0)+';';
-  });
-}
+function escapeHtml(unsafe)
+{
+    return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+ }
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -90,7 +94,7 @@ $('#happy').click(()=>{
 $('#userName').keypress(function (e) {
   if(e.which === 13 && !e.shiftKey) {
   if(($('#userName').val()).length>0){
-    userName = htmlEncode($('#userName').val())
+    userName = $('#userName').val()
     $('#userNameForm').hide()
     userHasSumbmittedName(userName)
     }
@@ -177,7 +181,7 @@ socket.on('user-disconnected', (userId,uName) => {
 // 3. When client gets a text message 
 
 socket.on('createMessage',(message,name,uid)=>{
-    message = htmlEncode(message)
+    // message = escapeHtml(message)
     if(uid!==userIdNumber){
     if(checkLastMessage(uid)===false){
       $('#messageList').append(`
