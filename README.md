@@ -12,7 +12,7 @@ I don't really have any idea either.
 
 When you open the app, you get redirected a newly created room under a random id number, where you can invite other peers to join said room. 
 
-The room is created using Socket.io rooms. The client side app uses peerjs to connect to the socket.io room. The
+The room is created using Socket.io rooms. The client side app uses peerjs to connect to the socket.io room.
 
 Messages and Images are sent through web socket requests. 
 
