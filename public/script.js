@@ -1,4 +1,26 @@
-// const linkifyHtml = require('linkify-html');
+// DOM Element Initiations
+const audioEnter = document.getElementById('enterAudio')
+const audioSMS = document.getElementById('smsNot')
+let text = $('#messageBox')
+
+// Socket Application Initiation
+const socket = io();
+var userName;
+var userIdNumber;
+var userCount;
+
+setTimeout(()=>{
+  $('#splash').hide()
+  $('#userName').focus()
+},2000)
+
+// Utility Functions
+
+function htmlEncode(str){
+  return String(str).replace(/[^\w. ]/gi, function(c){
+      return '&#'+c.charCodeAt(0)+';';
+  });
+}
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -8,64 +30,6 @@ function getBase64(file) {
     reader.onerror = error => reject(error);
   });
 }
-
-const options = {
-  attributes: {
-    target: '_blank'
-  }
-};
-
-const socket = io();
-var userName;
-var userIdNumber;
-var userCount;
-
-var audioEnter = document.getElementById('enterAudio')
-var audioSMS = document.getElementById('smsNot')
-
-// $('.emoji-picker-window').hide()
-
-$('#happy').click(()=>{
-  $('.emoji-picker-window').toggleClass("show")
-  $('.emoji-picker-window').hasClass("show") ? $('#happy ion-icon').attr("name","close") : $('#happy ion-icon').attr("name","happy")
-})
-
-// $('#attach').click(()=>{
-//   $('.emoji-picker-window').toggleClass("show")
-//   $('.emoji-picker-window').hasClass("show") ? $('#happy ion-icon').attr("name","close") : $('#happy ion-icon').attr("name","happy")
-// })
-
-setTimeout(()=>{
-    $('#splash').hide()
-    $('#userName').focus()
-},1000)
-// $('#userNameForm').hide()
-// console.log(window.location.href)
-
-const userHasSumbmittedName = () => {
-    const peer = new Peer(undefined, {
-        path: '/peerjs',
-        host: '/',
-        port: window.location.origin==='https://arkechat.herokuapp.com'?'443':'3000',
-        // secure: 'true'
-    })
-    peer.on('open',id=>{
-        userIdNumber = id
-        socket.emit('join-room',ROOM_ID, id, userName)
-    })
-    $('.nameplate').text(`@${userName}`)
-    $('.current-room-number').text(`${ROOM_ID}`)
-}
-
-socket.on('user-connected',(userId,uName)=>{
-    snackbarJoin(uName)
-    audioEnter.play()
-})
-
-socket.on('user-disconnected', (userId,uName) => {
-    snackbarLeave(uName)
-    audioEnter.play()
-  })
 
 const checkLastMessage = (uid) =>{
   if($('#messageList').html()!==''){
@@ -81,8 +45,139 @@ const checkLastMessage = (uid) =>{
   }else{return false}
 }
 
+function snackbarJoin(uname) {
+  var x = document.getElementById("snackbar");
+  $('#snackbar').text(`${uname} joined the room`)
+  x.className = "show";
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
+function snackbarLeave(uname) {
+  var x = document.getElementById("snackbar");
+  $('#snackbar').text(`${uname} left the room`)
+  x.className = "show";
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
+function snackbarUrl(text) {
+var x = document.getElementById("snackbar");
+$('#snackbar').text(text)
+x.className = "show";
+setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}  
+
+
+// Config Operations
+
+const optionsForCompression = {
+  maxSizeMB: 0.7,
+  useWebWorker: true
+}
+
+const options = {
+  attributes: {
+    target: '_blank'
+  }
+};
+
+// Jquery App Functions 
+
+$('#happy').click(()=>{
+  $('.emoji-picker-window').toggleClass("show")
+  $('.emoji-picker-window').hasClass("show") ? $('#happy ion-icon').attr("name","close") : $('#happy ion-icon').attr("name","happy")
+})
+
+$('#userName').keypress(function (e) {
+  if(e.which === 13 && !e.shiftKey) {
+  if(($('#userName').val()).length>0){
+    userName = htmlEncode($('#userName').val())
+    $('#userNameForm').hide()
+    userHasSumbmittedName(userName)
+    }
+  }
+});
+
+$( "#send" ).click(function() {
+    if(text.val().length !== 0){
+        socket.emit('message',text.val(),userName,userIdNumber)
+        text.val('')
+      }
+  });
+
+$('#userNameBtn').click(()=>{
+    if(($('#userName').val()).length>0){
+    userName = $('#userName').val()
+    $('#userNameForm').hide()
+    userHasSumbmittedName(userName)
+    }
+})
+
+$('#inviteUrlCopy').click(()=>{
+  const el = document.createElement('textarea');
+  el.value = `Join my private Arkē Disposable Chatroom here
+${window.location.href}
+
+Create your own chatroom by visiting ${window.location.origin}`;
+  el.setAttribute('readonly', '');
+  el.style.position = 'absolute';
+  el.style.left = '-9999px';
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand('copy');
+  document.body.removeChild(el)
+  snackbarUrl('Invitation Copied!')
+})
+
+$('.enter-chat').click(()=>{
+$('.arke-welcome').toggleClass('close')
+})
+
+$('.menu-button').click(()=>{
+$('.arke-welcome').toggleClass('close')
+})
+
+document.querySelector('emoji-picker')
+.addEventListener('emoji-click', event => {
+  $(text).val(text.val()+event.detail.unicode)
+});
+
+
+// Socket Startup
+
+const userHasSumbmittedName = () => {
+    const peer = new Peer(undefined, {
+        path: '/peerjs',
+        host: '/',
+        port: window.location.origin==='https://arkechat.herokuapp.com'?'443':'3000',
+    })
+    peer.on('open',id=>{
+        userIdNumber = id
+        socket.emit('join-room',ROOM_ID, id, userName)
+    })
+    $('.nameplate').text(`@${userName}`)
+    $('.current-room-number').text(`${ROOM_ID}`)
+}
+
+// Socket On Functions
+
+// 1. When user is connected
+
+socket.on('user-connected',(userId,uName)=>{
+    snackbarJoin(uName)
+    audioEnter.play()
+})
+
+// 2. When user is disconnected
+
+socket.on('user-disconnected', (userId,uName) => {
+    snackbarLeave(uName)
+    audioEnter.play()
+  })
+
+// 3. When client gets a text message 
 
 socket.on('createMessage',(message,name,uid)=>{
+    message = htmlEncode(message)
     if(uid!==userIdNumber){
     if(checkLastMessage(uid)===false){
       $('#messageList').append(`
@@ -123,6 +218,7 @@ socket.on('createMessage',(message,name,uid)=>{
     $('.chat').scrollTop($('.chat')[0].scrollHeight)
   })
 
+// 4. When client gets an image  
 
   socket.on('createImage',(base64,name,uid)=>{
     if(uid!==userIdNumber){
@@ -157,17 +253,20 @@ socket.on('createMessage',(message,name,uid)=>{
     $('.chat').scrollTop($('.chat')[0].scrollHeight)
   })
 
+// 5. When client gets peer count update
+
   socket.on('updatePeerCount',(peerCount)=>{
       $('#userCount').text(peerCount)
       userCount = peerCount
   })
  
+// 6. When client needs reduce peer count
+
   socket.on('reduceCount',()=>{
     userCount--
     $('#userCount').text(userCount)
   })
  
-let text = $('#messageBox')
 
 $(text).keypress(function (e) {
   if(e.which === 13 && !e.shiftKey) {
@@ -179,80 +278,7 @@ $(text).keypress(function (e) {
   }
 });
 
-$('#userName').keypress(function (e) {
-  if(e.which === 13 && !e.shiftKey) {
-  if(($('#userName').val()).length>0){
-    userName = $('#userName').val()
-    $('#userNameForm').hide()
-    userHasSumbmittedName(userName)
-    }
-  }
-});
-
-$( "#send" ).click(function() {
-    if(text.val().length !== 0){
-        socket.emit('message',text.val(),userName,userIdNumber)
-        text.val('')
-      }
-  });
-
-$('#userNameBtn').click(()=>{
-    if(($('#userName').val()).length>0){
-    userName = $('#userName').val()
-    $('#userNameForm').hide()
-    userHasSumbmittedName(userName)
-    }
-})
-
-function snackbarJoin(uname) {
-    var x = document.getElementById("snackbar");
-    $('#snackbar').text(`${uname} joined the room`)
-    x.className = "show";
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-  }
-
-function snackbarLeave(uname) {
-    var x = document.getElementById("snackbar");
-    $('#snackbar').text(`${uname} left the room`)
-    x.className = "show";
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-  }
-
-function snackbarUrl(text) {
-  var x = document.getElementById("snackbar");
-  $('#snackbar').text(text)
-  x.className = "show";
-  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-}  
-
-$('#inviteUrlCopy').click(()=>{
-    const el = document.createElement('textarea');
-    el.value = `Join my private Arkē Disposable Chatroom here
-${window.location.href}
-
-Create your own chatroom by visiting ${window.location.origin}`;
-    el.setAttribute('readonly', '');
-    el.style.position = 'absolute';
-    el.style.left = '-9999px';
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand('copy');
-    document.body.removeChild(el)
-    snackbarUrl('Invite Link Copied!')
-})
-
-$('.enter-chat').click(()=>{
-  $('.arke-welcome').toggleClass('close')
-})
-
-$('.menu-button').click(()=>{
-  $('.arke-welcome').toggleClass('close')
-})
-
-document.querySelector('emoji-picker')
-  .addEventListener('emoji-click', event => {
-    $(text).val(text.val()+event.detail.unicode)
-  });
+// QR Code Generation
 
 var typeNumber = 0;
 var errorCorrectionLevel = 'M';
@@ -261,10 +287,8 @@ qr.addData(`${window.location.href}`);
 qr.make();
 document.getElementById('placeHolder').innerHTML = qr.createImgTag();
 
-const optionsForCompression = {
-  maxSizeMB: 0.7,
-  useWebWorker: true
-}
+
+// Send Image and Compress Functionality
 
 document.getElementById('imageInput').addEventListener('change', async function() {
   const reader = new FileReader();
@@ -300,3 +324,8 @@ $(".img-send-btn").click(async function(){
   $('.img-compress-loader').hide()
   $(".attach-button").removeClass("block")
 })
+
+// Nope, nothing to see here (─‿‿─)
+
+console.log("%c          (ㆆ_ㆆ)", "font-size:20px; font-weight: 600; color: #d21f3c;");
+console.log("%cNothing to see here, silly!", "font-size:20px; font-weight: 600; color: #d21f3c;");

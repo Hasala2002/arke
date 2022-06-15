@@ -1,3 +1,5 @@
+// Imports
+
 const express = require('express')
 const app = express()
 const server = require('http').Server(app)
@@ -8,6 +10,21 @@ const peerServer = ExpressPeerServer(server,{
     debug: true
 })
 
+// Utility Functions
+
+function NumClientsInRoom(namespace, room) {
+  var clients = io.nsps[namespace].adapter.rooms[room];
+  return Object.keys(clients).length;
+}
+
+function htmlEncode(str){
+  return String(str).replace(/[^\w. ]/gi, function(c){
+      return '&#'+c.charCodeAt(0)+';';
+  });
+}
+
+// Setting up middlewares
+
 app.set('view engine','ejs')
 app.use(express.static('public'))
 app.use('/peerjs',peerServer)
@@ -16,22 +33,22 @@ app.get('/', (req, res) => {
   res.redirect(`/${uuidv4()}`)
 })
 
-function NumClientsInRoom(namespace, room) {
-  var clients = io.nsps[namespace].adapter.rooms[room];
-  return Object.keys(clients).length;
-}
+// Client Frontend Initiation
 
 app.get('/:room', (req, res) => {
   res.render('room', { roomId: req.params.room })
 })
 
+// Socket Functions
+
 io.on('connection', socket => {
   socket.on('join-room', (roomId, userId, uname) => {
+    uname = htmlEncode(uname)
     socket.join(roomId)
     socket.to(roomId).emit('user-connected', userId, uname);
-    // console.log(((io.sockets.adapter.rooms).get(roomId)).size);
     io.to(roomId).emit('updatePeerCount',((io.sockets.adapter.rooms).get(roomId)).size)
     socket.on('message', (message,userName,uid) => {
+      message = htmlEncode(message)
       io.to(roomId).emit('createMessage', message,userName,uid)
     }); 
     socket.on('image', (base64,userName,uid) => {
@@ -45,5 +62,7 @@ io.on('connection', socket => {
   })
 })
 
+
+// Server Start
 
 server.listen(process.env.PORT||3000)
