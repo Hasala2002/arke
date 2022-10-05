@@ -1,5 +1,7 @@
 # Arkē Chat
 
+![banner](public/assets/banner.png)
+
 With Arkē Chat you can create your own disposable chatroom, invite other people to chat with you and not worry about anyone else snooping into your conversation. Nothing is saved. ;)
 
 ![ScreenShot](public/assets/screenshots/MainScreenshot.png)
