@@ -1,82 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Disposable Chat Room" />
-    <meta name="author" content="Hasala2002" />
-    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="./dependencies/peerjs.min.js"></script>
-    <script
-      nomodule=""
-      src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"
-    ></script>
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script defer src="script.js"></script>
-    <script
-      src="./dependencies/jquery-3.5.1.slim.min.js"
-    ></script>
-    <script
-      src="./dependencies/qrcode.min.js"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"
-    ></script>
-    <script
-      src="./dependencies/browser-image-compression.min.js"
-    ></script>
-    <script src="./dependencies/linkify.js"></script>
-    <script src="./dependencies/linkify-html.js"></script>
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="splash.css" />
-    <title>Arkē</title>
-    <script>
-      const ROOM_ID = "<%= roomId %>";
-    </script>
-  </head>
-  <body>
-    <%- include('./partials/splash'); %>
-    <div class="form-vignette" id="userNameForm">
-      <div class="form-block">
-        <img class="form-logo" src="./assets/logo.png" alt="logo" />
-        <span class="instruct">Please Enter a Display Name</span>
-        <input
-          type="text"
-          class="user-name"
-          id="userName"
-          placeholder="Display Name"
-          maxlength="10"
-        />
-        <button class="user-name-btn" id="userNameBtn">Join Room</button>
-      </div>
-    </div>
-    <div class="arke-welcome"><%- include('./partials/welcome'); %></div>
-    <div class="arkechat">
-      <%- include('./partials/audio'); %>
-      <div id="snackbar">User Joined</div>
-      <section class="title">
-        <div class="menu-button">
-          <ion-icon name="arrow-back-outline"></ion-icon>
-        </div>
-        <span class="app-name">Arkē Chat</span>
-        <div class="room-data">
-          <div>
-            <ion-icon name="people-circle"></ion-icon>
-            <span class="user-count" id="userCount">0</span>
-          </div>
-          <button class="invite-link" id="inviteUrlCopy">Invite</button>
-        </div>
-      </section>
-      <section class="chat">
-        <div class="chat-wrapper" id="messageList"></div>
-      </section>
-      <section class="input"><%- include('./partials/input'); %></section>
-    </div>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="Disposable Chat Room" />
+		<meta name="author" content="Hasala2002" />
+		<link
+			rel="shortcut icon"
+			href="./assets/favicon.ico"
+			type="image/x-icon"
+		/>
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="./dependencies/peerjs.min.js"></script>
+		<script
+			nomodule=""
+			src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"
+		></script>
+		<script
+			type="module"
+			src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"
+		></script>
+		<script defer src="script.js"></script>
+		<script src="./dependencies/jquery-3.5.1.slim.min.js"></script>
+		<script src="./dependencies/qrcode.min.js"></script>
+		<script
+			type="module"
+			src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"
+		></script>
+		<script src="./dependencies/browser-image-compression.min.js"></script>
+		<script src="./dependencies/linkify.js"></script>
+		<script src="./dependencies/linkify-html.js"></script>
+		<link rel="stylesheet" href="styles.css" />
+		<link rel="stylesheet" href="splash.css" />
+		<title>Arkē</title>
+		<script>
+			const ROOM_ID = '<%= roomId %>';
+		</script>
+	</head>
+	<body>
+		<%- include('./partials/splash'); %>
+		<div class="form-vignette" id="userNameForm">
+			<div class="form-block">
+				<img class="form-logo" src="./assets/logo.png" alt="logo" />
+				<span class="instruct">Please Enter a Display Name</span>
+				<div id="username-input-box">
+					<input
+						type="text"
+						class="user-name"
+						id="userName"
+						placeholder="Display Name"
+						maxlength="10"
+					/>
+					<p id="name-error">*Please Enter a valid name</p>
+				</div>
+
+				<button class="user-name-btn" id="userNameBtn">
+					Join Room
+				</button>
+			</div>
+		</div>
+		<div class="arke-welcome"><%- include('./partials/welcome'); %></div>
+		<div class="arkechat">
+			<%- include('./partials/audio'); %>
+			<div id="snackbar">User Joined</div>
+			<section class="title">
+				<div class="menu-button">
+					<ion-icon name="arrow-back-outline"></ion-icon>
+				</div>
+				<span class="app-name">Arkē Chat</span>
+				<div class="room-data">
+					<div>
+						<ion-icon name="people-circle"></ion-icon>
+						<span class="user-count" id="userCount">0</span>
+					</div>
+					<button class="invite-link" id="inviteUrlCopy">
+						Invite
+					</button>
+				</div>
+			</section>
+			<section class="chat">
+				<div class="chat-wrapper" id="messageList"></div>
+			</section>
+			<section class="input"><%- include('./partials/input'); %></section>
+		</div>
+	</body>
 </html>
