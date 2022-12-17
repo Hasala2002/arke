@@ -1,0 +1,31 @@
+{
+  "name": "arke",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tabler/icons": "^1.116.1",
+    "avvvatars-react": "^0.4.2",
+    "dayjs": "^1.11.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-linkify": "^1.0.0-alpha",
+    "react-router-dom": "^6.4.5",
+    "react-spring": "^9.5.5",
+    "react-transition-group": "1.x",
+    "sass": "^1.56.1",
+    "socket.io-client": "^4.5.4",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.24",
+    "@types/react-dom": "^18.0.8",
+    "@vitejs/plugin-react": "^2.2.0",
+    "vite": "^3.2.3"
+  }
+}

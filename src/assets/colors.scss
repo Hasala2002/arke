@@ -1,0 +1,25 @@
+@function main-gradient($deg){
+    @return linear-gradient($deg, #72128f 0%, #1b0671 100%)
+}
+
+$off-magenta: #C5A3FF;
+$magenta: #72128f;
+
+@mixin magenta-glow{
+    background: radial-gradient(
+        200px circle,
+        rgba(114,18,143,0.15),
+        transparent 40%
+      );
+      background-size: 100% 100%;
+      
+}
+
+@mixin violet-glow{
+    background: radial-gradient(
+        200px circle,
+        rgba(27,6,113,0.1),
+        transparent 40%
+      );
+      background-size: 100% 100%;
+}

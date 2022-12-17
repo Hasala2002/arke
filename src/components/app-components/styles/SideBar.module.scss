@@ -1,0 +1,223 @@
+@import "../../../assets/colors.scss";
+
+.Title{
+    width:100%;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    // background-color: #fff;
+    .Logo{
+        width: 35px;
+        height: 35px;
+        background-image: url("/back.png");
+        background-size: cover;
+        border-radius: 5px;
+        display: grid;
+        place-items: center;
+        img{
+            width: 20px;
+            height: auto;
+        }
+    }
+
+    span{
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .OptionsBtn{
+        width: 35px;
+        height: 35px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background-color: rgba(255, 255, 255, 0.01);
+        backdrop-filter: blur(5px);
+        border-radius: 5px;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        margin-left: auto;
+    }
+}
+
+.Label{
+    font-size: 0.75em;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 7.5px;
+}
+
+.NameInput{
+    width: 100%;
+    height: 35px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    input{
+        flex: 1;
+        height: 100%;
+        background: transparent;
+        border: none;
+        outline-width: 0px;
+        padding: 0 10px;
+    }
+    .icon{
+     height: 100%;
+      width: 35px;
+      display: grid;
+      place-items: center;
+    }
+}
+
+.RoomTitle{
+    font-size: 0.75em;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    span{
+        text-transform: none;
+        font-weight: 400;
+        letter-spacing: 1px;
+    }
+}
+
+.RoomInfo{
+    flex: 1;
+    width: 100%;
+    border: 2px dashed rgba(255, 255, 255, 0.1);
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px 20px 20px;
+    overflow-y: auto;
+    .disclaimer{
+        font-size: 0.9em;
+        margin-bottom: 10px;
+        span{
+            color: $magenta;
+            font-weight: 700;
+        }
+    }
+
+    img{
+        margin-bottom: 10px;
+    }
+
+    .LinkCopy{
+        width: 90%;
+        height: 35px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background-color: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(5px);
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 40px;
+        span{
+            padding: 0 10px;
+            font-size: 0.9em;
+        }
+        .icon{
+            height: 100%;
+            width: 35px;
+            min-width: 35px;
+            border-radius: 5px;
+            display: grid;
+            place-items: center;
+            background-color: #131313;
+            $border: 2px;
+            box-sizing: border-box;
+            background-clip: padding-box; /* !importanté */
+            border: solid $border transparent; /* !importanté */
+            position: relative;
+            cursor: pointer;
+            &:before {
+              content: '';
+              position: absolute;
+              top: 0; right: 0; bottom: 0; left: 0;
+              z-index: -1;
+              margin: -$border; /* !importanté */
+              border-radius: inherit; /* !importanté */
+              background: main-gradient(315deg);
+            }
+        }
+    }
+}
+
+.RoomInfo::-webkit-scrollbar {
+    width: 5px;
+}
+
+
+.RoomInfo::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    padding: 2.5px;
+  }
+  
+.RoomInfo::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50px;
+  }
+
+.instructionSection {
+	width: 90%;
+	height: fit-content;
+	display: flex;
+	flex-direction: column;
+    margin-bottom: 30px;
+	/* align-items: center; */
+}
+
+.instructionPoint {
+	display: flex;
+	margin-bottom: 1em;
+}
+
+.bullet {
+	background: main-gradient(315deg);
+	margin-top: 2.5px;
+	font-weight: 500;
+	height: 17.5px;
+	font-size: 0.75em;
+	display: grid;
+	place-items: center;
+	aspect-ratio: 1/1;
+	border-radius: 50%;
+	color: #fff;
+	margin-right: 10px;
+}
+
+.instructionLine {
+	color: #fff;
+	text-align: left;
+	font-size: 0.8em;
+}
+
+.instructionLine b {
+	color: $magenta;
+}
+
+.closeButton{
+    display: flex;
+    align-items: center;
+    background-color: $magenta;
+    border-radius: 5px;
+    align-self: flex-end;
+    margin-left: auto;
+    padding: 10px;
+    gap: 5px;
+    cursor: pointer;
+    span{
+        text-transform: uppercase;
+    }
+}

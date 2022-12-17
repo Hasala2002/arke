@@ -1,0 +1,31 @@
+@import "../../../../assets/colors.scss";
+
+.ChatBox{
+    width: 100%;
+    list-style: none;
+    height: fit-content;
+    padding: 25px;
+    overflow-y: auto;
+}
+
+.ChatBox::-webkit-scrollbar {
+    width: 5px;
+    // padding: 2.5px;
+}
+
+
+.ChatBox::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50px;
+    // padding: 2.5px;
+    // margin: 40px;
+    width: 5px;
+  }
+  
+.ChatBox::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 50px;
+    width: 5px;
+    // border-right: 5px rgba(255, 255, 255, 0.25) solid;
+    background-clip: padding-box;
+  }

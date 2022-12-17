@@ -1,0 +1,158 @@
+@import url("https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/plus-jakarta-display.min.css");
+
+$page-padding-default: 32px;
+$page-padding-default: 32px;
+
+$page-padding-left: max(env(safe-area-inset-left),$page-padding-default);
+$page-padding-right: max(env(safe-area-inset-right),$page-padding-default);
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Display', sans-serif;
+    color: #fff;
+    scroll-behavior: smooth;
+}
+
+html,body,#root{
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    overflow-x: hidden;
+}
+
+#root{
+    height: 100%;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    background-color: #000;
+    position: relative;
+}
+
+$bg-color: #000;
+$dot-color: #fff;
+
+// Dimensions
+$dot-size: 5px;
+$dot-space: 75px;
+
+#root::after{
+    width: 100%;
+    max-width: 1410px;
+    height: 600px;
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    z-index: 1;
+    background:
+    linear-gradient(90deg, $bg-color ($dot-space - $dot-size), transparent 1%) center,
+    linear-gradient($bg-color ($dot-space - $dot-size), transparent 1%) center,
+    $dot-color;
+background-size: $dot-space $dot-space;
+    opacity: 0.02;
+}
+
+.App{
+    width: 100%;
+    height: 100%;
+    max-width: 1440px;
+    z-index: 2;
+    position: relative;
+    min-height: 48px;
+    padding-left: $page-padding-left;
+    padding-right: $page-padding-right;
+    padding-bottom: $page-padding-right;
+    overflow-x: hidden;
+}
+
+
+.divider-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 25px 0;
+    .line{
+        flex: 1;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.1);
+    }
+    span{
+        color: rgba(255, 255, 255, 0.25);
+        font-weight: 300;
+        font-size: 0.6em;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+    }
+}
+
+.message-enter {
+    opacity: 0.01;
+    transform: translateY(10px);
+  }
+  
+  .message-enter.message-enter-active {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: 100ms ease-in;
+  }
+  
+  .message-leave {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  
+  .message-leave.message-leave-active {
+    opacity: 0.01;
+    transform: translateY(10px);
+    transition: 100ms ease-in;
+  }
+
+  $success: #198754;
+$danger: #d21f3c;
+$warning: #ffbf00;
+
+.toast{
+    width: fit-content;
+    max-width: 300px;
+    padding: 10px 20px;
+    min-height: 50px;
+    border-radius: .25em;
+    border: .5px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    font-size: 0.9em;
+    position: fixed;
+    right: 50px;
+    bottom: 100px;
+    display: flex;
+    // justify-content: space-between;
+    gap: 8px;
+    align-items: center;
+    overflow: hidden;
+    z-index: 100;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 20%);
+    border: 1px solid #ddd;
+    transform: translateX(250%);
+    transition: transform 0.5s cubic-bezier(0.23, 0.82, 0.16, 1.46);
+    // border-left: 5px solid $success;
+    // .loadBar{
+    //     height: 100%;
+    //     width: 5px;
+    //     background-color: $success;
+    //     position: absolute;
+    //     left: 0px;
+    //     top: 0px;
+    //     transition: 0.25s ease;
+    // }
+}
+
+.showToast{
+    transform: translateX(0);
+}

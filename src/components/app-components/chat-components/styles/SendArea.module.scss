@@ -1,0 +1,40 @@
+@import "../../../../assets/colors.scss";
+
+textarea{
+    // height: fit-content;
+    resize: none;
+    background: transparent;
+    flex: 1;
+    border: none;
+    outline-width: 0px;
+    padding: 0 25px;
+    font-size: 13px;
+}
+
+textarea:focus{
+    border: none;
+    outline-width: 0px;
+}
+
+textarea::-webkit-scrollbar {
+    width: 5px;
+  }
+
+textarea::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+  }
+  
+textarea::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50px;
+  }
+
+.sendAreaBtn{
+  height: 100%;
+  width: 60px;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}

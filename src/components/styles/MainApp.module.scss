@@ -1,0 +1,43 @@
+.MainApp{
+    margin-top: 48px;
+    width: 100%;
+    height: calc(100% - 48px);
+    // height: fit-content;
+    // aspect-ratio: 139/87;
+    padding-top: 25px;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.SideBar{
+    width: 30%;
+    min-width: 385px;
+    height: 100%;
+    border-radius: 1em;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(5px);
+    padding: 25px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.App{
+    flex: 1;
+    // max-height: 804.5px;
+    // position: relative;
+    // height: auto;
+    // height: fit-content;
+    // min-height: 100% !important;
+    border-radius: 1em;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    // padding: 5px;
+    // background-color: white;
+}
