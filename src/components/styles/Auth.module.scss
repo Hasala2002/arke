@@ -115,6 +115,9 @@
         border: none;
         outline-width: 0px;
         padding: 0 10px;
+        &:disabled{
+            cursor: not-allowed;
+        }
     }
     .icon{
      height: 100%;
@@ -250,3 +253,69 @@
 	text-align: left;
 	font-size: 0.8em;
 }
+
+.RoomInfo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0 30px 0;
+
+    .RoomLabel{
+        font-size: 0.75em;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+    }
+
+    .RoomName{
+        font-weight: 300;
+        font-size: 1.75em;
+        margin-bottom: 15px;
+    }
+
+    .RoomStatus{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        gap: 10px;
+        .RoomOnline{
+            width: 10px;
+            height: 10px;
+            aspect-ratio: 1/1;
+            background-color: #198754;
+            border-radius: 10px;
+            font-weight: 0.9em;
+        }
+    }
+}
+
+.loader{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0 20px 0;
+
+    div{
+        transform: scale(1.5);
+    }
+    // background-color: #fff;
+    // img{
+    //     animation: loading 1s infinite ease-in-out;
+    //     // animation: floating 3s infinite ease-in-out;
+
+    // }
+}
+
+// @keyframes loading {
+//     0%{
+//         transform: translateY(0px) rotate(0deg);
+//     }
+//     50%{
+//         transform: translateY(20px) rotate(180deg);
+//     }
+//     100%{
+//         transform: translateY(0px) rotate(360deg);
+//     }
+// }

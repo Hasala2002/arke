@@ -1,5 +1,6 @@
 import { IconInfoSquare, IconMessages, IconUserCircle } from '@tabler/icons'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useArke } from '../utilities/Arke.Context'
 import ChatBox from './chat-components/ChatBox'
 import SendArea from './chat-components/SendArea'
 import * as styles from "./styles/Chat.module.scss"
@@ -16,6 +17,8 @@ const Chat = () => {
       target.style.setProperty("--mouse-y", `${y}px`);
   }
 
+  const {currentUser,roomCount} = useArke()
+
   return (
     <>
         <div className={styles.Header}>
@@ -23,13 +26,13 @@ const Chat = () => {
                 <IconMessages size={22} stroke={2.5} />
             </div>
             <div className={styles.Title}>
-                <span>myRoom</span>
+                <span>{currentUser?currentUser.roomName : ""}</span>
                 <p>chatroom is live and active</p>
             </div>
             <div className={styles.chatStats}>
             <div className={styles.Chip}>
             <IconUserCircle stroke={2} color={"#C5A3FF"} size={20} />
-            <span>05</span>
+            <span>{roomCount ? roomCount : "00"}</span>
           </div>
           <IconInfoSquare size={20} />
             </div>

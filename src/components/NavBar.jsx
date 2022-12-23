@@ -23,10 +23,10 @@ const NavBar = () => {
 
         <div className={styles.AccountStatus}>
           <IconUserCircle stroke={2} size={22} />
-          <span>Hasala</span>
+          {/* <span>S</span> */}
           <div className={styles.Chip}>
             <IconChecks stroke={2} size={16} />
-            <span>Encrypted</span>
+            <span>{`Not Encrypted Yet :(`}</span>
           </div>
         </div>
         <div className={styles.NavAuth}>

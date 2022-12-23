@@ -14,13 +14,20 @@ const CreateRoom = () => {
 
     const handleCreateRoom = (e) => {
         e.preventDefault()
+        let roomId = uuidv4()
         if(roomName!=="" && displayName!==""){
-            setCurrentUser({
+            console.log(roomName)
+            let currentUserObj={
                 senderName: displayName,
                 senderId: uuidv4(),
-                roomName: roomName
+                roomName: roomName,
+                roomId: roomId,
+                newRoom: true
+            }
+            setCurrentUser({
+                ...currentUserObj
             })
-            connectToRoom()
+            connectToRoom(roomId,currentUserObj)
         }else{
             arkeToasteer({
                 type:"error",

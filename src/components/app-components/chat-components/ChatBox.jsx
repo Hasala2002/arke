@@ -4,7 +4,7 @@ import ChatIn from './ChatIn'
 import ChatOut from './ChatOut'
 import ChatOutImage from './ChatOutImage'
 import * as styles from "./styles/ChatBox.module.scss"
-import { CSSTransitionGroup } from 'react-transition-group'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { useSpring, animated } from 'react-spring';
 import ChatMessage from './ChatMessage'
 
@@ -14,23 +14,24 @@ const ChatBox = () => {
 
   return (
     <div className={styles.ChatBox}>
-      <CSSTransitionGroup
-                transitionName="message"
-                transitionEnterTimeout={100}
-                transitionLeaveTimeout={100}
-      >
+      <TransitionGroup>
       {roomMessages.map((message,index,messages)=>{
         // console.log(message.message)
         return(
+          <CSSTransition
+            key={index}
+            timeout={100}
+            classNames="message"
+            >
           <ChatMessage 
-            key={index} 
             message={message} 
             prevMessage={messages[index-1] ? messages[index-1] : null}
             nextMessage={messages[index+1] ? messages[index+1] : null}
           />
+          </CSSTransition>
         )
       })}
-      </CSSTransitionGroup>
+      </TransitionGroup>
     </div>
   )
 }

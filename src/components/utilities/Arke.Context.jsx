@@ -9,10 +9,14 @@ const ArkeContext = createContext()
 import { io } from 'socket.io-client'
 import { IconBellRinging, IconCircleCheck } from '@tabler/icons';
 
-// const socket = io.connect("http://localhost:3000")
+const socket = io.connect("http://188.166.91.55:3000/")
 
 export const useArke = () => {
     return useContext(ArkeContext)
+}
+
+function pad2(number) {
+  return (number < 10 ? '0' : '') + number
 }
 
 const messages = [
@@ -98,18 +102,35 @@ export const ArkeProvider = ({children}) => {
       },options.age||2000)
   }
   
-    const [socket,setSocket] = useState(io.connect("http://localhost:3000"))
+    
 
     const navigate = useNavigate();
 
     const [roomMessages,setRoomMessages] = useState([])
 
+    const [roomCount,setRoomCount] = useState(null)
+
     const [currentUser,setCurrentUser] = useState({})
 
-    const connectToRoom = async () =>{
-      let roomId =  uuidv4()
-      await socket.emit('join-room',roomId,currentUser)
+    // const [socket,setSocket] = useState()
+
+    // useEffect(()=>{
+    //   setSocket(io.connect("http://localhost:3000"))
+    // })
+
+    const connectToRoom = async (roomId,currentUserObj) =>{
+      await socket.emit('join-room',roomId,currentUserObj) 
+      setRoomCount(pad2(1))
       navigate(`/chat/${roomId}`)
+    }
+
+    const connectToExistingRoom = async(roomId,currentUserObj)=>{
+      await socket.emit('join-room',roomId,currentUserObj) 
+      navigate(`/chat/${roomId}`)
+    }
+
+    const checkIfRoomExists = async (roomId) => {
+      await socket.emit('check-if-room-exists',roomId)
     }
 
     const sendTextMessage = async (messageData)=>{
@@ -128,7 +149,16 @@ export const ArkeProvider = ({children}) => {
       socket.on('receive-message',(messageData)=>{
         setRoomMessages((roomMessages) => [...roomMessages,messageData])
       })
-    },[socket])
+
+      socket.on("connect_error", (err) => {
+        console.log(`connect_error due to ${err.message}`);
+      });
+
+      socket.on('update-room-count',(count)=>{
+        setRoomCount(pad2(count))
+      })
+
+    },[])
 
     const value = {
       roomMessages,
@@ -138,7 +168,12 @@ export const ArkeProvider = ({children}) => {
       connectToRoom,
       ArkeToast,
       arkeToasteer,
-      sendTextMessage
+      sendTextMessage,
+      checkIfRoomExists,
+      connectToExistingRoom,
+      roomCount,
+      setRoomCount,
+      socket
     }
 
 

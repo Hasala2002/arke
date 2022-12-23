@@ -8,10 +8,6 @@ const SendArea = () => {
   const input = useRef(null)
   const {roomMessages,setRoomMessages,currentUser,socket,connectToRoom,sendTextMessage} = useArke()
 
-  const handleConnectToRoom = () =>{
-    const roomId = uuidv4()
-    connectToRoom(roomId)
-  }
 
   useEffect(()=>{
     input.current.addEventListener("input",()=>{
@@ -42,6 +38,22 @@ const SendArea = () => {
 
   },[])
 
+  const handleSendMessage = () =>{
+    if(input.current.value!==""){
+      let message = {
+        senderName: currentUser.senderName,
+        senderId: currentUser.senderId,
+        message: input.current.value,
+        type: "textMessage",
+        timeStamp: new Date(),
+      }
+      // setRoomMessages((roomMessages) => [...roomMessages,message])
+      sendTextMessage(message)
+      input.current.value=""
+      input.current.style.height= `${18}px`
+    }
+  }
+
   return (
     <>
       <textarea ref={input} style={{height:18}} resize="none" placeholder="Message @myRoom here. Say Howdy! 🤠" />
@@ -51,7 +63,7 @@ const SendArea = () => {
       <div className={styles.sendAreaBtn}>
         <IconPhotoUp color={"#C5A3FF"} size={22} />
       </div>
-      <div className={styles.sendAreaBtn} onClick={handleConnectToRoom}>
+      <div className={styles.sendAreaBtn} onClick={handleSendMessage}>
         <IconSend color={"#C5A3FF"} size={22} />
       </div>
     </>
