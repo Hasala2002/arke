@@ -9,7 +9,7 @@ const SideBar = () => {
     const {currentUser,arkeToasteer} = useArke()
 
     const [clipboard, copyToClipboard] = useClipboard()
-    const toClipboard = `http://localhost:5173/join/${currentUser.roomId}`
+    const toClipboard = `${window.location.origin}/join/${currentUser.roomId}`
 
   return (
     <>
@@ -38,7 +38,7 @@ const SideBar = () => {
             </div>
             <img src="https://i.ibb.co/jDnMLvK/qrcode.png" alt="QR Code" />
             <div className={styles.LinkCopy}>
-            <span>arke.chat/dQw4w9WgXcQ</span>
+            <span>{(`${window.location.origin}/join/${currentUser.roomId}`).substring(0,27)+"..."}</span>
             <div className={styles.icon} onClick={() => {
                 copyToClipboard(toClipboard)
                 arkeToasteer({
