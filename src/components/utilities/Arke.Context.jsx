@@ -9,7 +9,7 @@ const ArkeContext = createContext()
 import { io } from 'socket.io-client'
 import { IconBellRinging, IconCircleCheck } from '@tabler/icons';
 
-const socket = io.connect("http://188.166.91.55:3000/")
+const socket = io.connect("https://188.166.91.55:3000/")
 
 export const useArke = () => {
     return useContext(ArkeContext)
