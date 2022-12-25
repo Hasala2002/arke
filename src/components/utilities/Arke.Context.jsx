@@ -1,7 +1,10 @@
-import { useContext, useState ,createContext ,useEffect} from 'react'
+import { useContext, useState ,createContext ,useEffect, useRef} from 'react'
 
 import { useNavigate } from "react-router-dom";
 
+
+import smsSFX from '../../assets/audio/sms.mp3';
+import enterSFX from '../../assets/audio/enter.mp3';
 
 import { v4 as uuidv4 } from 'uuid';
 const ArkeContext = createContext()
@@ -112,8 +115,23 @@ export const ArkeProvider = ({children}) => {
 
     const [currentUser,setCurrentUser] = useState({})
 
+
     // const [socket,setSocket] = useState()
 
+    let smsSound;
+    let enterSound;
+
+
+    const smsElem = useRef(null)
+    const enterElem = useRef()
+
+    const playSMSSound = () => {
+      smsElem.current.play()
+    }
+
+    const playEnterSound = () => {
+      enterElem.current.play()
+    }
     // useEffect(()=>{
     //   setSocket(io.connect("http://localhost:3000"))
     // })
@@ -139,15 +157,17 @@ export const ArkeProvider = ({children}) => {
 
     useEffect(()=>{
       socket.on('user-connected',()=>{
-        console.log("connected")
         arkeToasteer({
           type: "success",
           message: "Joined Room"
         })
+        playEnterSound()
       })
 
       socket.on('receive-message',(messageData)=>{
         setRoomMessages((roomMessages) => [...roomMessages,messageData])
+        if(messageData.senderId !== currentUser.senderId){
+        }
       })
 
       socket.on("connect_error", (err) => {
@@ -173,12 +193,15 @@ export const ArkeProvider = ({children}) => {
       connectToExistingRoom,
       roomCount,
       setRoomCount,
-      socket
+      socket,
+      playSMSSound
     }
 
 
     return(
         <ArkeContext.Provider value={value}>
+          <audio ref={smsElem} src={smsSFX} preload="true" />
+          <audio ref={enterElem} src={enterSFX} preload="true" />
             {children}
         </ArkeContext.Provider>
     )

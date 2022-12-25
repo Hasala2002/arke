@@ -16,12 +16,11 @@ const CreateRoom = () => {
         e.preventDefault()
         let roomId = uuidv4()
         if(roomName!=="" && displayName!==""){
-            console.log(roomName)
             let currentUserObj={
                 senderName: displayName,
                 senderId: uuidv4(),
                 roomName: roomName,
-                roomId: roomId,
+                roomId: roomId, 
                 newRoom: true
             }
             setCurrentUser({

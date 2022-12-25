@@ -1,16 +1,28 @@
 import React, { useEffect, useRef } from 'react'
 import { useArke } from '../../utilities/Arke.Context'
-import ChatIn from './ChatIn'
-import ChatOut from './ChatOut'
-import ChatOutImage from './ChatOutImage'
 import * as styles from "./styles/ChatBox.module.scss"
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import { useSpring, animated } from 'react-spring';
 import ChatMessage from './ChatMessage'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 const ChatBox = () => {
 
-  const {roomMessages} = useArke()
+  const {roomMessages,playSMSSound,currentUser} = useArke()
+
+  const messagesEndRef = useRef(null)
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
+  
+
+  useEffect(() => {
+    scrollToBottom()
+    if(roomMessages[roomMessages.length-1]){
+      if(roomMessages[roomMessages.length-1].senderId !== currentUser.senderId) {
+        playSMSSound()
+      }
+    }
+  }, [roomMessages]);
 
   return (
     <div className={styles.ChatBox}>
@@ -32,6 +44,7 @@ const ChatBox = () => {
         )
       })}
       </TransitionGroup>
+      <div ref={messagesEndRef} />
     </div>
   )
 }

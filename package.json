@@ -17,7 +17,6 @@
     "react-hook-clipboard": "^1.0.3",
     "react-linkify": "^1.0.0-alpha",
     "react-router-dom": "^6.4.5",
-    "react-spring": "^9.5.5",
     "react-transition-group": "4.4.5",
     "sass": "^1.56.1",
     "socket.io-client": "^4.5.4",
