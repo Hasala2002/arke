@@ -10,10 +10,10 @@ const NavBar = () => {
   return ( 
     <div
     className={styles.NavBar}>
-        <div className={styles.Title}>
+        <a href="https://arkechat.live" className={styles.Title}>
             <img src="/arke.svg" alt="Arke Logo" />
             <span>Arkē</span>
-        </div>
+        </a>
         {/* <div className={styles.NavLinks}>
             <a href="#home">Home</a>
             <a href="#highlights">Hightlights</a>
@@ -29,13 +29,12 @@ const NavBar = () => {
             <span>{`Not Encrypted Yet :(`}</span>
           </div>
         </div>
-        <div className={styles.NavAuth}>
+        {/* <div className={styles.NavAuth}>
             <a href="#">Log in</a>
             <a className={styles.Btn} href="#">Sign up</a>
             <div className={styles.RespNav} onClick={()=>{setOpen(!open)}}>
-              {/* {open ? <IconAlignRight stroke={1} size={22} /> : <IconX stroke={1} size={22} />} */}
             </div>
-        </div>
+        </div> */}
         {/* <div className={`${styles.RespNavLinks} ${open ? styles.Open : ""}`}>
             <a  onClick={()=>{setOpen(!open)}} href="#home">Home</a>
             <a  onClick={()=>{setOpen(!open)}} href="#highlights">Hightlights</a>
