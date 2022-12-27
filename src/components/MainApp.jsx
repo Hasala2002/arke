@@ -15,7 +15,7 @@ const MainApp = () => {
 
   return (
     <div ref={MainContainer} className={styles.MainApp}>
-        {/* {currentUser.senderName ? null : <Navigate to="/createroom"/>} */}
+        {currentUser.senderName ? null : <Navigate to="/createroom"/>}
         <div className={toggleSideBar ? styles.SideBar : styles.SideBarClosed}>
             <SideBar setToggleSideBar={setToggleSideBar} />
         </div>
