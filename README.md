@@ -2,7 +2,7 @@
 
 With Arkē Chat you can create your own disposable chatroom, invite other people to chat with you and not worry about anyone else snooping into your conversation. Nothing is saved. ;)
 
-> Read More at https://github.com/Hasala2002/arke-landing
+> Read More at https://arkechat.live
 
 ![ScreenShot](public/screenshots/MainScreenshot.jpeg)
 
