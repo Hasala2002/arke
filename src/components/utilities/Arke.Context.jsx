@@ -105,7 +105,20 @@ export const ArkeProvider = ({children}) => {
       },options.age||2000)
   }
   
-    
+  function useMediaQuery(query) {
+    const [matches, setMatches] = useState(false);
+      useEffect(() => {
+      const matchQueryList = window.matchMedia(query);
+      function handleChange(e) {
+        setMatches(e.matches);
+      }
+      matchQueryList.addEventListener("change", handleChange);
+      return () => {
+        matchQueryList.removeEventListener("change", handleChange);
+      };
+    }, [query]);
+    return matches;
+  }
 
     const navigate = useNavigate();
 
@@ -145,6 +158,13 @@ export const ArkeProvider = ({children}) => {
     const connectToExistingRoom = async(roomId,currentUserObj)=>{
       await socket.emit('join-room',roomId,currentUserObj) 
       navigate(`/chat/${roomId}`)
+    }
+
+    const leaveRoom = async (roomId) => {
+      await socket.emit('leave-room',roomId)
+      navigate(`/createroom`)
+      setRoomCount(null)
+      setCurrentUser({})
     }
 
     const checkIfRoomExists = async (roomId) => {
@@ -194,7 +214,9 @@ export const ArkeProvider = ({children}) => {
       roomCount,
       setRoomCount,
       socket,
-      playSMSSound
+      playSMSSound,
+      leaveRoom,
+      useMediaQuery
     }
 
 

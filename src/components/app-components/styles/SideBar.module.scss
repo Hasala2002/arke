@@ -38,6 +38,7 @@
         place-items: center;
         cursor: pointer;
         margin-left: auto;
+        display: none;
     }
 }
 
@@ -122,6 +123,7 @@
         align-items: center;
         justify-content: space-between;
         margin-bottom: 40px;
+        max-width: 300px;
         span{
             padding: 0 10px;
             font-size: 0.9em;
@@ -175,6 +177,7 @@
 	display: flex;
 	flex-direction: column;
     margin-bottom: 30px;
+    max-width: 300px;
 	/* align-items: center; */
 }
 
@@ -219,5 +222,13 @@
     cursor: pointer;
     span{
         text-transform: uppercase;
+    }
+}
+
+@media screen and (max-width: 864px) {
+    .Title{
+        .OptionsBtn{
+            display: grid;
+        }
     }
 }

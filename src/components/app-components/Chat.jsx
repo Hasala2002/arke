@@ -1,11 +1,11 @@
-import { IconInfoSquare, IconMessages, IconUserCircle } from '@tabler/icons'
+import { IconAlignLeft, IconInfoSquare, IconMessages, IconUserCircle } from '@tabler/icons'
 import React, { useEffect } from 'react'
 import { useArke } from '../utilities/Arke.Context'
 import ChatBox from './chat-components/ChatBox'
 import SendArea from './chat-components/SendArea'
 import * as styles from "./styles/Chat.module.scss"
 
-const Chat = () => {
+const Chat = ({setToggleSideBar}) => {
 
   const handleMouseMove = e =>{
     const  {  currentTarget: target } = e;
@@ -17,13 +17,21 @@ const Chat = () => {
       target.style.setProperty("--mouse-y", `${y}px`);
   }
 
-  const {currentUser,roomCount} = useArke()
+  const {currentUser,roomCount, useMediaQuery} = useArke()
+
+  const isMobile = useMediaQuery("max-width: 864px)");
 
   return (
     <>
         <div className={styles.Header}>
-        <div className={styles.Logo}>
-                <IconMessages size={22} stroke={2.5} />
+        <div className={styles.Logo} onClick={
+          ()=>{
+            if(!isMobile){
+              setToggleSideBar(true)
+            }
+          }
+        }>
+                {!isMobile ? <IconAlignLeft size={22} stroke={2.5} /> : <IconMessages size={22} stroke={2.5} />}
             </div>
             <div className={styles.Title}>
                 <span>{currentUser?currentUser.roomName : ""}</span>

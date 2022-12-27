@@ -1,15 +1,21 @@
-import { IconAlignRight, IconCheck, IconClipboardCopy, IconCopy, IconX } from '@tabler/icons'
+import { IconAlignRight, IconArrowLeft, IconCheck, IconClipboardCopy, IconCopy, IconX } from '@tabler/icons'
 import React from 'react'
 import useClipboard from 'react-hook-clipboard'
 import { useArke } from '../utilities/Arke.Context'
+import QRCode from "react-qr-code";
 import * as styles from "./styles/SideBar.module.scss"
 
-const SideBar = () => {
+const SideBar = ({setToggleSideBar}) => {
 
-    const {currentUser,arkeToasteer} = useArke()
+    const {currentUser,arkeToasteer, leaveRoom} = useArke()
 
     const [clipboard, copyToClipboard] = useClipboard()
     const toClipboard = `${window.location.origin}/join/${currentUser.roomId}`
+
+
+    const handleLeaveRoom = () => {
+        leaveRoom(currentUser.roomId)
+    }
 
   return (
     <>
@@ -18,8 +24,8 @@ const SideBar = () => {
                 <img src="/arke.svg" alt="Logo" />
             </div>
             <span>Welcome to Arkē</span>
-            <button className={styles.OptionsBtn}>
-                <IconAlignRight stroke={0.5} size={20} />
+            <button className={styles.OptionsBtn} onClick={()=>{setToggleSideBar(false)}}>
+                <IconArrowLeft stroke={0.5} size={20} />
             </button>
         </div>
         <span className={styles.Label}>Display Name</span>
@@ -36,7 +42,12 @@ const SideBar = () => {
             <div className={styles.disclaimer}>
                 Invite people to join <span>{currentUser?currentUser.roomName : ""}</span>
             </div>
-            <img src="https://i.ibb.co/jDnMLvK/qrcode.png" alt="QR Code" />
+            {/* <img src="https://i.ibb.co/jDnMLvK/qrcode.png" alt="QR Code" /> */}
+            <QRCode
+                size={175} 
+                style={{margin: "10px 0 20px 0", minHeight: 100}}
+                value={`${window.location.origin}/join/${currentUser.roomId}`}
+                />
             <div className={styles.LinkCopy}>
             <span>{(`${window.location.origin}/join/${currentUser.roomId}`).substring(0,27)+"..."}</span>
             <div className={styles.icon} onClick={() => {
@@ -63,9 +74,9 @@ const SideBar = () => {
                     <span className={styles.instructionLine}>Enjoy!</span>
                 </div>
                 </div>
-                <button className={styles.closeButton}>
+                <button className={styles.closeButton} onClick={handleLeaveRoom}>
                     <IconX size={16} stroke={3} />
-                    <span>Close Room</span>
+                    <span>Leave Room</span>
                 </button>
         </div>
     </>

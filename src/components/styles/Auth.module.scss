@@ -319,3 +319,11 @@
 //         transform: translateY(0px) rotate(360deg);
 //     }
 // }
+
+@media screen and (max-width: 540px) {
+    .Form{
+        width: 100%;
+        min-width: 360px;
+        padding: 25px 0;
+    }
+}

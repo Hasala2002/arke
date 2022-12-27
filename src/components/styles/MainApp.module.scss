@@ -11,7 +11,7 @@
     gap: 30px;
 }
 
-.SideBar{
+.SideBar,.SideBarClosed{
     width: 30%;
     min-width: 385px;
     height: 100%;
@@ -40,4 +40,33 @@
     flex-direction: column;
     // padding: 5px;
     // background-color: white;
+}
+
+@media screen and (max-width: 864px) {
+    .MainApp{
+        position: relative;
+    }
+
+    .App{
+        width: 100%;
+        height: 100%;
+    }
+    
+    .SideBar{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s cubic-bezier(1, -0.03, 0.29, 0.96);
+    }
+    .SideBarClosed{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        backdrop-filter: blur(10px);
+        transform: translateX(-150%);
+        transition: all 0.3s cubic-bezier(1, -0.03, 0.29, 0.96);
+    }
 }

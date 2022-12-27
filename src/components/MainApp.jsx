@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import Chat from './app-components/Chat'
 import SideBar from './app-components/SideBar'
@@ -11,14 +11,16 @@ const MainApp = () => {
 
   const {currentUser} = useArke()
 
+  const [toggleSideBar,setToggleSideBar] = useState(true)
+
   return (
     <div ref={MainContainer} className={styles.MainApp}>
-        {currentUser.senderName ? null : <Navigate to="/createroom"/>}
-        <div className={styles.SideBar}>
-            <SideBar />
+        {/* {currentUser.senderName ? null : <Navigate to="/createroom"/>} */}
+        <div className={toggleSideBar ? styles.SideBar : styles.SideBarClosed}>
+            <SideBar setToggleSideBar={setToggleSideBar} />
         </div>
         <div className={styles.App}>
-            <Chat />
+            <Chat setToggleSideBar={setToggleSideBar} />
         </div>
     </div>
   )
