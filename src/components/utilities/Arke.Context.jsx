@@ -66,8 +66,61 @@ const messages = [
         timeStamp: new Date(
           "Sun Jul 17 2021 18:24:36 GMT+0530 (India Standard Time)"
         ),
-        message: "Sed ut perspiciatis unde omnis iste",
-      }
+        message: "Sed ut perspiciatis unde omnis iste ddawdadadw dawd awdadgr gs fsardda dda  dadadadawdada  dad awd",
+      },
+      {
+        senderName: "Hasala",
+        senderId: "12324434",
+        type: "textMessage",
+        timeStamp: new Date(
+          "Sun Jul 17 2021 18:24:36 GMT+0530 (India Standard Time)"
+        ),
+        message: "Sed ut perspiciatis unde omnis iste ddawdadadw dawd awdadgr gs fsardda dda  dadadadawdada  dad awd",
+      },
+      {
+        senderName: "Hasala",
+        senderId: "12324434",
+        type: "textMessage",
+        timeStamp: new Date(
+          "Sun Jul 17 2021 18:24:36 GMT+0530 (India Standard Time)"
+        ),
+        message: "Sed ut perspiciatis unde omnis iste ddawdadadw dawd awdadgr gs fsardda dda  dadadadawdada  dad awd",
+      },
+      {
+        senderName: "Hasala",
+        senderId: "12324434",
+        type: "textMessage",
+        timeStamp: new Date(
+          "Sun Jul 17 2021 18:24:36 GMT+0530 (India Standard Time)"
+        ),
+        message: "Sed ut perspiciatis unde omnis iste ddawdadadw dawd awdadgr gs fsardda dda  dadadadawdada  dad awd",
+      },
+      {
+        senderName: "Hasala",
+        senderId: "12324434",
+        type: "textMessage",
+        reply: {
+          sender: "Hasala",
+          message: "ed ut perspiciatis unde omnis iste ddawdadadw dawd awdadgrdadawdawdaw dawdawdwa dawdawdawdawdw  edadawdwdawd  adawdwadadwd"
+        },
+        timeStamp: new Date(
+          "Sun Jul 17 2021 18:24:36 GMT+0530 (India Standard Time)"
+        ),
+        message: "Sed ut perspiciatis unde omnis iste ddawdadadw dawd awdadgr gs fsardda dda  dadadadawdada  dad awd",
+      },
+      {
+        senderName: "Hasala",
+        senderId: undefined,
+        reply: {
+          sender: "Hasala",
+          message: "ed ut perspiciatis unde omnis iste ddawdadadw dawd awdadgrdadawdawdaw dawdawdwa dawdawdawdawdw  edadawdwdawd  adawdwadadwd"
+        },
+        type: "textMessage",
+        timeStamp: new Date(
+          "Sun Jul 17 2021 18:24:36 GMT+0530 (India Standard Time)"
+        ),
+        message: "Sed ut perspiciatis unde omnis iste ddawdadadw dawd awdadgr gs fsardda dda  dadadadawdada  dad awd",
+      },
     ]
 
 export const ArkeProvider = ({children}) => {
@@ -128,6 +181,7 @@ export const ArkeProvider = ({children}) => {
 
     const [currentUser,setCurrentUser] = useState({})
 
+    const [selectedReply,setSelectedReply] = useState(null)
 
     // const [socket,setSocket] = useState()
 
@@ -216,7 +270,9 @@ export const ArkeProvider = ({children}) => {
       socket,
       playSMSSound,
       leaveRoom,
-      useMediaQuery
+      useMediaQuery,
+      selectedReply,
+      setSelectedReply
     }
 
 

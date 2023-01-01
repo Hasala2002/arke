@@ -1,14 +1,87 @@
 @import "../../../../assets/colors.scss";
 
+@mixin ReplyContainer{
+  position: absolute;
+  top: -150%;
+  border-radius: 0 10px 0 0;
+  display: flex;
+  padding: 10px 20px;
+  align-items: center;
+  width: 100%;
+  min-width: 348px;
+  height: 150%;
+  background-color: #000;
+  border-top: 1px solid rgba(114, 18, 143, 1);
+  border-right: 1px solid rgba(114, 18, 143, 1);
+  border-bottom: 1px solid rgba(255,255,255, 0.1);
+  backdrop-filter: blur(10px);
+  z-index: 10;
+  transition: 0.1s ease-in;
+
+  .chatMessage{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 5px;
+    .sender{
+      font-size: 0.8em;
+    }
+    .message{
+      font-size: 0.9em;
+      overflow:hidden;
+      max-height: 8rem;
+      -webkit-box-orient: vertical;
+      display: block;
+      display: -webkit-box;
+      overflow: hidden !important;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 1;
+    }
+  }
+
+  .closeReply{
+    width: 35px;
+    height: 35px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(5px);
+    border-radius: 5px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+}
+
+.sendTextArea{
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  .ReplyContainer{
+    @include ReplyContainer();
+  }
+
+  .ReplyContainerClosed{
+    @include ReplyContainer();
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+  }
+}
+
 textarea{
     // height: fit-content;
     resize: none;
     background: transparent;
-    flex: 1;
     border: none;
+    width: 100%;
     outline-width: 0px;
     padding: 0 25px;
     font-size: 13px;
+    position: relative;
 }
 
 textarea:focus{

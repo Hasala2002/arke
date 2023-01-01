@@ -3,7 +3,7 @@
 }
 
 $off-magenta: #C5A3FF;
-$magenta: #72128f;
+$magenta: rgb(114, 18, 143);
 
 @mixin magenta-glow{
     background: radial-gradient(

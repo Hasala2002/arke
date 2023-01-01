@@ -21,6 +21,7 @@ const Chat = ({setToggleSideBar}) => {
 
   const isMobile = useMediaQuery("max-width: 864px)");
 
+
   return (
     <>
         <div className={styles.Header}>
