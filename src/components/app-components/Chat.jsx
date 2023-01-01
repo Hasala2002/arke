@@ -1,4 +1,4 @@
-import { IconAlignLeft, IconInfoSquare, IconMessages, IconUserCircle } from '@tabler/icons'
+import {  IconGridDots, IconGridPattern, IconInfoSquare, IconMessages, IconUserCircle } from '@tabler/icons'
 import React, { useEffect } from 'react'
 import { useArke } from '../utilities/Arke.Context'
 import ChatBox from './chat-components/ChatBox'
@@ -32,7 +32,7 @@ const Chat = ({setToggleSideBar}) => {
             }
           }
         }>
-                {!isMobile ? <IconAlignLeft size={22} stroke={2.5} /> : <IconMessages size={22} stroke={2.5} />}
+                {!isMobile ? <IconGridDots size={22} stroke={2.5} /> : <IconMessages size={22} stroke={2.5} />}
             </div>
             <div className={styles.Title}>
                 <span>{currentUser?currentUser.roomName : ""}</span>
