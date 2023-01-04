@@ -1,6 +1,6 @@
 import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { CreateRoom, JoinRoom, MainApp, NavBar, SignIn, SignUp } from '../imports'
+import { CreateRoom, JoinRoom, MainApp, NavBar, Settings, SignIn, SignUp } from '../imports'
 import { useArke } from './Arke.Context'
 
 const AppRouters = () => {
@@ -17,6 +17,7 @@ const AppRouters = () => {
             <Route path={"/signup"} element={<SignUp />} />
             <Route path={"/join/:id"} element={<JoinRoom />} />
             <Route path={"/createroom"} element={<CreateRoom />} />
+            <Route path={"/settings"} element={<Settings />} />
             <Route path = "*" element={<Navigate to="/createroom"/>} />
         </Routes>
     </>

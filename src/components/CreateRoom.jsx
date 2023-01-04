@@ -40,6 +40,15 @@ const CreateRoom = () => {
     <div className={styles.Graphics}>
         <img src="/arke-hero.png" alt="Arke" />
     </div>
+    <div className={styles.Text}>
+    <h1>Arkē <span>Chat</span></h1>
+        <h2>Chat private. Chat free.</h2>
+        <p>Create your own disposable chatroom, invite other people to chat with you and not worry about anyone else snooping into your conversation. Nothing is saved.</p>
+        <div className={styles.BtnGroup}>
+            <a href="https://arkechat.live" className={styles.SubBtn}> <button>Learn more</button></a>
+            
+        </div>
+    </div>
     <div className={styles.Form}>
         <form action="">
         <div className={styles.Title}>

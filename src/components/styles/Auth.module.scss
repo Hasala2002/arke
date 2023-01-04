@@ -320,6 +320,70 @@
 //     }
 // }
 
+.Text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    h1{
+        // font-size: 4.5em;
+        font-size: clamp(60px, 10vw, 70px);
+        font-weight: 700;
+        z-index: 3;
+        span{
+            background: main-gradient(315deg);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+
+    h2{ 
+        z-index: 3;
+    }
+
+    p{
+        width: 60%;
+        margin-top: 20px;
+        opacity: 0.42;
+        font-weight: 300;
+    }
+
+    .BtnGroup{
+        display: flex;
+        gap: 20px;
+        margin-top: 50px;
+        button{
+            padding: 15px 30px;
+            background-color: transparent;
+            font-size: 1.1em;
+            font-weight: 500;
+            border: none;
+            outline-width: 0px;
+            cursor: pointer;
+        }
+    }
+
+    .SubBtn{
+        text-decoration: none;
+        background-color: #000;
+        $border: 2px;
+        box-sizing: border-box;
+        background-clip: padding-box; /* !importanté */
+        border: solid $border transparent; /* !importanté */
+        position: relative;
+        border-radius: 10px;
+        &:before {
+          content: '';
+          position: absolute;
+          top: 0; right: 0; bottom: 0; left: 0;
+          z-index: -1;
+          margin: -$border; /* !importanté */
+          border-radius: inherit; /* !importanté */
+          background: main-gradient(315deg);
+        }
+    }
+}
+
 @media screen and (max-width: 540px) {
     .Form{
         width: 100%;

@@ -54,7 +54,7 @@ $dot-space: 75px;
     linear-gradient($bg-color ($dot-space - $dot-size), transparent 1%) center,
     $dot-color;
 background-size: $dot-space $dot-space;
-    opacity: 0.02;
+    opacity: 0.075;
 }
 
 .App{
