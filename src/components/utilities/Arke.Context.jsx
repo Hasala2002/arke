@@ -278,6 +278,8 @@ export const ArkeProvider = ({children}) => {
 
     return(
         <ArkeContext.Provider value={value}>
+            <div className="arke-dialog-wrapper">
+            </div>
           <audio ref={smsElem} src={smsSFX} preload="true" />
           <audio ref={enterElem} src={enterSFX} preload="true" />
             {children}

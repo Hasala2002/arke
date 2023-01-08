@@ -40,7 +40,7 @@ const Chat = ({setToggleSideBar}) => {
             </div>
             <div className={styles.chatStats}>
             <div className={styles.Chip}>
-            <IconUserCircle stroke={2} color={"#C5A3FF"} size={20} />
+            <IconUserCircle stroke={2} size={20} />
             <span>{roomCount ? roomCount : "00"}</span>
           </div>
           <IconInfoSquare size={20} />

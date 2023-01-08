@@ -10,11 +10,11 @@
     display: flex;
     align-items: stretch;
     justify-content: space-between;
-    gap: 30px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     background-color: rgba(255, 255, 255, 0.01);
     backdrop-filter: blur(5px);
     border-radius: 10px;
+    position: relative;
 }
 
 .SideMenu{
@@ -39,7 +39,7 @@
         .Logo{
             width: 35px;
             height: 35px;
-            background-image: url("/back.png");
+            background-image: $gradient-back;
             background-size: cover;
             border-radius: 5px;
             display: grid;
@@ -60,4 +60,26 @@
         align-items: center;
         gap: 10px;
     }
+}
+
+.SettingsPage{
+    height: 100%;
+    flex: 1;
+    padding: 25px;
+}
+
+.OptionsBtn{
+    width: 35px;
+    height: 35px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(5px);
+    border-radius: 5px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    margin-left: auto;
+    position: absolute;
+    top: 15px;
+    right: 15px;
 }

@@ -75,13 +75,13 @@ const SendArea = () => {
     <textarea ref={input} style={{height:18}} onKeyDown={(e)=>{handleKeyPress(e)}} resize="none" placeholder="Message @myRoom here. Say Howdy! 🤠" />
     </div>
       <div className={styles.sendAreaBtn}>
-        <IconMoodTongueWink2 color={"#C5A3FF"} size={22} />
+        <IconMoodTongueWink2 size={22} />
       </div>
       {/* <div className={styles.sendAreaBtn}>
         <IconPhotoUp color={"#C5A3FF"} size={22} />
       </div> */}
       <div className={styles.sendAreaBtn} onClick={handleSendMessage}>
-        <IconSend color={"#C5A3FF"} size={22} />
+        <IconSend size={22} />
       </div>
     </>
   )

@@ -33,12 +33,12 @@ const NavBar = () => {
           {/* <span>S</span> */}
           <div className={styles.Chip}>
             <IconChecks stroke={2} size={16} />
-            <span>{`Not Encrypted Yet :(`}</span>
+            <span>{`Not e2e Encrypted Yet`}</span>
           </div>
         </div>
         <div className={styles.NavAuth}>
             {/* <a href="#">Log in</a> */}
-            <Link to="/settings" className={styles.Btn}>
+            <Link to="/settings/theme" className={styles.Btn}>
               <IconSettings size={20} />
               <span>Settings</span>
             </Link>

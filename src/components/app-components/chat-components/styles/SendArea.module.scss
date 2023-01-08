@@ -110,4 +110,10 @@ textarea::-webkit-scrollbar-thumb {
   display: grid;
   place-items: center;
   cursor: pointer;
+  svg{
+    color: $offset-color;
+    *{
+        color: $offset-color; 
+    }
+}
 }

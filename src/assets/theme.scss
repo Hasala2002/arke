@@ -1,0 +1,20 @@
+[data-theme="default"]{
+    --primary-color: #72128f;
+    --secondary-color: #1b0671;
+    --offset-color: #C5A3FF;
+    --gradient-back: url('/back.png');
+}
+
+[data-theme="malachite"]{
+    --primary-color: #0Bab64;
+    --secondary-color: #3bb78f;
+    --offset-color: #84d6bc;
+    --gradient-back: url('/back-mc.png');
+}
+
+[data-theme="monarch"]{
+    --primary-color: #1525b8;
+    --secondary-color: #101072;
+    --offset-color: #98ECF3;
+    --gradient-back: url('/back-mn.png');
+}

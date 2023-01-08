@@ -37,9 +37,9 @@ const CreateRoom = () => {
 
   return (
     <div className={styles.CrtRoom}>
-    <div className={styles.Graphics}>
+    {/* <div className={styles.Graphics}>
         <img src="/arke-hero.png" alt="Arke" />
-    </div>
+    </div> */}
     <div className={styles.Text}>
     <h1>Arkē <span>Chat</span></h1>
         <h2>Chat private. Chat free.</h2>

@@ -1,25 +1,35 @@
+@import 'theme.scss';
+
+// $gradient-back: url('/back.png');
+
+
+
+$primary-color: var(--primary-color);
+$secondary-color: var(--secondary-color);
+$offset-color: var(--offset-color);
+$gradient-back: var(--gradient-back);
+
+
 @function main-gradient($deg){
-    @return linear-gradient($deg, #72128f 0%, #1b0671 100%)
+    @return linear-gradient($deg, $primary-color 0%, $secondary-color 100%);
 }
 
-$off-magenta: #C5A3FF;
-$magenta: rgb(114, 18, 143);
 
-@mixin magenta-glow{
-    background: radial-gradient(
-        200px circle,
-        rgba(114,18,143,0.15),
-        transparent 40%
-      );
-      background-size: 100% 100%;
+// @mixin magenta-glow{
+//     background: radial-gradient(
+//         200px circle,
+//         rgba(114,18,143,0.15),
+//         transparent 40%
+//       );
+//       background-size: 100% 100%;
       
-}
+// }
 
-@mixin violet-glow{
-    background: radial-gradient(
-        200px circle,
-        rgba(27,6,113,0.1),
-        transparent 40%
-      );
-      background-size: 100% 100%;
-}
+// @mixin violet-glow{
+//     background: radial-gradient(
+//         200px circle,
+//         rgba(27,6,113,0.1),
+//         transparent 40%
+//       );
+//       background-size: 100% 100%;
+// }

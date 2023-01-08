@@ -11,7 +11,7 @@
     .Logo{
         width: 35px;
         height: 35px;
-        background-image: url("/back.png");
+        background-image: $gradient-back;
         background-size: cover;
         border-radius: 5px;
         display: grid;
@@ -103,7 +103,7 @@
         font-size: 0.9em;
         margin-bottom: 10px;
         span{
-            color: $magenta;
+            color: $primary-color;
             font-weight: 700;
         }
     }
@@ -207,17 +207,18 @@
 }
 
 .instructionLine b {
-	color: $magenta;
+	color: $primary-color;
 }
 
 .closeButton{
     display: flex;
     align-items: center;
-    background-color: $magenta;
+    background-color: $primary-color;
     border-radius: 5px;
     align-self: flex-end;
     margin-left: auto;
     padding: 10px;
+    border: none;
     gap: 5px;
     cursor: pointer;
     span{

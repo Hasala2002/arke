@@ -1,6 +1,6 @@
-import { IconAccessible, IconColorSwatch, IconHelp, IconNotification, IconSettings } from '@tabler/icons'
+import { IconAccessible, IconColorSwatch, IconHelp, IconNotification, IconSettings, IconX } from '@tabler/icons'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 import * as styles from "./styles/Settings.module.scss"
 
 const Settings = () => {
@@ -13,23 +13,29 @@ const Settings = () => {
                 </div>
                 <h2>Settings</h2>
             </div>
-            <Link to="/createroom" className={styles.SideLink}>
+            {/* <Link to="/createroom" className={styles.SideLink}>
                 <IconAccessible size={20} />
                 <span>Accessibility</span>
-            </Link>
-            <Link to="/createroom" className={styles.SideLink}>
+            </Link> */}
+            <Link to="theme" className={styles.SideLink}>
                 <IconColorSwatch size={20} />
                 <span>Theme</span>
             </Link>
-            <Link to="/createroom" className={styles.SideLink}>
+            <Link to="notifications" className={styles.SideLink}>
                 <IconNotification size={20} />
                 <span>Notifications</span>
             </Link>
-            <Link to="/createroom" className={styles.SideLink}>
+            <Link to="help" className={styles.SideLink}>
                 <IconHelp size={20} />
                 <span>Help</span>
             </Link>
         </div>
+        <div className={styles.SettingsPage}>
+            <Outlet />
+        </div>
+        <Link className={styles.OptionsBtn} to="/createroom">
+                <IconX stroke={0.5} size={20} />
+            </Link>
     </div>
   )
 }
