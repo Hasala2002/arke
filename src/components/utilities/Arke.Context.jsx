@@ -11,6 +11,7 @@ const ArkeContext = createContext()
 
 import { io } from 'socket.io-client'
 import { IconBellRinging, IconCircleCheck } from '@tabler/icons';
+import ArkeDialog from './ArkeDialog';
 
 const socket = io.connect("https://arkeapi.tech:3000/")
 
@@ -279,6 +280,7 @@ export const ArkeProvider = ({children}) => {
     return(
         <ArkeContext.Provider value={value}>
             <div className="arke-dialog-wrapper">
+              <ArkeDialog />
             </div>
           <audio ref={smsElem} src={smsSFX} preload="true" />
           <audio ref={enterElem} src={enterSFX} preload="true" />
