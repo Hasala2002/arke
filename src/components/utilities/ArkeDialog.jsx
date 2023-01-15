@@ -1,14 +1,14 @@
 import { IconX } from '@tabler/icons'
 import React, { useState } from 'react'
 
-const ArkeDialog = () => {
+const ArkeDialog = ({ isOpen, title, content, onConfirm, onCancel, handleClose }) => {
 
-  const [state,setState] = useState(true)
+  // const [state,setState] = useState(true)
 
-  return (
-    <div className="arke-clickable-wrapper" style={{display: state ? "grid" : "none"}}>
+  return  (
+    <div className="arke-clickable-wrapper" style={{display: isOpen ? "grid" : "none"}}>
       <div className="arke-dialog" >
-          <button className="close-dialog-btn" onClick={()=>{setState(false)}}>
+          <button className="close-dialog-btn" onClick={()=>{handleClose(false)}}>
                 <IconX stroke={1} size={20} />
             </button>
         <h2>Ambiguous Title</h2>
@@ -19,7 +19,7 @@ const ArkeDialog = () => {
         </div>
       </div>
     </div>
-  )
+  ) 
 }
 
 export default ArkeDialog

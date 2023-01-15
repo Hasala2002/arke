@@ -184,6 +184,8 @@ export const ArkeProvider = ({children}) => {
 
     const [selectedReply,setSelectedReply] = useState(null)
 
+    const [dialogState,setDialogState] = useState(false)
+
     // const [socket,setSocket] = useState()
 
     let smsSound;
@@ -273,14 +275,16 @@ export const ArkeProvider = ({children}) => {
       leaveRoom,
       useMediaQuery,
       selectedReply,
-      setSelectedReply
+      setSelectedReply,
+      dialogState,
+      setDialogState
     }
 
 
     return(
         <ArkeContext.Provider value={value}>
             <div className="arke-dialog-wrapper">
-              <ArkeDialog />
+              <ArkeDialog isOpen={dialogState} handleClose={setDialogState} />
             </div>
           <audio ref={smsElem} src={smsSFX} preload="true" />
           <audio ref={enterElem} src={enterSFX} preload="true" />
