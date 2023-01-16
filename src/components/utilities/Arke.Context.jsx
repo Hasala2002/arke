@@ -11,7 +11,6 @@ const ArkeContext = createContext()
 
 import { io } from 'socket.io-client'
 import { IconBellRinging, IconCircleCheck } from '@tabler/icons';
-import ArkeDialog from './ArkeDialog';
 
 const socket = io.connect("https://arkeapi.tech:3000/")
 
@@ -186,11 +185,41 @@ export const ArkeProvider = ({children}) => {
 
     const [dialogState,setDialogState] = useState(false)
 
-    // const [socket,setSocket] = useState()
+    const [dialog,setDialog] = useState({
+      title:"",
+      content: "",
+      handleConfirm: null,
+      handleCancel: null
+    })
+
+    const arkeDialog = (dialogInfo) => {
+      setDialog(dialogInfo)
+      setDialogState(true)
+    }
 
     let smsSound;
     let enterSound;
 
+    const customSWClass = {
+      container: 'arke-dialog-container',
+      popup: 'arke-dialog-popup',
+      header: 'arke-dialog-header',
+      title: 'arke-dialog-title',
+      closeButton: 'arke-dialog-closebtn',
+      icon: 'arke-dialog-icon',
+      image: 'arke-dialog-image',
+      htmlContainer: 'arke-dialog-htmlcontainer',
+      input: 'arke-dialog-input',
+      inputLabel: 'arke-dialog-inputlabel',
+      validationMessage: 'arke-dialog-validationmessage',
+      actions: 'arke-dialog-actions',
+      confirmButton: 'arke-dialog-confirmbtn',
+      denyButton: 'arke-dialog-denybtn',
+      cancelButton: 'arke-dialog-cancelbtn',
+      loader: 'arke-dialog-loader',
+      footer: 'arke-dialog-footer',
+      timerProgressBar: 'arke-dialog-timerprogress',
+    }
 
     const smsElem = useRef(null)
     const enterElem = useRef()
@@ -221,7 +250,14 @@ export const ArkeProvider = ({children}) => {
       await socket.emit('leave-room',roomId)
       navigate(`/createroom`)
       setRoomCount(null)
+      setRoomMessages([])
       setCurrentUser({})
+      setDialogState({
+        title:"",
+        content: "",
+        handleConfirm: null,
+        handleCancel: null
+      })
     }
 
     const checkIfRoomExists = async (roomId) => {
@@ -277,15 +313,14 @@ export const ArkeProvider = ({children}) => {
       selectedReply,
       setSelectedReply,
       dialogState,
-      setDialogState
+      setDialogState,
+      arkeDialog,
+      customSWClass
     }
 
 
     return(
         <ArkeContext.Provider value={value}>
-            <div className="arke-dialog-wrapper">
-              <ArkeDialog isOpen={dialogState} handleClose={setDialogState} />
-            </div>
           <audio ref={smsElem} src={smsSFX} preload="true" />
           <audio ref={enterElem} src={enterSFX} preload="true" />
             {children}

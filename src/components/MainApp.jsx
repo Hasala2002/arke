@@ -13,6 +13,26 @@ const MainApp = () => {
 
   const [toggleSideBar,setToggleSideBar] = useState(true)
 
+  // useEffect(()=>{
+  //   const unloadCallback = (event) => {      
+  //       const e = event || window.event;
+  //       //console.log(e)
+  //       e.preventDefault();
+  //       if (e) {
+  //         e.returnValue = ''
+  //       }
+  //       return '';
+          
+  //   };
+    
+  //   window.addEventListener("beforeunload", unloadCallback);
+  //   return () => {
+  //     //cleanup function
+  //     window.removeEventListener("beforeunload", unloadCallback);
+  //   }
+    
+  // },[])
+
   return (
     <div ref={MainContainer} className={styles.MainApp}>
         {/* {currentUser.senderName ? null : <Navigate to="/createroom"/>} */}

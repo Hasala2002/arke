@@ -1,12 +1,35 @@
 import { IconAlignRight, IconChecks, IconSettings, IconUserCircle, IconX } from '@tabler/icons'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
 import * as styles from "./styles/NavBar.module.scss"
+import { useArke } from './utilities/Arke.Context'
 
 const NavBar = () => {
 
   const [ open, setOpen ] = useState(true)
+
+  const { customSWClass } = useArke()
+
+  const handleLogin = () => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      // icon: 'error',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      customClass: customSWClass
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    })
+  }
 
   return ( 
     <div
@@ -37,7 +60,7 @@ const NavBar = () => {
           </div>
         </div>
         <div className={styles.NavAuth}>
-            {/* <a href="#">Log in</a> */}
+            {/* <a href="#" onClick={handleLogin}>Log in</a> */}
             <Link to="/settings/theme" className={styles.Btn}>
               <IconSettings size={20} />
               <span>Settings</span>

@@ -25,6 +25,10 @@ html,body,#root{
     overflow-x: hidden;
 }
 
+body.swal2-height-auto {
+    height: 100% !important
+  }
+
 #root{
     height: 100%;
     overflow: auto;
@@ -159,39 +163,12 @@ $warning: #ffbf00;
     transform: translateX(0);
 }
 
-.arke-dialog-wrapper{
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    display: grid;
-    place-items: center;
-    z-index: 999;
-    pointer-events: none;
-}
-
-.arke-clickable-wrapper{
-    width: 100%;
-    height: 100%;
-    position: relative;
-    pointer-events: auto;
-    display: grid;
-    place-items: center;
-    background-color: rgba(0, 0, 0, 0.507);
-}
-
-.arke-dialog{
-    max-width: 500px;
-    height: 300px;
-    width: 100%;
+.arke-dialog-popup{
     border: 1px solid rgba(255, 255, 255, 0.1);
     background-color: rgba(255, 255, 255, 0.01);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(10px);
     border-radius: 10px;
     padding: 25px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-
     &::before{
         content: "";
         position: absolute;
@@ -208,55 +185,68 @@ $warning: #ffbf00;
         -webkit-mask-composite: destination-out;
         mask-composite: exclude;
     }
-    .close-dialog-btn{
-        width: 35px;
-        height: 35px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        background-color: rgba(255, 255, 255, 0.01);
-        backdrop-filter: blur(5px);
-        border-radius: 5px;
-        display: grid;
-        place-items: center;
-        cursor: pointer;
-        margin-left: auto;
-        position: absolute;
-        top: 15px;
-        right: 15px;
-    }
+    // .close-dialog-btn{
+    //     width: 35px;
+    //     height: 35px;
+    //     border: 1px solid rgba(255, 255, 255, 0.1);
+    //     background-color: rgba(255, 255, 255, 0.01);
+    //     backdrop-filter: blur(5px);
+    //     border-radius: 5px;
+    //     display: grid;
+    //     place-items: center;
+    //     cursor: pointer;
+    //     margin-left: auto;
+    //     position: absolute;
+    //     top: 15px;
+    //     right: 15px;
+    // }
 
-    h2{
+    .arke-dialog-title{
         background: main-gradient(45deg);
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        padding: unset;
+        margin: unset;
+        width: fit-content;
     }
 
-    p{
+    .arke-dialog-htmlcontainer{
+        margin: unset;
+        width: fit-content;
         margin-top: 25px;
         font-weight: 300;
+        color: #fff;
         font-size: 0.9rem;
         opacity: 0.75;
+        padding: unset;
     }
 
-    .btn-group{
-        width: 100%;
-        height: 40px;
-        margin-top: auto;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        align-self: flex-end;
-        gap: 10px;
-        button{
-            height: 100%;
-            width: 120px;
+    .arke-dialog-actions{
+        margin: unset;
+        padding: unset;
+        margin: 25px 0 0 auto;
+
+        .arke-dialog-confirmbtn{
+            background: main-gradient(315deg);
+            border-radius: 7.5px;
+            &:hover{
+                background: main-gradient(315deg);
+            }
+
+            &:focus{
+                box-shadow: unset;
+            }
+        }
+        .arke-dialog-cancelbtn{
             border-radius: 7.5px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            outline-width: 0px;
             background-color: transparent;
             position: relative;
 
-
+            &:focus{
+                box-shadow: unset;
+            }
         &::before{
             content: "";
             position: absolute;
@@ -275,4 +265,42 @@ $warning: #ffbf00;
         }
         }
     }
+
+    // .btn-group{
+    //     width: 100%;
+    //     height: 40px;
+    //     margin-top: auto;
+    //     display: flex;
+    //     justify-content: flex-end;
+    //     align-items: center;
+    //     align-self: flex-end;
+    //     gap: 10px;
+    //     button{
+    //         height: 100%;
+    //         width: 120px;
+    //         border-radius: 7.5px;
+    //         border: 1px solid rgba(255, 255, 255, 0.1);
+    //         outline-width: 0px;
+    //         background-color: transparent;
+    //         position: relative;
+    //         cursor: pointer;
+
+    //     &::before{
+    //         content: "";
+    //         position: absolute;
+    //         top: 0;
+    //         left: 0;
+    //         right: 0;
+    //         bottom: 0;
+    //         border-radius: inherit; 
+    //         border: 1px solid transparent;
+    //         background: main-gradient(315deg) border-box;
+    //         -webkit-mask:
+    //           linear-gradient(#fff 0 0) padding-box, 
+    //           linear-gradient(#fff 0 0);
+    //         -webkit-mask-composite: destination-out;
+    //         mask-composite: exclude;
+    //     }
+    //     }
+    // }
 }

@@ -3,19 +3,30 @@ import React from 'react'
 import useClipboard from 'react-hook-clipboard'
 import { useArke } from '../utilities/Arke.Context'
 import QRCode from "react-qr-code";
+import Swal from 'sweetalert2'
 import * as styles from "./styles/SideBar.module.scss"
 
 const SideBar = ({setToggleSideBar}) => {
 
-    const {currentUser,arkeToasteer, leaveRoom} = useArke()
+    const {currentUser,arkeToasteer,customSWClass, leaveRoom} = useArke()
 
     const [clipboard, copyToClipboard] = useClipboard()
     const toClipboard = `${window.location.origin}/join/${currentUser.roomId}`
 
 
     const handleLeaveRoom = () => {
-        leaveRoom(currentUser.roomId)
-    }
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "This is a disposable chatroom! All current chat history will be deleted.",
+            showCancelButton: true,
+            confirmButtonText: 'Yes I am sure',
+            customClass: customSWClass
+          }).then((result) => {
+            if (result.isConfirmed) {
+                leaveRoom(currentUser.roomId)
+            }
+          })
+        }
 
   return (
     <>
