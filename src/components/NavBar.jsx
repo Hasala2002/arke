@@ -1,7 +1,7 @@
 import { IconAlignRight, IconChecks, IconSettings, IconUserCircle, IconX } from '@tabler/icons'
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useMatch } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import * as styles from "./styles/NavBar.module.scss"
 import { useArke } from './utilities/Arke.Context'
@@ -11,6 +11,8 @@ const NavBar = () => {
   const [ open, setOpen ] = useState(true)
 
   const { customSWClass } = useArke()
+
+  const chatMatch = useMatch('/chat/:id');
 
   const handleLogin = () => {
     Swal.fire({
@@ -61,10 +63,13 @@ const NavBar = () => {
         </div>
         <div className={styles.NavAuth}>
             {/* <a href="#" onClick={handleLogin}>Log in</a> */}
-            <Link to="/settings/theme" className={styles.Btn}>
-              <IconSettings size={20} />
-              <span>Settings</span>
-            </Link>
+            
+            {chatMatch ? null :
+                        <Link to="/settings/theme" className={styles.Btn}>
+                        <IconSettings size={20} />
+                        <span>Settings</span>
+                      </Link>
+            }
         </div>
     </div>
   )

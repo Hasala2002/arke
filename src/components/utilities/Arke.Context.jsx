@@ -12,6 +12,8 @@ const ArkeContext = createContext()
 import { io } from 'socket.io-client'
 import { IconBellRinging, IconCircleCheck } from '@tabler/icons';
 
+import { useSettings } from './Settings.Context'
+
 const socket = io.connect("https://arkeapi.tech:3000/")
 
 export const useArke = () => {
@@ -125,6 +127,8 @@ const messages = [
 
 export const ArkeProvider = ({children}) => {
 
+  const {soundState} = useSettings()
+
   const getToastType = (type) => {
     switch (type) {
         case "success":
@@ -225,11 +229,11 @@ export const ArkeProvider = ({children}) => {
     const enterElem = useRef()
 
     const playSMSSound = () => {
-      smsElem.current.play()
+      soundState && smsElem.current.play()
     }
 
     const playEnterSound = () => {
-      enterElem.current.play()
+      soundState && enterElem.current.play()
     }
     // useEffect(()=>{
     //   setSocket(io.connect("http://localhost:3000"))
