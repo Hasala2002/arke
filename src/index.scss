@@ -164,11 +164,11 @@ $warning: #ffbf00;
 }
 
 .arke-dialog-popup{
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background-color: rgba(255, 255, 255, 0.01);
-    backdrop-filter: blur(10px);
-    border-radius: 10px;
-    padding: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    background-color: rgba(255, 255, 255, 0.01) !important;
+    backdrop-filter: blur(10px) !important;
+    border-radius: 10px !important;
+    padding: 25px !important;
     &::before{
         content: "";
         position: absolute;
