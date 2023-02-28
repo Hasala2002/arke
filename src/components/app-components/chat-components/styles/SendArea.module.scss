@@ -2,21 +2,42 @@
 
 @mixin ReplyContainer{
   position: absolute;
-  top: -150%;
-  border-radius: 0 10px 0 0;
+  top: -200%;
+  left: 50%;
+  translate: -50% 0;
+  border-radius: 10px;
   display: flex;
   padding: 10px 20px;
   align-items: center;
-  width: 100%;
+  width: 90%;
   min-width: 348px;
   height: 150%;
   background-color: #000;
   border-top: 1px solid rgba(114, 18, 143, 1);
   border-right: 1px solid rgba(114, 18, 143, 1);
-  border-bottom: 1px solid rgba(255,255,255, 0.1);
+  border-left: 1px solid rgba(114, 18, 143, 1);
+  border-bottom: 1px solid rgba(114, 18, 143, 1);
+  // border-bottom: 1px solid rgba(255,255,255, 0.1);
   backdrop-filter: blur(10px);
   z-index: 10;
   transition: 0.1s ease-in;
+
+  &::before{
+    content: "";
+    left: 5%;
+    right: 0;
+    top: 90%;
+    bottom: 0;
+    z-index: 9;
+    width: 20px;
+    height: 20px;
+    border-radius: 0 5px 0 0;
+    border-top: 2px solid rgba(114, 18, 143, 1);
+    border-right: 2px solid rgba(114, 18, 143, 1);
+    rotate: 135deg;
+    background-color: black;
+    position: absolute;
+  }
 
   .chatMessage{
     display: flex;
