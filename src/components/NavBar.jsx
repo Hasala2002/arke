@@ -8,7 +8,7 @@ import { useArke } from './utilities/Arke.Context'
 
 const NavBar = () => {
 
-  const [ open, setOpen ] = useState(true)
+  const [open, setOpen] = useState(true)
 
   const { customSWClass } = useArke()
 
@@ -33,14 +33,14 @@ const NavBar = () => {
     })
   }
 
-  return ( 
+  return (
     <div
-    className={styles.NavBar}>
-        <a href="https://arkechat.live" className={styles.Title}>
-            <img src="/arke.svg" alt="Arke Logo" />
-            <span>Arkē</span>
-        </a>
-        {/* <div className={styles.NavLinks}>
+      className={styles.NavBar}>
+      <a href="https://arkechat.live" className={styles.Title}>
+        <img src="/arke.svg" alt="Arke Logo" />
+        <span>Arkē</span>
+      </a>
+      {/* <div className={styles.NavLinks}>
             <a href="#home">Home</a>
             <a href="#highlights">Hightlights</a>
             <a href="#showcase">Showcase</a>
@@ -53,24 +53,24 @@ const NavBar = () => {
         </div>">Community</a>
         </div> */}
 
-        <div className={styles.AccountStatus}>
-          <IconUserCircle stroke={2} size={22} />
-          {/* <span>S</span> */}
-          <div className={styles.Chip}>
-            <IconChecks stroke={2} size={16} />
-            <span>{`Not e2e Encrypted Yet`}</span>
-          </div>
+      <div className={styles.AccountStatus}>
+        {/* <IconUserCircle stroke={2} size={22} /> */}
+        {/* <span>S</span> */}
+        <div className={styles.Chip}>
+          <IconChecks stroke={2} size={16} />
+          <span>{`HTTPS Encrypted`}</span>
         </div>
-        <div className={styles.NavAuth}>
-            {/* <a href="#" onClick={handleLogin}>Log in</a> */}
-            
-            {chatMatch ? null :
-                        <Link to="/settings/theme" className={styles.Btn}>
-                        <IconSettings size={20} />
-                        <span>Settings</span>
-                      </Link>
-            }
-        </div>
+      </div>
+      <div className={styles.NavAuth}>
+        {/* <a href="#" onClick={handleLogin}>Log in</a> */}
+
+        {chatMatch ? null :
+          <Link to="/settings/theme" className={styles.Btn}>
+            <IconSettings size={20} />
+            <span>Settings</span>
+          </Link>
+        }
+      </div>
     </div>
   )
 }

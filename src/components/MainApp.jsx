@@ -9,9 +9,9 @@ const MainApp = () => {
 
   const MainContainer = useRef()
 
-  const {currentUser} = useArke()
+  const { currentUser } = useArke()
 
-  const [toggleSideBar,setToggleSideBar] = useState(true)
+  const [toggleSideBar, setToggleSideBar] = useState(true)
 
   // useEffect(()=>{
   //   const unloadCallback = (event) => {      
@@ -22,26 +22,26 @@ const MainApp = () => {
   //         e.returnValue = ''
   //       }
   //       return '';
-          
+
   //   };
-    
+
   //   window.addEventListener("beforeunload", unloadCallback);
   //   return () => {
   //     //cleanup function
   //     window.removeEventListener("beforeunload", unloadCallback);
   //   }
-    
+
   // },[])
 
   return (
     <div ref={MainContainer} className={styles.MainApp}>
-        {currentUser.senderName ? null : <Navigate to="/createroom"/>}
-        <div className={toggleSideBar ? styles.SideBar : styles.SideBarClosed}>
-            <SideBar setToggleSideBar={setToggleSideBar} />
-        </div>
-        <div className={styles.App}>
-            <Chat setToggleSideBar={setToggleSideBar} />
-        </div>
+      {currentUser.senderName ? null : <Navigate to="/createroom" />}
+      <div className={toggleSideBar ? styles.SideBar : styles.SideBarClosed}>
+        <SideBar setToggleSideBar={setToggleSideBar} />
+      </div>
+      <div className={styles.App}>
+        <Chat setToggleSideBar={setToggleSideBar} />
+      </div>
     </div>
   )
 }

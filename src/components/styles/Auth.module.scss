@@ -1,311 +1,316 @@
 @import "../../assets/colors.scss";
-.Auth{
-    margin-top: 48px;
-    width: 100%;
-    padding-top: 25px;
-    display: flex;
-    align-items: stretch;
-    justify-content: center;
-    position: relative;
-    // gap: 30px;
+.Auth {
+  margin-top: 48px;
+  width: 100%;
+  padding-top: 25px;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  position: relative;
+  // gap: 30px;
 }
 
-.CrtRoom{
-    margin-top: 48px;
-    width: 100%;
-    padding-top: 25px;
-    display: flex;
-    align-items: stretch;
-    justify-content: flex-end;
-    position: relative;
-    // gap: 30px;
+.CrtRoom {
+  margin-top: 48px;
+  width: 100%;
+  padding-top: 25px;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-end;
+  position: relative;
+  // gap: 30px;
 }
 
-.Title{
-    width:100%;
+.Title {
+  width: 100%;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+  position: relative;
+  // background-color: #fff;
+  .Logo {
+    width: 35px;
     height: 35px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 25px;
-    // background-color: #fff;
-    .Logo{
-        width: 35px;
-        height: 35px;
-        background-image: $gradient-back;
-        background-size: cover;
-        border-radius: 5px;
-        display: grid;
-        place-items: center;
-        *{
-            opacity: 0.74;
-        }
-    }
-
-    span{
-        font-weight: 700;
-        text-transform: uppercase;
-    }
-}
-
-.Graphics{
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    // display: none;
-    position: absolute;
-    img{
-        width: 60%;
-        min-width: 450px;
-        height: auto;
-        animation: floating 3s infinite ease-in-out;
-    }
-}
-
-.Form{
-    height: fit-content;
-    width: 50%;
-    min-width: 400px;
-    max-width: 550px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 25px;
-    z-index: 3;
-    form{
-        width: 100%;
-        border-radius: 1em;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        background-color: rgba(255, 255, 255, 0.01);
-        backdrop-filter: blur(10px);
-        padding: 50px 25px 25px 25px;
-    
-        display: flex;
-        flex-direction: column;   
-        h1{
-            margin-bottom: 25px;
-        }     
-    }
-}
-
-.Label{
-    font-size: 0.6em;
-    font-weight: 500;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    margin-bottom: 5px;
-    margin-left: 2.5px;
-}
-
-.NameInput{
-    width: 100%;
-    height: 35px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background-color: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(5px);
+    background-image: $gradient-back;
+    background-size: cover;
     border-radius: 5px;
-    display: flex;
-    align-items: center;
-    margin-bottom: 25px;
-    input{
-        flex: 1;
-        height: 100%;
-        background: transparent;
-        border: none;
-        outline-width: 0px;
-        padding: 0 10px;
-        &:disabled{
-            cursor: not-allowed;
-        }
-    }
-    .icon{
-     height: 100%;
-      width: 35px;
-      display: grid;
-      place-items: center;
-    }
-}
-
-.forgot{
-    font-size: 0.75em;
-    margin-bottom: 25px;
-    opacity: 0.74;
-}
-
-.TOS{
-    font-size: 0.75em;
-    font-weight: 200;
-    margin-top: 20px;
-    opacity: 0.74;
-    text-decoration: none;
-    text-align: center;
-    justify-self: flex-end;
-}
-
-.loginButton{
-    border: none;
-    display: flex;
-    align-items: center;
-    background-color: $primary-color;
-    border-radius: 5px;
-    align-self: flex-start;
-    font-size: 0.75em;
-    font-weight: 600;
-    letter-spacing: 1.25px;
-    // margin-left: auto;
-    padding: 10px 20px;
-    gap: 5px;
-    cursor: pointer;
-    span{
-        text-transform: uppercase;
-    }
-}
-
-.loginAnonButton{
-    border: none;
-    display: flex;
-    align-items: center;
-    background-color: $primary-color;
-    border-radius: 5px;
-    align-self: flex-start;
-    font-size: 0.9em;
-    font-weight: 400;
-    // letter-spacing: 1.25px;
-    // margin-left: auto;
-    padding: 10px 20px;
-    gap: 5px;
-    cursor: pointer;
-    span{
-        white-space: pre;
-        // text-transform: uppercase;
-    }
-}
-.loginSocialButton{
-    display: flex;
-    align-items: center;
-    // background-color: $magenta;
-    border: 1px solid transparent;
-    border-radius: 5px;
-    align-self: flex-start;
-    font-size: 0.9em;
-    font-weight: 400;
-    // letter-spacing: 1.25px;
-    // margin-left: auto;
-    padding: 10px;
-    gap: 5px;
-    cursor: pointer;
-    span{
-        white-space: pre;
-        // text-transform: uppercase;
-    }
-}
-
-.BtnGroup{
-    width: 100%;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-@keyframes floating {
-    0% {
-      transform: translate(-200px, 0px);
-    }
-    50% {
-      transform: translate(-200px, 7.5px);
-    }
-    100% {
-      transform: translate(-200px, 0px);
+    display: grid;
+    place-items: center;
+    * {
+      opacity: 0.74;
     }
   }
 
-  .instructionSection {
-	width: 90%;
-	height: fit-content;
-	display: flex;
-	flex-direction: column;
-    // margin-bottom: 30px;
-	/* align-items: center; */
+  span {
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+}
+
+.TextBG {
+  position: absolute;
+}
+
+.Graphics {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // display: none;
+  position: absolute;
+  img {
+    width: 60%;
+    min-width: 450px;
+    height: auto;
+    animation: floating 3s infinite ease-in-out;
+  }
+}
+
+.Form {
+  height: fit-content;
+  width: 50%;
+  min-width: 400px;
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px;
+  z-index: 3;
+  form {
+    width: 100%;
+    border-radius: 1em;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(10px);
+    padding: 50px 25px 25px 25px;
+
+    display: flex;
+    flex-direction: column;
+    h1 {
+      margin-bottom: 25px;
+    }
+  }
+}
+
+.Label {
+  font-size: 0.6em;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  margin-left: 2.5px;
+}
+
+.NameInput {
+  width: 100%;
+  height: 35px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  input {
+    flex: 1;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline-width: 0px;
+    padding: 0 10px;
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+  .icon {
+    height: 100%;
+    width: 35px;
+    display: grid;
+    place-items: center;
+  }
+}
+
+.forgot {
+  font-size: 0.75em;
+  margin-bottom: 25px;
+  opacity: 0.74;
+}
+
+.TOS {
+  font-size: 0.75em;
+  font-weight: 200;
+  margin-top: 20px;
+  opacity: 0.74;
+  text-decoration: none;
+  text-align: center;
+  justify-self: flex-end;
+}
+
+.loginButton {
+  border: none;
+  display: flex;
+  align-items: center;
+  background-color: $primary-color;
+  border-radius: 5px;
+  align-self: flex-start;
+  font-size: 0.75em;
+  font-weight: 600;
+  letter-spacing: 1.25px;
+  // margin-left: auto;
+  padding: 10px 20px;
+  gap: 5px;
+  cursor: pointer;
+  span {
+    text-transform: uppercase;
+  }
+}
+
+.loginAnonButton {
+  border: none;
+  display: flex;
+  align-items: center;
+  background-color: $primary-color;
+  border-radius: 5px;
+  align-self: flex-start;
+  font-size: 0.9em;
+  font-weight: 400;
+  // letter-spacing: 1.25px;
+  // margin-left: auto;
+  padding: 10px 20px;
+  gap: 5px;
+  cursor: pointer;
+  span {
+    white-space: pre;
+    // text-transform: uppercase;
+  }
+}
+.loginSocialButton {
+  display: flex;
+  align-items: center;
+  // background-color: $magenta;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  align-self: flex-start;
+  font-size: 0.9em;
+  font-weight: 400;
+  // letter-spacing: 1.25px;
+  // margin-left: auto;
+  padding: 10px;
+  gap: 5px;
+  cursor: pointer;
+  span {
+    white-space: pre;
+    // text-transform: uppercase;
+  }
+}
+
+.BtnGroup {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+@keyframes floating {
+  0% {
+    transform: translate(-200px, 0px);
+  }
+  50% {
+    transform: translate(-200px, 7.5px);
+  }
+  100% {
+    transform: translate(-200px, 0px);
+  }
+}
+
+.instructionSection {
+  width: 90%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  // margin-bottom: 30px;
+  /* align-items: center; */
 }
 
 .instructionPoint {
-	display: flex;
-	margin-bottom: 1em;
+  display: flex;
+  margin-bottom: 1em;
 }
 
 .bullet {
-	background: main-gradient(315deg);
-	margin-top: 2.5px;
-	font-weight: 500;
-	height: 17.5px;
-	font-size: 0.75em;
-	display: grid;
-	place-items: center;
-	aspect-ratio: 1/1;
-	border-radius: 50%;
-	color: #fff;
-	margin-right: 10px;
+  background: main-gradient(315deg);
+  margin-top: 2.5px;
+  font-weight: 500;
+  height: 17.5px;
+  font-size: 0.75em;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  color: #fff;
+  margin-right: 10px;
 }
 
 .instructionLine {
-	color: #fff;
-	text-align: left;
-	font-size: 0.8em;
+  color: #fff;
+  text-align: left;
+  font-size: 0.8em;
 }
 
-.RoomInfo{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 10px 0 30px 0;
+.RoomInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0 30px 0;
 
-    .RoomLabel{
-        font-size: 0.75em;
-        font-weight: 900;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-    }
+  .RoomLabel {
+    font-size: 0.75em;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
 
-    .RoomName{
-        font-weight: 300;
-        font-size: 1.75em;
-        margin-bottom: 15px;
-    }
+  .RoomName {
+    font-weight: 300;
+    font-size: 1.75em;
+    margin-bottom: 15px;
+  }
 
-    .RoomStatus{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        gap: 10px;
-        .RoomOnline{
-            width: 10px;
-            height: 10px;
-            aspect-ratio: 1/1;
-            background-color: #198754;
-            border-radius: 10px;
-            font-weight: 0.9em;
-        }
-    }
-}
-
-.loader{
-    width: 100%;
+  .RoomStatus {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 20px 0 20px 0;
 
-    div{
-        transform: scale(1.5);
+    gap: 10px;
+    .RoomOnline {
+      width: 10px;
+      height: 10px;
+      aspect-ratio: 1/1;
+      background-color: #198754;
+      border-radius: 10px;
+      font-weight: 0.9em;
     }
-    // background-color: #fff;
-    // img{
-    //     animation: loading 1s infinite ease-in-out;
-    //     // animation: floating 3s infinite ease-in-out;
+  }
+}
 
-    // }
+.loader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0 20px 0;
+
+  div {
+    transform: scale(1.5);
+  }
+  // background-color: #fff;
+  // img{
+  //     animation: loading 1s infinite ease-in-out;
+  //     // animation: floating 3s infinite ease-in-out;
+
+  // }
 }
 
 // @keyframes loading {
@@ -320,80 +325,83 @@
 //     }
 // }
 
-.Text{
+.Text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  h1 {
+    // font-size: 4.5em;
+    font-size: clamp(60px, 10vw, 70px);
+    font-weight: 700;
+    z-index: 3;
+    span {
+      background: main-gradient(315deg);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  h2 {
+    z-index: 3;
+  }
+
+  p {
+    width: 60%;
+    margin-top: 20px;
+    opacity: 0.42;
+    font-weight: 300;
+  }
+
+  .BtnGroup {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    h1{
-        // font-size: 4.5em;
-        font-size: clamp(60px, 10vw, 70px);
-        font-weight: 700;
-        z-index: 3;
-        span{
-            background: main-gradient(315deg);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+    gap: 20px;
+    margin-top: 50px;
+    button {
+      padding: 15px 30px;
+      background-color: transparent;
+      font-size: 1.1em;
+      font-weight: 500;
+      border: none;
+      outline-width: 0px;
+      cursor: pointer;
     }
+  }
 
-    h2{ 
-        z-index: 3;
+  .SubBtn {
+    text-decoration: none;
+    background-color: #000;
+    $border: 2px;
+    box-sizing: border-box;
+    background-clip: padding-box; /* !importanté */
+    border: solid $border transparent; /* !importanté */
+    position: relative;
+    border-radius: 10px;
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+      margin: -$border; /* !importanté */
+      border-radius: inherit; /* !importanté */
+      background: main-gradient(315deg);
     }
-
-    p{
-        width: 60%;
-        margin-top: 20px;
-        opacity: 0.42;
-        font-weight: 300;
-    }
-
-    .BtnGroup{
-        display: flex;
-        gap: 20px;
-        margin-top: 50px;
-        button{
-            padding: 15px 30px;
-            background-color: transparent;
-            font-size: 1.1em;
-            font-weight: 500;
-            border: none;
-            outline-width: 0px;
-            cursor: pointer;
-        }
-    }
-
-    .SubBtn{
-        text-decoration: none;
-        background-color: #000;
-        $border: 2px;
-        box-sizing: border-box;
-        background-clip: padding-box; /* !importanté */
-        border: solid $border transparent; /* !importanté */
-        position: relative;
-        border-radius: 10px;
-        &:before {
-          content: '';
-          position: absolute;
-          top: 0; right: 0; bottom: 0; left: 0;
-          z-index: -1;
-          margin: -$border; /* !importanté */
-          border-radius: inherit; /* !importanté */
-          background: main-gradient(315deg);
-        }
-    }
+  }
 }
 
 @media screen and (max-width: 900px) {
-    .Text{
-        display: none;
-    }
-    
-    .Form{
-        width: 100%;
-        min-width: 360px;
-        padding: 25px 0;
-    }
+  .Text {
+    display: none;
+  }
+
+  .Form {
+    width: 100%;
+    min-width: 360px;
+    padding: 25px 0;
+  }
 }
 
 // @media screen and (max-width: 540px) {
