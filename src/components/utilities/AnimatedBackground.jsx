@@ -1,89 +1,83 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { useEffect } from 'react'
+
+function getRandomCircles(totalCircles, numToSelect) {
+    const allCircles = Array.from({ length: totalCircles }, (_, index) => index);
+    const selectedCircles = [];
+
+    for (let i = 0; i < numToSelect; i++) {
+        const randomIndex = Math.floor(Math.random() * allCircles.length);
+        selectedCircles.push(allCircles.splice(randomIndex, 1)[0]);
+    }
+
+    return selectedCircles;
+}
+
+function changeColorWithStagger(
+    selectedCircles,
+    targetColor,
+    delayBetweenCircles,
+    circles
+) {
+    selectedCircles.forEach((index, i) => {
+        setTimeout(() => {
+            circles[index].style.transition = "fill 1s ease-in-out";
+            circles[index].setAttribute("fill", targetColor);
+        }, i * delayBetweenCircles);
+    });
+}
+
+function resetColorWithStagger(
+    selectedCircles,
+    originalColor,
+    delayBetweenCircles,
+    circles
+) {
+    selectedCircles.forEach((index, i) => {
+        setTimeout(() => {
+            circles[index].style.transition = "fill 1s ease-in-out";
+            circles[index].setAttribute("fill", originalColor);
+        }, i * delayBetweenCircles);
+    });
+};
+
 
 const AnimatedBackground = () => {
 
+    const svgRef = useRef(null);
+    const [circles, setCircles] = useState([]);
+
+    const setupAnimation = () => {
+        const svgElement = svgRef.current;
+        const circles = svgElement.querySelectorAll('circle');
+        setCircles(circles);
+    }
+
     useEffect(() => {
-        // JavaScript code to randomly select 5 circles and change their color with a staggered effect
+        setupAnimation()
+        // startAnimation()
+    }, []);
 
-        function getRandomCircles(totalCircles, numToSelect) {
-            // Create an array with numbers from 0 to totalCircles - 1
-            const allCircles = Array.from({ length: totalCircles }, (_, index) => index);
-            const selectedCircles = [];
-
-            // Randomly select numToSelect circles
-            for (let i = 0; i < numToSelect; i++) {
-                const randomIndex = Math.floor(Math.random() * allCircles.length);
-                selectedCircles.push(allCircles.splice(randomIndex, 1)[0]);
-            }
-
-            return selectedCircles;
+    useEffect(() => {
+        if (circles.length > 0) {
+            startAnimation();
         }
+    }, [circles]);
 
-        function changeColorWithStagger(
-            selectedCircles,
-            targetColor,
-            delayBetweenCircles
-        ) {
-            // Get all the circles in the SVG
-            const circles = document.querySelectorAll("svg#grid circle");
 
-            // Add a staggered effect to the color change for selected circles
-            selectedCircles.forEach((index, i) => {
-                setTimeout(() => {
-                    circles[index].style.transition = "fill 1s ease-in-out";
-                    circles[index].setAttribute("fill", targetColor);
-                }, i * delayBetweenCircles);
-            });
-        }
+    const startAnimation = () => {
 
-        function resetColorWithStagger(
-            selectedCircles,
-            originalColor,
-            delayBetweenCircles
-        ) {
-            // Get all the circles in the SVG
-            const circles = document.querySelectorAll("svg#grid circle");
+        const selectedCircles = getRandomCircles(circles.length, 5);
 
-            // Add a staggered effect to reset the color of selected circles to the original color
-            selectedCircles.forEach((index, i) => {
-                setTimeout(() => {
-                    circles[index].style.transition = "fill 1s ease-in-out";
-                    circles[index].setAttribute("fill", originalColor);
-                }, i * delayBetweenCircles);
-            });
-        }
-        3;
+        const delayBetweenCircles = 200;
 
-        function loopColorChange() {
-            const circles = document.querySelectorAll("svg#grid circle");
+        changeColorWithStagger(selectedCircles, Math.random() < 0.5 ? 'var(--primary-color)' : 'var(--secondary-color)', delayBetweenCircles, circles);
 
-            // Randomly select 5 circles
-            const selectedCircles = getRandomCircles(circles.length, 5);
-
-            // Define the staggered delay between each circle color change (milliseconds)
-            const delayBetweenCircles = 200;
-
-            // Change the color of selected circles to #72128f (or any other target color) with a staggered effect
-            changeColorWithStagger(selectedCircles, "#72128f", delayBetweenCircles);
-
-            // Reset the color of the selected circles to the original color with a staggered effect after a delay
-            setTimeout(() => {
-                resetColorWithStagger(
-                    selectedCircles,
-                    "rgba(255, 255, 255, 0.07)",
-                    delayBetweenCircles
-                );
-
-                // Call the function again after a delay to move to the next set of circles
-                setTimeout(loopColorChange, delayBetweenCircles * selectedCircles.length);
-            }, 2000); // Change 2000 to your desired duration for the #72128f color
-        }
-
-        // Call the function to start the color change loop
-        loopColorChange();
-    }, [])
-
+        setTimeout(() => {
+            resetColorWithStagger(selectedCircles, 'rgba(255,255,255,0.075)', delayBetweenCircles, circles);
+            setTimeout(startAnimation, delayBetweenCircles * selectedCircles.length);
+        }, 2000);
+    };
 
     return (
         <>
@@ -91,11 +85,11 @@ const AnimatedBackground = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 version="1.1"
                 xmlnsXlink="http://www.w3.org/1999/xlink"
-                // xmlns: svgjs="http://svgjs.dev/svgjs"
                 viewBox="0 0 800 800"
                 width="800"
                 height="800"
-                id="grid"
+                ref={svgRef}
+                onClick={startAnimation}
             >
                 <circle
                     r="3"

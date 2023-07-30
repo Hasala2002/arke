@@ -49,9 +49,9 @@ const CreateRoom = () => {
                     <a href="https://arkechat.live" className={styles.SubBtn}> <button>Learn more</button></a>
 
                 </div>
-                {/* <div className={styles.TextBG}>
+                <div className={styles.TextBG}>
                     <AnimatedBackground />
-                </div> */}
+                </div>
             </div>
             <div className={styles.Form}>
                 <form action="">

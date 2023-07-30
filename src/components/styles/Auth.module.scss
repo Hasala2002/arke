@@ -51,6 +51,7 @@
 
 .TextBG {
   position: absolute;
+  z-index: 0;
 }
 
 .Graphics {
@@ -349,14 +350,17 @@
   p {
     width: 60%;
     margin-top: 20px;
-    opacity: 0.42;
-    font-weight: 300;
+    // opacity: 0.42;
+    color: #676767;
+    font-weight: 400;
+    z-index: 3;
   }
 
   .BtnGroup {
     display: flex;
     gap: 20px;
     margin-top: 50px;
+    z-index: 3;
     button {
       padding: 15px 30px;
       background-color: transparent;
