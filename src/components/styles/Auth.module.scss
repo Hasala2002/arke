@@ -107,8 +107,12 @@
 .NameInput {
   width: 100%;
   height: 35px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  // border: 1px solid rgba(255, 255, 255, 0.1);
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.1);
   background-color: rgba(255, 255, 255, 0.05);
+  transition: border-color 0.3s ease-in-out;
   backdrop-filter: blur(5px);
   border-radius: 5px;
   display: flex;
@@ -130,6 +134,9 @@
     width: 35px;
     display: grid;
     place-items: center;
+    svg {
+      transition: stroke-width 0.3s ease-in-out;
+    }
   }
 }
 

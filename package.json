@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emoji-mart/data": "^1.1.2",
+    "@emoji-mart/react": "^1.1.1",
     "@tabler/icons": "^1.116.1",
     "dayjs": "^1.11.7",
     "emoji-picker-react": "^4.4.7",

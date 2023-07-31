@@ -9,7 +9,9 @@ import AnimatedBackground from './utilities/AnimatedBackground'
 const CreateRoom = () => {
 
     const [roomName, setRoomName] = useState("")
+    const [roomNameFocus, setRoomNameFocus] = useState(false)
     const [displayName, setDisplayName] = useState("")
+    const [displayNameFocus, setDisplayNameFocus] = useState(false)
 
     const { arkeToasteer, setCurrentUser, connectToRoom } = useArke()
 
@@ -35,6 +37,22 @@ const CreateRoom = () => {
             })
         }
     }
+
+    const handleRoomNameFocus = () => {
+        setRoomNameFocus(true);
+    };
+
+    const handleRoomNameBlur = () => {
+        setRoomNameFocus(false);
+    };
+
+    const handleDisplayNameFocus = () => {
+        setDisplayNameFocus(true);
+    };
+
+    const handleDisplayNameBlur = () => {
+        setDisplayNameFocus(false);
+    };
 
     return (
         <div className={styles.CrtRoom}>
@@ -62,21 +80,29 @@ const CreateRoom = () => {
                         <span>Create Arkē Room</span>
                     </div>
                     <span className={styles.Label}>Room Name</span>
-                    <div className={styles.NameInput}>
-                        <input type="text" required value={roomName} onChange={e => setRoomName(e.target.value)} placeholder={"The Matrix Room"} />
+                    <div className={styles.NameInput}
+                        style={{ borderColor: roomNameFocus ? "rgba(255, 255, 255, 0.5)" : "rgba(255, 255, 255, 0.1)" }}
+                    >
+                        <input type="text"
+                            onFocus={handleRoomNameFocus}
+                            onBlur={handleRoomNameBlur}
+                            required value={roomName} onChange={e => setRoomName(e.target.value)} placeholder={"The Matrix Room"} />
                         <div className={styles.icon}>
-                            <IconDoor stroke={0.5} size={20} />
+                            <IconDoor stroke={roomNameFocus ? 2 : 0.5} size={20} />
                         </div>
                     </div>
                     <span className={styles.Label}>Display Name</span>
-                    <div className={styles.NameInput}>
-                        <input type="text" required value={displayName} onChange={e => setDisplayName(e.target.value)} placeholder={"John123"} />
+                    <div className={styles.NameInput}
+                        style={{ borderColor: displayNameFocus ? "rgba(255, 255, 255, 0.5)" : "rgba(255, 255, 255, 0.1)" }}>
+                        <input type="text"
+                            onFocus={handleDisplayNameFocus}
+                            onBlur={handleDisplayNameBlur}
+                            required value={displayName} onChange={e => setDisplayName(e.target.value)} placeholder={"John123"} />
                         <div className={styles.icon}>
-                            <IconSignature stroke={0.5} size={20} />
+                            <IconSignature stroke={displayNameFocus ? 2 : 0.5} size={20} />
                         </div>
                     </div>
                     <button className={styles.loginButton} onClick={handleCreateRoom}>
-                        {/* <IconX size={16} stroke={3} /> */}
                         <span>Create Room</span>
                     </button>
                     <Divider text={"remember"} />
