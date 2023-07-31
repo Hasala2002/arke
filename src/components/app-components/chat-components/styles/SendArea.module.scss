@@ -1,6 +1,6 @@
 @import "../../../../assets/colors.scss";
 
-@mixin ReplyContainer{
+@mixin ReplyContainer {
   position: absolute;
   top: -200%;
   left: 50%;
@@ -22,7 +22,7 @@
   z-index: 10;
   transition: 0.1s ease-in;
 
-  &::before{
+  &::before {
     content: "";
     left: 5%;
     right: 0;
@@ -39,17 +39,17 @@
     position: absolute;
   }
 
-  .chatMessage{
+  .chatMessage {
     display: flex;
     flex-direction: column;
     flex: 1;
     gap: 5px;
-    .sender{
+    .sender {
       font-size: 0.8em;
     }
-    .message{
+    .message {
       font-size: 0.9em;
-      overflow:hidden;
+      overflow: hidden;
       max-height: 8rem;
       -webkit-box-orient: vertical;
       display: block;
@@ -60,7 +60,7 @@
     }
   }
 
-  .closeReply{
+  .closeReply {
     width: 35px;
     height: 35px;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -74,18 +74,18 @@
   }
 }
 
-.sendTextArea{
+.sendTextArea {
   flex: 1;
   height: 100%;
   display: flex;
   align-items: center;
   position: relative;
 
-  .ReplyContainer{
+  .ReplyContainer {
     @include ReplyContainer();
   }
 
-  .ReplyContainerClosed{
+  .ReplyContainerClosed {
     @include ReplyContainer();
     opacity: 0;
     pointer-events: none;
@@ -93,48 +93,56 @@
   }
 }
 
-textarea{
-    // height: fit-content;
-    resize: none;
-    background: transparent;
-    border: none;
-    width: 100%;
-    outline-width: 0px;
-    padding: 0 25px;
-    font-size: 13px;
-    position: relative;
+textarea {
+  // height: fit-content;
+  resize: none;
+  background: transparent;
+  border: none;
+  width: 100%;
+  outline-width: 0px;
+  padding: 0 25px;
+  font-size: 13px;
+  position: relative;
 }
 
-textarea:focus{
-    border: none;
-    outline-width: 0px;
+textarea:focus {
+  border: none;
+  outline-width: 0px;
 }
 
 textarea::-webkit-scrollbar {
-    width: 5px;
-  }
+  width: 5px;
+}
 
 textarea::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50px;
-  }
-  
-textarea::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 50px;
-  }
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+}
 
-.sendAreaBtn{
+textarea::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50px;
+}
+
+.sendAreaBtn {
   height: 100%;
   width: 60px;
   border-left: 1px solid rgba(255, 255, 255, 0.1);
   display: grid;
   place-items: center;
+  position: relative;
   cursor: pointer;
-  svg{
+  svg {
     color: $offset-color;
-    *{
-        color: $offset-color; 
+    * {
+      color: $offset-color;
     }
+  }
 }
+
+.emojiKeyboard {
+  position: absolute;
+  bottom: 70px;
+  right: 0%;
+  // transform: translateX(50%);
 }

@@ -3,6 +3,10 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useArke } from '../../utilities/Arke.Context'
 import * as styles from "./styles/SendArea.module.scss"
 import { v4 as uuidv4 } from 'uuid';
+
+import data from '@emoji-mart/data'
+import Picker from '@emoji-mart/react'
+
 const SendArea = () => {
 
   const input = useRef(null)
@@ -75,6 +79,9 @@ const SendArea = () => {
         <textarea ref={input} style={{ height: 18 }} onKeyDown={(e) => { handleKeyPress(e) }} resize="none" placeholder={`Message @${currentUser ? currentUser.roomName : "myRoom"} here. Say Howdy! 🤠`} />
       </div>
       <div className={styles.sendAreaBtn}>
+        <div className={styles.emojiKeyboard}>
+          {/* <Picker data={data} onEmojiSelect={console.log} /> */}
+        </div>
         <IconMoodTongueWink2 size={22} />
       </div>
       {/* <div className={styles.sendAreaBtn}>

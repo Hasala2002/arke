@@ -13,6 +13,7 @@
     "@emoji-mart/react": "^1.1.1",
     "@tabler/icons": "^1.116.1",
     "dayjs": "^1.11.7",
+    "emoji-mart": "^5.5.2",
     "emoji-picker-react": "^4.4.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
