@@ -89,7 +89,6 @@ const AnimatedBackground = () => {
                 width="800"
                 height="800"
                 ref={svgRef}
-                onClick={startAnimation}
             >
                 <circle
                     r="3"

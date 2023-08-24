@@ -5,12 +5,18 @@ import * as styles from "./styles/SendArea.module.scss"
 import { v4 as uuidv4 } from 'uuid';
 
 import data from '@emoji-mart/data'
-import Picker from '@emoji-mart/react'
+import EmojiPicker, { Theme } from 'emoji-picker-react'
 
 const SendArea = () => {
 
   const input = useRef(null)
   const { selectedReply, setSelectedReply, currentUser, sendTextMessage } = useArke()
+
+  const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
+
+  const toggleEmojiPicker = () => {
+    setEmojiPickerVisible(prevVisible => !prevVisible);
+  };
 
 
   useEffect(() => {
@@ -64,6 +70,26 @@ const SendArea = () => {
     setSelectedReply(null)
   }
 
+  const onClick = (emojiData, event) => {
+    const inputRef = input.current;
+    if (!inputRef) return;
+
+    const startPosition = inputRef.selectionStart; // Get the cursor position
+    const endPosition = inputRef.selectionEnd; // Get the end of the selected text
+
+    const currentValue = inputRef.value;
+    const emoji = emojiData.emoji;
+
+    // Insert the emoji at the cursor position
+    const newValue =
+      currentValue.substring(0, startPosition) +
+      emoji +
+      currentValue.substring(endPosition);
+
+    inputRef.value = newValue;
+    inputRef.selectionStart = inputRef.selectionEnd = startPosition + emoji.length; // Set the cursor after the inserted emoji
+  };
+
   return (
     <>
       <div className={styles.sendTextArea}>
@@ -78,10 +104,15 @@ const SendArea = () => {
         </div>
         <textarea ref={input} style={{ height: 18 }} onKeyDown={(e) => { handleKeyPress(e) }} resize="none" placeholder={`Message @${currentUser ? currentUser.roomName : "myRoom"} here. Say Howdy! 🤠`} />
       </div>
-      <div className={styles.sendAreaBtn}>
-        <div className={styles.emojiKeyboard}>
-          {/* <Picker data={data} onEmojiSelect={console.log} /> */}
-        </div>
+      <div className={styles.sendAreaBtn} onClick={toggleEmojiPicker}>
+        {emojiPickerVisible && (
+          <div className={`${styles.emojiKeyboard} ${styles.emojiKeyboardVisible}`}>
+            <EmojiPicker
+              theme={Theme.DARK}
+              onEmojiClick={onClick}
+            />
+          </div>
+        )}
         <IconMoodTongueWink2 size={22} />
       </div>
       {/* <div className={styles.sendAreaBtn}>

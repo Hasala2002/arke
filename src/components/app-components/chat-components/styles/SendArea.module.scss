@@ -142,7 +142,15 @@ textarea::-webkit-scrollbar-thumb {
 
 .emojiKeyboard {
   position: absolute;
-  bottom: 70px;
+  bottom: 0px;
   right: 0%;
+  opacity: 0;
+  transition: bottom 0.3s ease, opacity 0.3s ease;
   // transform: translateX(50%);
+}
+
+.emojiKeyboardVisible {
+  // top: 0;
+  bottom: 70px;
+  opacity: 1;
 }

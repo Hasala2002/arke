@@ -1,18 +1,20 @@
 import React from 'react'
-import {BrowserRouter as Router} from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import { ArkeProvider } from './components/utilities/Arke.Context.jsx'
 import AppRouters from './components/utilities/AppRouters.jsx'
 import { SettingsProvider } from './components/utilities/Settings.Context.jsx'
+import CursorAnimation from './components/utilities/CursorAnimation.jsx'
 
-function App() { 
-  return ( 
+function App() {
+  return (
     <Router>
       <SettingsProvider>
-      <ArkeProvider>
+        <ArkeProvider>
           <div className="App">
-              <AppRouters />
+            <AppRouters />
+            {/* <CursorAnimation /> */}
           </div>
-      </ArkeProvider>
+        </ArkeProvider>
       </SettingsProvider>
     </Router>
   )

@@ -301,3 +301,105 @@ $warning: #ffbf00;
   //     }
   // }
 }
+
+.cursor {
+  position: absolute;
+  cursor: none;
+  width: 10px;
+  height: 10px;
+  top: var(--y);
+  left: var(--x);
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transform-origin: center center;
+  transition: transform 0.1s, opacity 0.1s;
+}
+
+.cursor::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--secondary-color);
+}
+
+.cursor.animation {
+  // transform: scale(1.5);
+  opacity: 1;
+  transition: opacity 0.1s;
+  animation: vibratingAnimation 0.1s ease-in-out infinite;
+}
+
+.cursor.animation::after {
+  transform: translate(-50%, -50%) scale(1.1);
+  opacity: 1;
+  transition: opacity 0.1s;
+  // animation: vibratingAnimation 0.1s ease-in-out infinite;
+}
+
+@keyframes vibratingAnimation {
+  0% {
+    transform: translate(-50%, -50%) rotate(0) scale(1.2);
+  }
+  25% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(0) scale(1.2);
+  }
+  75% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(0) scale(1.2);
+  }
+}
+
+.EmojiPickerReact {
+  background-color: #000 !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+
+  * {
+    box-sizing: border-box;
+    font-family: "Plus Jakarta Display", sans-serif !important;
+  }
+
+  *::-webkit-scrollbar {
+    width: 5px !important;
+    // padding: 2.5px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 50px !important;
+    // padding: 2.5px;
+    // margin: 40px;
+    width: 5px !important;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25) !important;
+    border-radius: 50px !important;
+    width: 5px !important;
+    // border-right: 5px rgba(255, 255, 255, 0.25) solid;
+    background-clip: padding-box !important;
+  }
+}
+
+.epr-search {
+  background-color: #000 !important;
+  outline-width: 0px;
+}
+
+.epr-emoji-category-label {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(5px);
+}
