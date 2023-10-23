@@ -143,6 +143,7 @@
       height: 100%;
       width: 35px;
       min-width: 35px;
+      min-height: 35px;
       border-radius: 5px;
       display: grid;
       place-items: center;
@@ -244,5 +245,11 @@
     .OptionsBtn {
       display: grid;
     }
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .RoomInfo {
+    padding: 30px 16px;
   }
 }

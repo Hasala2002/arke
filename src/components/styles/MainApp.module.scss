@@ -1,70 +1,78 @@
-.MainApp{
-    margin-top: 48px;
-    width: 100%;
-    height: calc(100% - 48px);
-    padding-top: 25px;
-    display: flex;
-    align-items: stretch;
-    justify-content: space-between;
-    gap: 30px;
+.MainApp {
+  margin-top: 48px;
+  width: 100%;
+  height: calc(100% - 48px);
+  padding-top: 25px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 30px;
 }
 
-.SideBar,.SideBarClosed{
-    width: 30%;
-    min-width: 385px;
-    height: 100%;
-    border-radius: 1em;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background-color: rgba(255, 255, 255, 0.01);
-    backdrop-filter: blur(5px);
-    padding: 25px;
+.SideBar,
+.SideBarClosed {
+  width: 30%;
+  min-width: 385px;
+  height: 100%;
+  border-radius: 1em;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(5px);
+  padding: 25px;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
-.App{
-    flex: 1;
-    // max-height: 804.5px;
-    // position: relative;
-    // height: auto;
-    // height: fit-content;
-    // min-height: 100% !important;
-    border-radius: 1em;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background-color: rgba(255, 255, 255, 0.01);
-    backdrop-filter: blur(5px);
-    display: flex;
-    flex-direction: column;
-    // padding: 5px;
-    // background-color: white;
+.App {
+  flex: 1;
+  // max-height: 804.5px;
+  // position: relative;
+  // height: auto;
+  // height: fit-content;
+  // min-height: 100% !important;
+  border-radius: 1em;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(5px);
+  display: flex;
+  flex-direction: column;
+  // padding: 5px;
+  // background-color: white;
 }
 
 @media screen and (max-width: 864px) {
-    .MainApp{
-        position: relative;
-    }
+  .MainApp {
+    position: relative;
+  }
 
-    .App{
-        width: 100%;
-        height: 100%;
-    }
-    
-    .SideBar{
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        z-index: 2;
-        backdrop-filter: blur(10px);
-        transition: all 0.3s cubic-bezier(1, -0.03, 0.29, 0.96);
-    }
-    .SideBarClosed{
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        z-index: 2;
-        backdrop-filter: blur(10px);
-        transform: translateX(-150%);
-        transition: all 0.3s cubic-bezier(1, -0.03, 0.29, 0.96);
-    }
+  .App {
+    width: 100%;
+    height: 100%;
+  }
+
+  .SideBar {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(1, -0.03, 0.29, 0.96);
+  }
+  .SideBarClosed {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    backdrop-filter: blur(10px);
+    transform: translateX(-150%);
+    transition: all 0.3s cubic-bezier(1, -0.03, 0.29, 0.96);
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .SideBar,
+  .SideBarClosed {
+    min-width: unset;
+  }
 }

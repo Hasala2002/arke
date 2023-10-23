@@ -80,7 +80,7 @@ const SideBar = ({ setToggleSideBar }) => {
                     value={`${window.location.origin}/join/${currentUser.roomId}`}
                 />
                 <div className={styles.LinkCopy}>
-                    <span>{(`${window.location.origin}/join/${currentUser.roomId}`).substring(0, 27) + "..."}</span>
+                    <span>{(`${window.location.origin}/join/${currentUser.roomId}`).substring(0, 20) + "..."}</span>
                     <div className={styles.icon} onClick={() => {
                         copyToClipboard(toClipboard)
                         arkeToasteer({
