@@ -115,9 +115,9 @@ const SendArea = () => {
         )}
         <IconMoodTongueWink2 size={22} />
       </div>
-      {/* <div className={styles.sendAreaBtn}>
+      <div className={styles.sendAreaBtn}>
         <IconPhotoUp color={"#C5A3FF"} size={22} />
-      </div> */}
+      </div>
       <div className={styles.sendAreaBtn} onClick={handleSendMessage}>
         <IconSend size={22} />
       </div>

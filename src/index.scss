@@ -4,6 +4,11 @@
 $page-padding-default: 32px;
 $page-padding-default: 32px;
 
+// @media screen and (max-width: 420px) {
+//   $page-padding-default: 16px;
+//   $page-padding-default: 16px;
+// }
+
 $page-padding-left: max(env(safe-area-inset-left), $page-padding-default);
 $page-padding-right: max(env(safe-area-inset-right), $page-padding-default);
 
@@ -74,6 +79,13 @@ $dot-space: 75px;
   padding-right: $page-padding-right;
   padding-bottom: $page-padding-right;
   overflow-x: hidden;
+}
+
+@media screen and (max-width: 420px) {
+  .App {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 }
 
 .divider-container {

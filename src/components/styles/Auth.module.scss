@@ -404,6 +404,10 @@
 }
 
 @media screen and (max-width: 900px) {
+  .CrtRoom {
+    justify-content: center;
+  }
+
   .Text {
     display: none;
   }
@@ -411,6 +415,18 @@
   .Form {
     width: 100%;
     min-width: 360px;
+    padding: 25px 0;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .Text {
+    display: none;
+  }
+
+  .Form {
+    width: 100%;
+    min-width: unset;
     padding: 25px 0;
   }
 }
