@@ -377,7 +377,17 @@ $warning: #ffbf00;
 
 .EmojiPickerReact {
   background-color: #000 !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  // border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  width: 100% !important;
+  height: 100% !important;
+
+  .epr-preview {
+    display: none !important;
+  }
+
+  .epr-category-nav {
+    display: none !important;
+  }
 
   * {
     box-sizing: border-box;
@@ -414,4 +424,5 @@ $warning: #ffbf00;
 .epr-emoji-category-label {
   background-color: rgba(0, 0, 0, 0.5) !important;
   backdrop-filter: blur(5px);
+  font-size: small;
 }

@@ -9,6 +9,12 @@
   gap: 30px;
 }
 
+@media screen and (max-width: 420px) {
+  .MainApp {
+    margin-top: 36px;
+  }
+}
+
 .SideBar,
 .SideBarClosed {
   width: 30%;

@@ -1,185 +1,185 @@
 @import "../../../assets/colors.scss";
 
-.Header{
-    width: 100%;
-    height: 60px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+.Header {
+  width: 100%;
+  height: 60px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 0 25px;
+  .Logo {
+    width: 35px;
+    height: 35px;
+    background-image: $gradient-back;
+    background-size: cover;
+    border-radius: 5px;
+    display: grid;
+    place-items: center;
+    * {
+      opacity: 0.74;
+    }
+  }
+  .Title {
+    height: 100%;
     display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 0 25px;
-    .Logo{
-        width: 35px;
-        height: 35px;
-        background-image: $gradient-back;
-        background-size: cover;
-        border-radius: 5px;
-        display: grid;
-        place-items: center;
-        *{
-            opacity: 0.74;
-        }
+    flex-direction: column;
+    justify-content: center;
+    // align-items: center;
+    span {
+      font-weight: 700;
+      font-size: 0.9em;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      position: relative;
+      width: fit-content;
+      &::before {
+        content: "";
+        // left: 0;
+        right: -5px;
+        // bottom: 0;
+        top: -2.5px;
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50px;
+        background: main-gradient(315deg);
+      }
     }
-    .Title{
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        // align-items: center;
-        span{
-            font-weight: 700;
-            font-size: 0.9em;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            position: relative;
-            width: fit-content;
-            &::before{
-                content: '';
-                // left: 0;
-                right: -5px;
-                // bottom: 0;
-                top: -2.5px;
-                position: absolute;
-                width: 10px;
-                height: 10px;
-                border-radius: 50px;
-                background: main-gradient(315deg);
-            }
-        }
-        p{
-            font-weight: 200;
-            font-size: 0.6em;
-            opacity: 0.74;
-        }
+    p {
+      font-weight: 200;
+      font-size: 0.6em;
+      opacity: 0.74;
     }
-
+  }
 }
 
-.chatStats{
+.chatStats {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  .Chip {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-left: auto;
-    .Chip{
-        display: flex;
-        align-items: center;
-        height: fit-content;
-        padding: 2.5px 7.5px;
-        border-radius: 10px;
-        // border: 1px solid white;
-        color: $offset-color!important;
-        gap: 5px;
-        margin-left: 10px;
-        svg{
-            color: $offset-color;
-            *{
-                color: $offset-color; 
-            }
-        }
-        span{
-            font-size: 0.9em;
-            font-weight: 500;
-            color: $offset-color;
-            text-transform: uppercase;
-        }
-        background-color: #000;
-        $border: 2px;
-        box-sizing: border-box;
-        background-clip: padding-box; /* !importanté */
-        border: solid $border transparent; /* !importanté */
-        position: relative;
-        &:before {
-          content: '';
-          position: absolute;
-          top: 0; right: 0; bottom: 0; left: 0;
-          z-index: -1;
-          margin: -$border; /* !importanté */
-          border-radius: inherit; /* !importanté */
-          background: main-gradient(315deg);
-        }
+    height: fit-content;
+    padding: 2.5px 7.5px;
+    border-radius: 10px;
+    // border: 1px solid white;
+    color: $offset-color !important;
+    gap: 5px;
+    margin-left: 10px;
+    svg {
+      color: $offset-color;
+      * {
+        color: $offset-color;
+      }
     }
+    span {
+      font-size: 0.9em;
+      font-weight: 500;
+      color: $offset-color;
+      text-transform: uppercase;
+    }
+    background-color: #000;
+    $border: 2px;
+    box-sizing: border-box;
+    background-clip: padding-box; /* !importanté */
+    border: solid $border transparent; /* !importanté */
+    position: relative;
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+      margin: -$border; /* !importanté */
+      border-radius: inherit; /* !importanté */
+      background: main-gradient(315deg);
+    }
+  }
 }
 
-.ChatBox{
+.ChatBox {
+  width: 100%;
+  // max-height: calc(804.5px - 120px);
+  // height: 100%;
+  padding: 5px;
+  flex: 1;
+  overflow-y: hidden;
+  .Wrapper {
     width: 100%;
-    // max-height: calc(804.5px - 120px);
-    // height: 100%;
-    padding: 5px;
-    flex: 1;
-    overflow-y: hidden;
-    .Wrapper{
-        width: 100%;
-        height: 100%;
-        overflow-y: auto;
-    }
+    height: 100%;
+    overflow-y: auto;
+  }
 
-    .Wrapper::-webkit-scrollbar {
-        width: 5px;
-        // padding: 2.5px;
-    }
-    
-    
-    .Wrapper::-webkit-scrollbar-track {
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 50px;
-        // padding: 2.5px;
-        // margin: 40px;
-        width: 5px;
-      }
-      
-    .Wrapper::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.25);
-        border-radius: 50px;
-        width: 5px;
-        // border-right: 5px rgba(255, 255, 255, 0.25) solid;
-        background-clip: padding-box;
-      }
+  .Wrapper::-webkit-scrollbar {
+    width: 5px;
+    // padding: 2.5px;
+  }
 
-    //   .Wrapper::after{
-    //     border-radius: inherit;
-    //     height: 100%;
-    //     opacity: 0;
-    //     transition: opacity 500ms;
-    //     width:100%;
-    //     position: absolute;
-    //     content: "";
-    //     left: 0;
-    //     top: 0;
-    //     z-index: 1;
-      
-    //     background: radial-gradient(
-    //       300px circle at var(--mouse-x) var(--mouse-y),
-    //       rgba(114,18,143,0.1),
-    //       transparent 40%
-    //     );
-    //   }
-      
-    //   .Wrapper:hover::after{
-    //     opacity: 1;
-    //   }
-      
+  .Wrapper::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50px;
+    // padding: 2.5px;
+    // margin: 40px;
+    width: 5px;
+  }
+
+  .Wrapper::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 50px;
+    width: 5px;
+    // border-right: 5px rgba(255, 255, 255, 0.25) solid;
+    background-clip: padding-box;
+  }
+
+  //   .Wrapper::after{
+  //     border-radius: inherit;
+  //     height: 100%;
+  //     opacity: 0;
+  //     transition: opacity 500ms;
+  //     width:100%;
+  //     position: absolute;
+  //     content: "";
+  //     left: 0;
+  //     top: 0;
+  //     z-index: 1;
+
+  //     background: radial-gradient(
+  //       300px circle at var(--mouse-x) var(--mouse-y),
+  //       rgba(114,18,143,0.1),
+  //       transparent 40%
+  //     );
+  //   }
+
+  //   .Wrapper:hover::after{
+  //     opacity: 1;
+  //   }
 }
 // .ChatBox::-webkit-scrollbar {
 //     width: 5px;
 // }
-
 
 // .ChatBox::-webkit-scrollbar-track {
 //     background: rgba(255, 255, 255, 0.1);
 //     border-radius: 50px;
 //     padding: 2.5px;
 //   }
-  
+
 // .ChatBox::-webkit-scrollbar-thumb {
 //     background: rgba(255, 255, 255, 0.5);
 //     border-radius: 50px;
 //   }
-.SendArea{
-    width: 100%;
-    height: 60px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex;
-    align-items: center;
-    // overflow: hidden;
-    // padding: 0 25px;
+.SendArea {
+  width: 100%;
+  min-height: 60px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // overflow: hidden;
+  // padding: 0 25px;
 }

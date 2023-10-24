@@ -92,34 +92,42 @@ const SendArea = () => {
 
   return (
     <>
-      <div className={styles.sendTextArea}>
-        <div className={selectedReply ? styles.ReplyContainer : styles.ReplyContainerClosed}>
-          <div className={styles.chatMessage}>
-            <span className={styles.sender}>{selectedReply ? selectedReply.senderName : ""}</span>
-            <span className={styles.message}>{selectedReply ? selectedReply.message : ""}</span>
+      <div className={styles.sendAreaMain}>
+        <div className={styles.sendTextArea}>
+          <div className={selectedReply ? styles.ReplyContainer : styles.ReplyContainerClosed}>
+            <div className={styles.chatMessage}>
+              <span className={styles.sender}>{selectedReply ? selectedReply.senderName : ""}</span>
+              <span className={styles.message}>{selectedReply ? selectedReply.message : ""}</span>
+            </div>
+            <div className={styles.closeReply} onClick={handleCloseReplyDialog}>
+              <IconX stroke={0.5} size={20} />
+            </div>
           </div>
-          <div className={styles.closeReply} onClick={handleCloseReplyDialog}>
-            <IconX stroke={0.5} size={20} />
-          </div>
+          <textarea ref={input} style={{ height: 18 }} onKeyDown={(e) => { handleKeyPress(e) }} resize="none" placeholder={`Message @${currentUser ? currentUser.roomName : "myRoom"} here. Say Howdy! 🤠`} />
         </div>
-        <textarea ref={input} style={{ height: 18 }} onKeyDown={(e) => { handleKeyPress(e) }} resize="none" placeholder={`Message @${currentUser ? currentUser.roomName : "myRoom"} here. Say Howdy! 🤠`} />
+        <div className={styles.sendAreaBtn} onClick={toggleEmojiPicker}>
+          {/* {emojiPickerVisible && (
+            <div className={`${styles.emojiKeyboard} ${styles.emojiKeyboardVisible}`}>
+              <EmojiPicker
+                theme={Theme.DARK}
+                onEmojiClick={onClick}
+              />
+            </div>
+          )} */}
+          <IconMoodTongueWink2 size={22} />
+        </div>
+        <div className={styles.sendAreaBtn}>
+          <IconPhotoUp color={"#C5A3FF"} size={22} />
+        </div>
+        <div className={styles.sendAreaBtn} onClick={handleSendMessage}>
+          <IconSend size={22} />
+        </div>
       </div>
-      <div className={styles.sendAreaBtn} onClick={toggleEmojiPicker}>
-        {emojiPickerVisible && (
-          <div className={`${styles.emojiKeyboard} ${styles.emojiKeyboardVisible}`}>
-            <EmojiPicker
-              theme={Theme.DARK}
-              onEmojiClick={onClick}
-            />
-          </div>
-        )}
-        <IconMoodTongueWink2 size={22} />
-      </div>
-      <div className={styles.sendAreaBtn}>
-        <IconPhotoUp color={"#C5A3FF"} size={22} />
-      </div>
-      <div className={styles.sendAreaBtn} onClick={handleSendMessage}>
-        <IconSend size={22} />
+      <div className={`${styles.sendAreaSubMenu} ${emojiPickerVisible ? null : styles.sendAreaSubMenuClosed}`} >
+        <EmojiPicker
+          theme={Theme.DARK}
+          onEmojiClick={onClick}
+        />
       </div>
     </>
   )
