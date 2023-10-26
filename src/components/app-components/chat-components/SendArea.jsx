@@ -28,6 +28,12 @@ const SendArea = () => {
     })
   }, [])
 
+  useEffect(() => {
+    if (selectedReply) {
+      input.current.focus()
+    }
+  }, [selectedReply])
+
   const handleKeyPress = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault()

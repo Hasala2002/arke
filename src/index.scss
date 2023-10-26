@@ -414,6 +414,11 @@ $warning: #ffbf00;
     // border-right: 5px rgba(255, 255, 255, 0.25) solid;
     background-clip: padding-box !important;
   }
+
+  button.epr-emoji .epr-emoji-img {
+    max-width: calc(25px + 5px * 2) !important;
+    max-height: calc(25px + 5px * 2) !important;
+  }
 }
 
 .epr-search {
