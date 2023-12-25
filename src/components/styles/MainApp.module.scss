@@ -43,6 +43,8 @@
   backdrop-filter: blur(5px);
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
   // padding: 5px;
   // background-color: white;
 }

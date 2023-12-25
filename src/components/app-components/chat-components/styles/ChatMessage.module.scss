@@ -2,129 +2,139 @@
 
 $max-chat-width: 350px;
 
-.ChatOut{
-    width: 100%;
+.ChatOut {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-end;
+  margin-top: 15px;
+  .ChatLabel {
+    font-size: 0.7em;
+  }
+  .ChatTimeStamp {
+    font-size: 0.55em;
+    // margin-top: 5px;
+  }
+  .ChatMessage {
+    width: fit-content;
+    max-width: $max-chat-width;
+    font-size: 0.75em;
     height: fit-content;
+    padding: 12.5px 10px 10px 12.5px;
+    // background-color: $magenta;
+    color: rgba(255, 255, 255, 0.9);
+    background: main-gradient(315deg);
+    border-radius: 10px 0 10px 10px;
+    word-break: break-word;
+    text-align: left;
+    display: flow-root;
+    unicode-bidi: plaintext;
+    white-space: pre-wrap;
+    position: relative;
+
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    align-items: flex-end;
-    margin-top: 15px;
-    .ChatLabel{
-        font-size: 0.7em;
+
+    .ReplyMessage {
+      background-color: rgba(255, 255, 255, 0.1);
     }
-    .ChatTimeStamp{
-        font-size: 0.55em;
-        // margin-top: 5px;
+
+    img {
+      cursor: pointer;
+      max-height: 300px;
+      object-fit: contain;
+      background-color: rgba(0, 0, 0, 0.85);
     }
-    .ChatMessage{
-        width: fit-content;
-        max-width: $max-chat-width;
-        font-size: 0.75em;
-        height: fit-content; 
-        padding: 12.5px 10px 10px 12.5px;
-        // background-color: $magenta;
-        color: rgba(255, 255, 255, 0.9);
-        background: main-gradient(315deg);
-        border-radius: 10px 0 10px 10px;
-        word-break: break-word;
-	    text-align: left;
-	    display: flow-root;
-	    unicode-bidi: plaintext;
-        white-space: pre-wrap;
-        position: relative;
-        
-        .ReplyMessage{
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-    }
+  }
 }
 
-.ChatIn{
-    width: 100%;
+.ChatIn {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-start;
+  margin-top: 15px;
+  .ChatLabel {
+    font-size: 0.7em;
+  }
+  .ChatTimeStamp {
+    font-size: 0.55em;
+    // margin-top: 5px;
+  }
+  .ChatMessage {
+    width: fit-content;
+    max-width: $max-chat-width;
+    font-size: 0.75em;
     height: fit-content;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    align-items: flex-start;
-    margin-top: 15px;
-    .ChatLabel{
-        font-size: 0.7em;
+    padding: 12.5px 12.5px 10px 10px;
+    background-color: black;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 0 10px 10px 10px;
+    word-break: break-word;
+    text-align: left;
+    display: flow-root;
+    unicode-bidi: plaintext;
+    white-space: pre-wrap;
+    position: relative;
+    .ReplyMessage {
+      background-color: rgb(27, 27, 27);
     }
-    .ChatTimeStamp{
-        font-size: 0.55em;
-        // margin-top: 5px;
-    }
-    .ChatMessage{
-        width: fit-content;
-        max-width: $max-chat-width;
-        font-size: 0.75em;
-        height: fit-content; 
-        padding: 12.5px 12.5px 10px 10px;
-        background-color: black;
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        border-radius: 0 10px 10px 10px;
-        word-break: break-word;
-	    text-align: left;
-	    display: flow-root;
-	    unicode-bidi: plaintext;
-        white-space: pre-wrap;
-        position: relative;
-        .ReplyMessage{
-            background-color: rgb(27, 27, 27);
-        }
-    }
+  }
 }
 
-.ChatMessage{
-    img{
-        width: 100%;
-        height: auto;
-        border-radius: 10px;
-        margin-bottom: 2.5px;
-    }
+.ChatMessage {
+  img {
+    cursor: pointer;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 2.5px;
+  }
 
-    &:hover{
-        .ReplyContainer{
-            opacity: 1;
-        }
+  &:hover {
+    .ReplyContainer {
+      opacity: 1;
     }
+  }
 
-    .ReplyContainer{
-        position: absolute;
-        backdrop-filter: blur(5px);
-        top: 0px;
-        right: 0px;
-        height: 30px;
-        width: 30px;
-        display: grid;
-        border-radius: 5px;
-        place-items: center;
-        opacity: 0;
-        transition: 0.25s;
+  .ReplyContainer {
+    position: absolute;
+    backdrop-filter: blur(5px);
+    top: 0px;
+    right: 0px;
+    height: 30px;
+    width: 30px;
+    display: grid;
+    border-radius: 5px;
+    place-items: center;
+    opacity: 0;
+    transition: 0.25s;
+  }
+
+  .ReplyMessage {
+    // background-color: rgb(27, 27, 27);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 0 0 10px 0;
+    .sender {
+      font-size: 0.7rem;
+      font-weight: 500;
     }
-
-    .ReplyMessage{
-
-        // background-color: rgb(27, 27, 27);
-        border-radius: 10px;
-        padding: 10px;
-        margin: 0 0 10px 0;
-        .sender{
-            font-size: 0.7rem;
-            font-weight: 500;
-        }
-        .message{
-            font-size: 0.75rem;
-            font-size: 0.9em;
-            overflow:hidden;
-            max-height: 8rem;
-            -webkit-box-orient: vertical;
-            display: block;
-            display: -webkit-box;
-            overflow: hidden !important;
-            text-overflow: ellipsis;
-            -webkit-line-clamp: 1;
-        }
+    .message {
+      font-size: 0.75rem;
+      font-size: 0.9em;
+      overflow: hidden;
+      max-height: 8rem;
+      -webkit-box-orient: vertical;
+      display: block;
+      display: -webkit-box;
+      overflow: hidden !important;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 1;
     }
+  }
 }

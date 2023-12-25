@@ -5,43 +5,58 @@ import dayjs from 'dayjs';
 import { IconArrowBack } from '@tabler/icons';
 import { useArke } from '../../utilities/Arke.Context';
 
-const ChatOut = ({noLabel,noTime,message}) => {
+const ChatOut = ({ noLabel, noTime, message }) => {
 
   const hrefDecorator = (href, text, key) => (
     <a href={href} key={key} target="_blank" className={styles.urlDecor}>
       {text}
     </a>);
 
-    let timeStamp = dayjs(message.timeStamp).format("HH:mm")
+  let timeStamp = dayjs(message.timeStamp).format("HH:mm")
 
-    const { setSelectedReply } = useArke()
+  const { setSelectedReply, setSelectedImage } = useArke()
 
-    const handleSelectReply = () => {
-      setSelectedReply({
-        senderName: message.senderName,
-        message: message.message
-      })
-    }
+  const handleSelectReply = () => {
+    setSelectedReply({
+      senderName: message.senderName,
+      message: message.message
+    })
+  }
 
   return (
     <div className={styles.ChatOut}>
-        {noLabel ? null :<span className={styles.ChatLabel}>You</span>}
-        <div className={styles.ChatMessage}>
+      {noLabel ? null : <span className={styles.ChatLabel}>You</span>}
+
+      {/* {image ? <img src={"https://raw.githubusercontent.com/Hasala2002/arke/main/public/screenshots/architecture.png"} alt="message-image" ></img> : null} */}
+      <div className={styles.ChatMessage}>
+        {/* <img src={"https://raw.githubusercontent.com/Hasala2002/arke/main/public/screenshots/architecture.png"} alt="message-image" ></img> */}
+        {/* <img onClick={() => {
+          setSelectedImage("https://picsum.photos/1080/720")
+        }} src={"https://picsum.photos/1080/720"} alt="message-image" ></img> */}
+        {
+          message.image ?
+            <img onClick={() => {
+              setSelectedImage(message.image)
+              console.log(message)
+            }} src={message.image.imageURL} alt={`message-image-${(message.message).trim()}`} ></img>
+            :
+            null
+        }
         {message.reply
-        ?
-        <div className={styles.ReplyMessage}>
-          <span className={styles.sender}>{message.reply.senderName}</span>
-          <div className={styles.message}>{message.reply.message}</div>
-        </div>
+          ?
+          <div className={styles.ReplyMessage}>
+            <span className={styles.sender}>{message.reply.senderName}</span>
+            <div className={styles.message}>{message.reply.message}</div>
+          </div>
           :
           null
         }
         <div className={styles.ReplyContainer} onClick={handleSelectReply}>
           <IconArrowBack size={15} />
         </div>
-          <Linkify componentDecorator={hrefDecorator}>{message.message}</Linkify>
-        </div>
-       {noTime ? null: 
+        <Linkify componentDecorator={hrefDecorator}>{message.message}</Linkify>
+      </div>
+      {noTime ? null :
         <span className={styles.ChatTimeStamp}>
           {timeStamp}
         </span>}

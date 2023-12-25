@@ -67,7 +67,7 @@ const AnimatedBackground = () => {
 
     const startAnimation = () => {
 
-        const selectedCircles = getRandomCircles(circles.length, 5);
+        const selectedCircles = getRandomCircles(circles.length, 7);
 
         const delayBetweenCircles = 200;
 

@@ -118,8 +118,25 @@
   display: flex;
   align-items: center;
   margin-bottom: 25px;
+  position: relative;
+
+  .Shade {
+    height: 100%;
+    width: 0%;
+    box-shadow: 10px 0px 5px 2.5px rgba(255, 255, 255, 0);
+    background-color: rgba(255, 255, 255, 0.025);
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .ShadeAnimationClass {
+    animation: ShadeAnimation 0.4s ease-in forwards;
+  }
+
   input {
     flex: 1;
+    z-index: 2;
     height: 100%;
     background: transparent;
     border: none;
@@ -169,10 +186,31 @@
   // margin-left: auto;
   padding: 10px 20px;
   gap: 5px;
+  position: relative;
+  overflow: hidden;
   cursor: pointer;
+
+  .Shade {
+    height: 100%;
+    width: 0%;
+    box-shadow: 10px 0px 5px 2.5px rgba(255, 255, 255, 0);
+    background-color: rgba(255, 255, 255, 0.1);
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  // .ShadeAnimationClass {
+  //   animation: ShadeAnimation 0.4s ease-in forwards;
+  // }
+
   span {
     text-transform: uppercase;
   }
+}
+
+.loginButton:hover > .Shade {
+  animation: ShadeAnimationDark 0.4s ease-in forwards;
 }
 
 .loginAnonButton {
@@ -438,3 +476,25 @@
 //         padding: 25px 0;
 //     }
 // }
+
+@keyframes ShadeAnimation {
+  from {
+    box-shadow: 10px 0px 5px 2.5px rgba(255, 255, 255, 0.025);
+    width: 0%;
+  }
+  to {
+    box-shadow: 10px 0px 5px 2.5px rgba(255, 255, 255, 0.025);
+    width: 100%;
+  }
+}
+
+@keyframes ShadeAnimationDark {
+  from {
+    box-shadow: 10px 0px 5px 2.5px rgba(255, 255, 255, 0.1);
+    width: 0%;
+  }
+  to {
+    box-shadow: 10px 0px 5px 2.5px rgba(255, 255, 255, 0.1);
+    width: 100%;
+  }
+}

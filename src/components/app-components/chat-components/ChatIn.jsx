@@ -5,14 +5,14 @@ import dayjs from 'dayjs';
 import { IconArrowBack } from '@tabler/icons';
 import { useArke } from '../../utilities/Arke.Context';
 
-const ChatIn = ({noLabel,noTime,message}) => {
+const ChatIn = ({ noLabel, noTime, message }) => {
 
   const hrefDecorator = (href, text, key) => (
     <a href={href} key={key} target="_blank" className={styles.urlDecor}>
       {text}
     </a>);
 
-  const { setSelectedReply } = useArke()
+  const { setSelectedReply, setSelectedImage } = useArke()
 
   const handleSelectReply = () => {
     setSelectedReply({
@@ -25,14 +25,22 @@ const ChatIn = ({noLabel,noTime,message}) => {
 
   return (
     <div className={styles.ChatIn}>
-        {noLabel ? null :<span className={styles.ChatLabel}>{message.senderName}</span>}
-        <div className={styles.ChatMessage}>
+      {noLabel ? null : <span className={styles.ChatLabel}>{message.senderName}</span>}
+      <div className={styles.ChatMessage}>
+        {
+          message.image ?
+            <img onClick={() => {
+              setSelectedImage(message.image)
+            }} src={message.image.imageURL} alt={`message-image-${(message.message).trim()}`} ></img>
+            :
+            null
+        }
         {message.reply
-        ?
-        <div className={styles.ReplyMessage}>
-          <span className={styles.sender}>{message.reply.senderName}</span>
-          <div className={styles.message}>{message.reply.message}</div>
-        </div>
+          ?
+          <div className={styles.ReplyMessage}>
+            <span className={styles.sender}>{message.reply.senderName}</span>
+            <div className={styles.message}>{message.reply.message}</div>
+          </div>
           :
           null
         }
@@ -40,8 +48,8 @@ const ChatIn = ({noLabel,noTime,message}) => {
           <IconArrowBack size={15} />
         </div>
         <Linkify componentDecorator={hrefDecorator}>{message.message}</Linkify>
-        </div>
-       {noTime ? null: <span className={styles.ChatTimeStamp}>{timeStamp}</span>}
+      </div>
+      {noTime ? null : <span className={styles.ChatTimeStamp}>{timeStamp}</span>}
     </div>
   )
 }

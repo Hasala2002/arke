@@ -1,0 +1,57 @@
+#arke-loader {
+  animation: floating 2s infinite ease-in-out;
+}
+
+#loader {
+  transform-origin: center center;
+  animation: rotating 2s infinite ease-in-out;
+}
+
+#right-wing {
+  transform-origin: 50% 50% 0;
+  animation: flutter 0.1s ease infinite alternate;
+}
+
+#left-wing {
+  transform-origin: 50% 50% 0;
+  animation: flutter 0.1s ease infinite alternate;
+}
+
+@keyframes flutter {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(45deg);
+  }
+}
+
+@keyframes floating {
+  0% {
+    transform: translate(0, 0px);
+  }
+  50% {
+    transform: translate(0, 7.5px);
+  }
+  90% {
+    transform: translate(0, 0px);
+  }
+  100% {
+    transform: translate(0, 0px);
+  }
+}
+
+@keyframes rotating {
+  0% {
+    transform: rotate(0deg);
+  }
+  /*   50% {
+    transform: rotate(180deg);
+  } */
+  90% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

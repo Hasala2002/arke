@@ -1,0 +1,108 @@
+.ImageConfirm {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.85);
+  position: absolute;
+  z-index: 99;
+  // padding: 20px 25px;
+  transition: 100ms ease-in;
+  pointer-events: all;
+
+  display: flex;
+  flex-direction: column;
+
+  .Header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 20px 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    .Title {
+      h3 {
+        font-size: 16px;
+      }
+      span {
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        svg {
+          width: 16px !important;
+          stroke: var(--primary-color);
+          stroke-width: 3 !important;
+        }
+      }
+    }
+    .Controls {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+
+  .Image {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+    overflow: auto;
+    gap: 10px;
+    .ImageContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      width: 90%;
+      height: 90%;
+      min-height: unset;
+    }
+    img {
+      width: auto;
+      height: auto;
+      max-width: 700px;
+      max-height: 500px;
+      min-width: 0px;
+      min-height: 0px;
+      // max-width: 100%;
+      // min-height: 20px;
+      // max-height: 100%;
+    }
+    span {
+      font-size: 12px;
+    }
+  }
+
+  .CaptionInput {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    margin-top: auto;
+    flex-direction: column;
+    justify-content: end;
+    opacity: 1;
+    transition: 100ms ease-in;
+    padding-top: 20px;
+    // min-height: 180px;
+    // border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+.ImageConfirmClosed {
+  opacity: 0;
+  height: 0;
+  pointer-events: none;
+  .Image {
+    img {
+      display: none;
+    }
+  }
+}
+
+.CaptionInputClosed {
+  opacity: 0 !important;
+}

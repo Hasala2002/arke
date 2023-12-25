@@ -124,6 +124,7 @@ textarea {
   padding: 0 25px;
   font-size: 13px;
   position: relative;
+  background-color: #000;
 }
 
 textarea:focus {
@@ -148,6 +149,9 @@ textarea::-webkit-scrollbar-thumb {
 .sendAreaBtn {
   height: 100%;
   width: 60px;
+  background-color: transparent;
+  outline-width: 0px;
+  border: none;
   border-left: 1px solid rgba(255, 255, 255, 0.1);
   display: grid;
   place-items: center;
@@ -159,6 +163,10 @@ textarea::-webkit-scrollbar-thumb {
       color: $offset-color;
     }
   }
+}
+
+input[type="file"] {
+  display: none;
 }
 
 .emojiKeyboard {

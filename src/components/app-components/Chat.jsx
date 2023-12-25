@@ -7,6 +7,8 @@ import * as styles from "./styles/Chat.module.scss"
 
 
 import ArkeToolTip from "../utilities/ArkeToolTip"
+import Lightbox from './chat-components/Lightbox'
+import ImageConfirm from './chat-components/ImageConfirm'
 
 const Chat = ({ setToggleSideBar }) => {
 
@@ -20,13 +22,18 @@ const Chat = ({ setToggleSideBar }) => {
     target.style.setProperty("--mouse-y", `${y}px`);
   }
 
-  const { currentUser, roomCount, useMediaQuery } = useArke()
+  const { currentUser, roomCount, useMediaQuery, readyToSendImage } = useArke()
 
   const isMobile = useMediaQuery("max-width: 864px)");
 
 
   return (
     <>
+      <ImageConfirm />
+      <Lightbox readyToSendImage={readyToSendImage} />
+      {/* {
+        readyToSendImage ? <ImageConfirm /> : null
+      } */}
       <div className={styles.Header}>
         <div className={styles.Logo} onClick={
           () => {
@@ -58,7 +65,7 @@ const Chat = ({ setToggleSideBar }) => {
         {/* <ChatBox/> */}
       </div>
       <div className={styles.SendArea}>
-        <SendArea />
+        <SendArea mainSendArea={true} />
       </div>
     </>
   )

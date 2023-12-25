@@ -25,106 +25,6 @@ function pad2(number) {
   return (number < 10 ? '0' : '') + number
 }
 
-const messages = [
-  {
-    senderName: "Hasala",
-    senderId: "12324434",
-    type: "textMessage",
-    timeStamp: new Date(
-      "Sun Jul 17 2021 18:19:36 GMT+0530 (India Standard Time)"
-    ),
-    message: "minim veniam, quis nostrud exercitation",
-  },
-  {
-    senderName: "Chamindu",
-    senderId: "22342343",
-    type: "textMessage",
-    timeStamp: new Date(
-      "Sun Jul 17 2021 18:22:36 GMT+0530 (India Standard Time)"
-    ),
-    message: "in voluptate velit esse cillum dolore",
-  },
-  {
-    senderName: "Chamindu",
-    senderId: "22342343",
-    type: "textMessage",
-    timeStamp: new Date(
-      "Sun Jul 17 2021 18:22:36 GMT+0530 (India Standard Time)"
-    ),
-    message: "in voluptate velit esse cillum testing msg testing",
-  },
-  {
-    senderName: "Supun",
-    senderId: "22375343",
-    type: "textMessage",
-    timeStamp: new Date(
-      "Sun Jul 17 2021 18:22:36 GMT+0530 (India Standard Time)"
-    ),
-    message: "in voluptate velit esse cillum testing msg testing 1233423",
-  },
-  {
-    senderName: "Hasala",
-    senderId: "12324434",
-    type: "textMessage",
-    timeStamp: new Date(
-      "Sun Jul 17 2021 18:24:36 GMT+0530 (India Standard Time)"
-    ),
-    message: "Sed ut perspiciatis unde omnis iste ddawdadadw dawd awdadgr gs fsardda dda  dadadadawdada  dad awd",
-  },
-  {
-    senderName: "Hasala",
-    senderId: "12324434",
-    type: "textMessage",
-    timeStamp: new Date(
-      "Sun Jul 17 2021 18:24:36 GMT+0530 (India Standard Time)"
-    ),
-    message: "Sed ut perspiciatis unde omnis iste ddawdadadw dawd awdadgr gs fsardda dda  dadadadawdada  dad awd",
-  },
-  {
-    senderName: "Hasala",
-    senderId: "12324434",
-    type: "textMessage",
-    timeStamp: new Date(
-      "Sun Jul 17 2021 18:24:36 GMT+0530 (India Standard Time)"
-    ),
-    message: "Sed ut perspiciatis unde omnis iste ddawdadadw dawd awdadgr gs fsardda dda  dadadadawdada  dad awd",
-  },
-  {
-    senderName: "Hasala",
-    senderId: "12324434",
-    type: "textMessage",
-    timeStamp: new Date(
-      "Sun Jul 17 2021 18:24:36 GMT+0530 (India Standard Time)"
-    ),
-    message: "Sed ut perspiciatis unde omnis iste ddawdadadw dawd awdadgr gs fsardda dda  dadadadawdada  dad awd",
-  },
-  {
-    senderName: "Hasala",
-    senderId: "12324434",
-    type: "textMessage",
-    reply: {
-      sender: "Hasala",
-      message: "ed ut perspiciatis unde omnis iste ddawdadadw dawd awdadgrdadawdawdaw dawdawdwa dawdawdawdawdw  edadawdwdawd  adawdwadadwd"
-    },
-    timeStamp: new Date(
-      "Sun Jul 17 2021 18:24:36 GMT+0530 (India Standard Time)"
-    ),
-    message: "Sed ut perspiciatis unde omnis iste ddawdadadw dawd awdadgr gs fsardda dda  dadadadawdada  dad awd",
-  },
-  {
-    senderName: "Hasala",
-    senderId: undefined,
-    reply: {
-      sender: "Hasala",
-      message: "ed ut perspiciatis unde omnis iste ddawdadadw dawd awdadgrdadawdawdaw dawdawdwa dawdawdawdawdw  edadawdwdawd  adawdwadadwd"
-    },
-    type: "textMessage",
-    timeStamp: new Date(
-      "Sun Jul 17 2021 18:24:36 GMT+0530 (India Standard Time)"
-    ),
-    message: "Sed ut perspiciatis unde omnis iste ddawdadadw dawd awdadgr gs fsardda dda  dadadadawdada  dad awd",
-  },
-]
 
 export const ArkeProvider = ({ children }) => {
 
@@ -142,6 +42,8 @@ export const ArkeProvider = ({ children }) => {
         return "eb683f"
     }
   }
+
+  const MAX_FILE_SIZE = 1000000; // 1MB
 
   const ArkeToast = () => {
     return (
@@ -182,11 +84,17 @@ export const ArkeProvider = ({ children }) => {
 
   const [roomMessages, setRoomMessages] = useState([])
 
+  const [roomImages, setRoomImages] = useState([])
+
   const [roomCount, setRoomCount] = useState(null)
 
   const [currentUser, setCurrentUser] = useState({})
 
   const [selectedReply, setSelectedReply] = useState(null)
+
+  const [selectedImage, setSelectedImage] = useState(null)
+
+  const [readyToSendImage, setReadyToSendImage] = useState(null)
 
   const [dialogState, setDialogState] = useState(false)
 
@@ -283,7 +191,38 @@ export const ArkeProvider = ({ children }) => {
     })
 
     socket.on('receive-message', (messageData) => {
-      setRoomMessages((roomMessages) => [...roomMessages, messageData])
+
+      let imageIndex = 0
+
+      const getImageIndex = (index) => {
+        imageIndex = index
+        return index
+      }
+
+
+      if (messageData.image) {
+
+        setRoomImages((roomImages) => [...roomImages, {
+          ...messageData.image,
+          caption: messageData.message,
+          name: messageData.senderName,
+          timeStamp: messageData.timeStamp,
+          imageIndex: getImageIndex(roomImages.length)
+        }])
+        setRoomMessages((roomMessages) => [...roomMessages, {
+          ...messageData,
+          image: {
+            ...messageData.image,
+            caption: messageData.message,
+            name: messageData.senderName,
+            timeStamp: messageData.timeStamp,
+            imageIndex: imageIndex
+          }
+        }])
+      } else {
+        setRoomMessages((roomMessages) => [...roomMessages, messageData])
+      }
+
       if (messageData.senderId !== currentUser.senderId) {
       }
     })
@@ -299,8 +238,11 @@ export const ArkeProvider = ({ children }) => {
   }, [])
 
   const value = {
+    MAX_FILE_SIZE,
     roomMessages,
     setRoomMessages,
+    roomImages,
+    setRoomImages,
     currentUser,
     setCurrentUser,
     connectToRoom,
@@ -317,6 +259,10 @@ export const ArkeProvider = ({ children }) => {
     useMediaQuery,
     selectedReply,
     setSelectedReply,
+    selectedImage,
+    setSelectedImage,
+    readyToSendImage,
+    setReadyToSendImage,
     dialogState,
     setDialogState,
     arkeDialog,

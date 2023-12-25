@@ -83,10 +83,11 @@ const CreateRoom = () => {
                     <div className={styles.NameInput}
                         style={{ borderColor: roomNameFocus ? "rgba(255, 255, 255, 0.5)" : "rgba(255, 255, 255, 0.1)" }}
                     >
+                        <div className={`${styles.Shade} ${roomNameFocus ? styles.ShadeAnimationClass : ""}`}></div>
                         <input type="text"
                             onFocus={handleRoomNameFocus}
                             onBlur={handleRoomNameBlur}
-                            required value={roomName} onChange={e => setRoomName(e.target.value)} placeholder={"The Matrix Room"} />
+                            required value={roomName} onChange={e => setRoomName(e.target.value)} placeholder={"The Lepidopterarium"} />
                         <div className={styles.icon}>
                             <IconDoor stroke={roomNameFocus ? 2 : 0.5} size={20} />
                         </div>
@@ -94,15 +95,17 @@ const CreateRoom = () => {
                     <span className={styles.Label}>Display Name</span>
                     <div className={styles.NameInput}
                         style={{ borderColor: displayNameFocus ? "rgba(255, 255, 255, 0.5)" : "rgba(255, 255, 255, 0.1)" }}>
+                        <div className={`${styles.Shade} ${displayNameFocus ? styles.ShadeAnimationClass : ""}`}></div>
                         <input type="text"
                             onFocus={handleDisplayNameFocus}
                             onBlur={handleDisplayNameBlur}
-                            required value={displayName} onChange={e => setDisplayName(e.target.value)} placeholder={"John123"} />
+                            required value={displayName} onChange={e => setDisplayName(e.target.value)} placeholder={"ex: Vanessa22"} />
                         <div className={styles.icon}>
                             <IconSignature stroke={displayNameFocus ? 2 : 0.5} size={20} />
                         </div>
                     </div>
                     <button className={styles.loginButton} onClick={handleCreateRoom}>
+                        <div className={styles.Shade}></div>
                         <span>Create Room</span>
                     </button>
                     <Divider text={"remember"} />
