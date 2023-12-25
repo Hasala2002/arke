@@ -5,6 +5,7 @@ import { Link, useMatch } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import * as styles from "./styles/NavBar.module.scss"
 import { useArke } from './utilities/Arke.Context'
+import AnimatedLogo from './utilities/AnimatedLogo'
 
 const NavBar = () => {
 
@@ -37,7 +38,8 @@ const NavBar = () => {
     <div
       className={styles.NavBar}>
       <a href="https://arkechat.live" className={styles.Title}>
-        <img src="/arke.svg" alt="Arke Logo" />
+        {/* <img src="/arke.svg" alt="Arke Logo" /> */}
+        <AnimatedLogo />
         <span>Arkē</span>
       </a>
       {/* <div className={styles.NavLinks}>

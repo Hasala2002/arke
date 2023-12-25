@@ -1,20 +1,32 @@
 #arke-loader {
   animation: floating 2s infinite ease-in-out;
+
+  #loader {
+    transform-origin: center center;
+    animation: rotating 2s infinite ease-in-out;
+  }
+
+  #right-wing {
+    transform-origin: 50% 50% 0;
+    animation: flutter 0.1s ease infinite alternate;
+  }
+
+  #left-wing {
+    transform-origin: 50% 50% 0;
+    animation: flutter 0.1s ease infinite alternate;
+  }
 }
 
-#loader {
-  transform-origin: center center;
-  animation: rotating 2s infinite ease-in-out;
-}
+#arke-logo {
+  &:hover > #right-wing {
+    transform-origin: 50% 50% 0;
+    animation: flutter 0.1s ease 6 alternate;
+  }
 
-#right-wing {
-  transform-origin: 50% 50% 0;
-  animation: flutter 0.1s ease infinite alternate;
-}
-
-#left-wing {
-  transform-origin: 50% 50% 0;
-  animation: flutter 0.1s ease infinite alternate;
+  &:hover > #left-wing {
+    transform-origin: 50% 50% 0;
+    animation: flutter 0.1s ease 6 alternate;
+  }
 }
 
 @keyframes flutter {
