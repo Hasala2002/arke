@@ -6,6 +6,8 @@ import Divider from './utilities/Divider'
 import { v4 as uuidv4 } from 'uuid';
 import AnimatedBackground from './utilities/AnimatedBackground'
 
+import { motion } from "framer-motion"
+
 const CreateRoom = () => {
 
     const [roomName, setRoomName] = useState("")
@@ -59,7 +61,10 @@ const CreateRoom = () => {
             {/* <div className={styles.Graphics}>
         <img src="/arke-hero.png" alt="Arke" />
     </div> */}
-            <div className={styles.Text}>
+            <motion.div initial={{ y: 0, scale: 0.99, opacity: 0 }}
+                animate={{ y: 0, scale: 1, opacity: 1 }}
+                exit={{ y: 0, scale: 0.99, opacity: 0 }}
+                transition={{ type: "tween", duration: 0.25 }} className={styles.Text}>
                 <h1>Arkē <span>Chat</span></h1>
                 <h2>Chat private. Chat free.</h2>
                 <p>Create your own disposable chatroom, invite other people to chat with you and not worry about anyone else snooping into your conversation. Nothing is saved.</p>
@@ -70,7 +75,7 @@ const CreateRoom = () => {
                 <div className={styles.TextBG}>
                     <AnimatedBackground />
                 </div>
-            </div>
+            </motion.div>
             <div className={styles.Form}>
                 <form action="">
                     <div className={styles.Title}>

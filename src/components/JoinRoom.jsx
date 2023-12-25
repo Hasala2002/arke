@@ -4,6 +4,9 @@ import * as styles from "./styles/Auth.module.scss"
 import { Navigate, useParams } from 'react-router-dom'
 import { useArke } from './utilities/Arke.Context'
 import { v4 as uuidv4 } from 'uuid';
+
+import { motion } from "framer-motion"
+
 const JoinRoom = () => {
 
     const { id } = useParams()
@@ -12,13 +15,13 @@ const JoinRoom = () => {
 
     const [displayName, setDisplayName] = useState("")
 
-    const [roomStatus,setRoomStatus] = useState(null)
+    const [roomStatus, setRoomStatus] = useState(null)
     const [roomInfo, setRoomInfo] = useState(null)
 
     const handleJoinRoom = (e) => {
         e.preventDefault()
-        if(displayName!==""){
-            let currentUserObj={
+        if (displayName !== "") {
+            let currentUserObj = {
                 senderName: displayName,
                 senderId: uuidv4(),
                 roomName: roomInfo.roomName,
@@ -28,10 +31,10 @@ const JoinRoom = () => {
             setCurrentUser({
                 ...currentUserObj
             })
-            connectToExistingRoom(id,currentUserObj)
-        }else{
+            connectToExistingRoom(id, currentUserObj)
+        } else {
             arkeToasteer({
-                type:"error",
+                type: "error",
                 message: "Fields cannot be empty!"
             })
         }
@@ -42,12 +45,12 @@ const JoinRoom = () => {
             await checkIfRoomExists(id)
         }
 
-        socket.on('room-data', (roomData)=>{
+        socket.on('room-data', (roomData) => {
             setRoomInfo(roomData)
         })
 
-        socket.on('room-404', (error)=>{
-            if(error.code===404){
+        socket.on('room-404', (error) => {
+            if (error.code === 404) {
                 console.log(error)
                 setRoomStatus("Oops! Room doesnt exist.")
             }
@@ -59,7 +62,10 @@ const JoinRoom = () => {
 
     return (
         <>
-            <div className={styles.Auth}>
+            <motion.div className={styles.Auth} initial={{ y: 0, scale: 0.99, opacity: 0 }}
+                animate={{ y: 0, scale: 1, opacity: 1 }}
+                exit={{ y: 0, scale: 0.99, opacity: 0 }}
+                transition={{ type: "tween", duration: 0.25 }}>
                 <div className={styles.Graphics}>
                     <img src="/arke-hero.png" alt="Arke" />
                 </div>
@@ -114,7 +120,7 @@ const JoinRoom = () => {
                         </button>
                     </form>
                 </div>
-            </div>
+            </motion.div>
         </>
     )
 }
