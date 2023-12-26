@@ -14,8 +14,8 @@ import { IconBellRinging, IconCircleCheck } from '@tabler/icons';
 
 import { useSettings } from './Settings.Context'
 
-const socket = io.connect("https://arke-backend.fly.dev")
-// const socket = io.connect("http://localhost:3000")
+// const socket = io.connect("https://arke-backend.fly.dev")
+const socket = io.connect("http://localhost:3000")
 
 export const useArke = () => {
   return useContext(ArkeContext)

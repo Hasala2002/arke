@@ -1,85 +1,123 @@
 @import "../../assets/colors.scss";
 
-.Settings{
-    margin-top: 64px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 95%;
-    height: calc(100% - 64px);
-    // padding-top: 25px;
-    display: flex;
-    align-items: stretch;
-    justify-content: space-between;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background-color: rgba(255, 255, 255, 0.01);
-    backdrop-filter: blur(5px);
-    border-radius: 10px;
-    position: relative;
+.Settings {
+  margin-top: 64px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+  height: calc(100% - 64px);
+  // padding-top: 25px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
+  position: relative;
 }
 
-.SideMenu{
-    width: 300px;
-    height: 100%;
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
+.SideMenu {
+  width: 300px;
+  height: 100%;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+
+  .Title {
+    padding: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    h2 {
+      background: main-gradient(45deg);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .Logo {
+      width: 35px;
+      height: 35px;
+      background-image: $gradient-back;
+      background-size: cover;
+      border-radius: 5px;
+      display: grid;
+      place-items: center;
+      * {
+        opacity: 0.74;
+      }
+    }
+  }
+
+  .SettingLinks {
     display: flex;
     flex-direction: column;
+  }
 
-    .Title{
-        padding: 25px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        h2{
-            background: main-gradient(45deg);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .Logo{
-            width: 35px;
-            height: 35px;
-            background-image: $gradient-back;
-            background-size: cover;
-            border-radius: 5px;
-            display: grid;
-            place-items: center;
-            *{
-                opacity: 0.74;
-            }
-        }
-    }
-
-    .SideLink{
-        width: 100%;
-        text-decoration: none;
-        height: 50px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 25px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-}
-
-.SettingsPage{
-    height: 100%;
-    flex: 1;
+  .SideLink {
+    width: 100%;
+    text-decoration: none;
+    height: 50px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
 }
 
-.OptionsBtn{
-    width: 35px;
-    height: 35px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background-color: rgba(255, 255, 255, 0.01);
-    backdrop-filter: blur(5px);
-    border-radius: 5px;
-    display: grid;
-    place-items: center;
-    cursor: pointer;
-    margin-left: auto;
-    position: absolute;
-    top: 15px;
-    right: 15px;
+.SettingsPage {
+  height: 100%;
+  flex: 1;
+  padding: 25px;
+}
+
+.OptionsBtn {
+  width: 35px;
+  height: 35px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(5px);
+  border-radius: 5px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  margin-left: auto;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+@media screen and (max-width: 864px) {
+  .Settings {
+    flex-direction: column;
+  }
+
+  .SideMenu {
+    // flex-direction: row;
+    width: 100%;
+    height: fit-content;
+
+    .SettingLinks {
+      display: flex;
+      flex-direction: row;
+
+      .SideLink {
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        flex-direction: column;
+        height: fit-content;
+        padding: 10px;
+        span {
+          //   display: none;
+          font-weight: 300;
+          font-size: 10px;
+        }
+
+        &:nth-last-child(1) {
+          border-right: none;
+        }
+      }
+    }
+  }
 }

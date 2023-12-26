@@ -22,18 +22,20 @@ const Settings = () => {
                 <IconAccessible size={20} />
                 <span>Accessibility</span>
             </Link> */}
-                <Link to="theme" className={styles.SideLink}>
-                    <IconColorSwatch size={20} />
-                    <span>Theme</span>
-                </Link>
-                <Link to="notifications" className={styles.SideLink}>
-                    <IconNotification size={20} />
-                    <span>Notifications</span>
-                </Link>
-                <Link to="help" className={styles.SideLink}>
-                    <IconHelp size={20} />
-                    <span>Help</span>
-                </Link>
+                <div className={styles.SettingLinks}>
+                    <Link to="theme" className={styles.SideLink}>
+                        <IconColorSwatch size={20} />
+                        <span>Theme</span>
+                    </Link>
+                    <Link to="notifications" className={styles.SideLink}>
+                        <IconNotification size={20} />
+                        <span>Notifications</span>
+                    </Link>
+                    <Link to="help" className={styles.SideLink}>
+                        <IconHelp size={20} />
+                        <span>Help</span>
+                    </Link>
+                </div>
             </div>
             <div className={styles.SettingsPage}>
                 <Outlet />
