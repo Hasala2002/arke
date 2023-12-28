@@ -1,11 +1,15 @@
 import { IconAccessible, IconColorSwatch, IconHelp, IconNotification, IconSettings, IconX } from '@tabler/icons'
-import React from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import * as styles from "./styles/Settings.module.scss"
 
 import { motion } from "framer-motion"
 
-const Settings = () => {
+const Settings = ({ prevRoute }) => {
+
+    const navigate = useNavigate();
+
+
     return (
         <motion.div initial={{ y: 0, scale: 0.99, opacity: 0 }}
             animate={{ y: 0, scale: 1, opacity: 1 }}
@@ -40,9 +44,14 @@ const Settings = () => {
             <div className={styles.SettingsPage}>
                 <Outlet />
             </div>
-            <Link className={styles.OptionsBtn} to="/createroom">
+            <button className={styles.OptionsBtn}
+                onClick={() => {
+                    // If there is a previous main route, navigate to it; otherwise, go to the root
+                    navigate(prevRoute || '/createroom');
+                }}
+            >
                 <IconX stroke={0.5} size={20} />
-            </Link>
+            </button>
         </motion.div>
     )
 }

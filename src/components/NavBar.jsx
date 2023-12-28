@@ -66,12 +66,12 @@ const NavBar = () => {
       <div className={styles.NavAuth}>
         {/* <a href="#" onClick={handleLogin}>Log in</a> */}
 
-        {chatMatch ? null :
-          <Link to="/settings/theme" className={styles.Btn}>
-            <IconSettings size={20} />
-            <span>Settings</span>
-          </Link>
-        }
+        {/* {chatMatch ? null : */}
+        <Link to="/settings/theme" className={styles.Btn}>
+          <IconSettings size={20} />
+          <span>Settings</span>
+        </Link>
+        {/* } */}
       </div>
     </div>
   )

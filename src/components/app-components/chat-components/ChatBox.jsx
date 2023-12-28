@@ -3,23 +3,28 @@ import { useArke } from '../../utilities/Arke.Context'
 import * as styles from "./styles/ChatBox.module.scss"
 import ChatMessage from './ChatMessage'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import { useSettings } from '../../utilities/Settings.Context'
 
 const ChatBox = () => {
 
-  const {roomMessages,playSMSSound,currentUser} = useArke()
+  const { roomMessages, playSMSSound, currentUser } = useArke()
+
+  const { soundState } = useSettings()
 
   const messagesEndRef = useRef(null)
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }
-  
+
 
   useEffect(() => {
     scrollToBottom()
-    if(roomMessages[roomMessages.length-1]){
-      if(roomMessages[roomMessages.length-1].senderId !== currentUser.senderId) {
-        playSMSSound()
+    if (roomMessages[roomMessages.length - 1]) {
+      if (roomMessages[roomMessages.length - 1].senderId !== currentUser.senderId) {
+        if (soundState) {
+          playSMSSound()
+        }
       }
     }
   }, [roomMessages]);
@@ -27,22 +32,22 @@ const ChatBox = () => {
   return (
     <div className={styles.ChatBox}>
       <TransitionGroup>
-      {roomMessages.map((message,index,messages)=>{
-        // console.log(message.message)
-        return(
-          <CSSTransition
-            key={index}
-            timeout={100}
-            classNames="message"
+        {roomMessages.map((message, index, messages) => {
+          // console.log(message.message)
+          return (
+            <CSSTransition
+              key={index}
+              timeout={100}
+              classNames="message"
             >
-          <ChatMessage 
-            message={message} 
-            prevMessage={messages[index-1] ? messages[index-1] : null}
-            nextMessage={messages[index+1] ? messages[index+1] : null}
-          />
-          </CSSTransition>
-        )
-      })}
+              <ChatMessage
+                message={message}
+                prevMessage={messages[index - 1] ? messages[index - 1] : null}
+                nextMessage={messages[index + 1] ? messages[index + 1] : null}
+              />
+            </CSSTransition>
+          )
+        })}
       </TransitionGroup>
       <div ref={messagesEndRef} />
     </div>

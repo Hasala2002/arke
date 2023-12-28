@@ -24,7 +24,15 @@ const SideBar = ({ setToggleSideBar }) => {
             text: "This is a disposable chatroom! All current chat history will be deleted.",
             showCancelButton: true,
             confirmButtonText: 'Yes I am sure',
-            customClass: customSWClass
+            customClass: customSWClass,
+            showClass: {
+                backdrop: 'swal2-noanimation', // disable backdrop animation
+                popup: '',                     // disable popup animation
+                icon: ''                       // disable icon animation
+            },
+            hideClass: {
+                popup: '',                     // disable popup fade-out animation
+            },
         }).then((result) => {
             if (result.isConfirmed) {
                 leaveRoom(currentUser.roomId)
