@@ -13,6 +13,8 @@ export const SettingsProvider = ({ children }) => {
     const [toastState, setToastState] = useState(true)
     const [soundState, setSoundState] = useState(true)
 
+    const [textSize, setTextSize] = useState(3)
+
     const value = {
         theme,
         setTheme,
@@ -20,6 +22,8 @@ export const SettingsProvider = ({ children }) => {
         setToastState,
         soundState,
         setSoundState,
+        textSize,
+        setTextSize
     }
 
     useEffect(() => {
@@ -44,6 +48,11 @@ export const SettingsProvider = ({ children }) => {
             setToastState(state)
         }
     }, [])
+
+    useEffect(() => {
+        let values = { 1: 85, 2: 92.5, 3: 100, 4: 107.5, 5: 115 }
+        document.body.style.fontSize = values[textSize] + "%"
+    }, [textSize])
 
 
 
