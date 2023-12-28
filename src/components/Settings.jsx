@@ -1,5 +1,5 @@
-import { IconAccessible, IconColorSwatch, IconHelp, IconNotification, IconSettings, IconX } from '@tabler/icons'
-import React, { useState } from 'react'
+import { IconColorSwatch, IconDialpad, IconHelp, IconSettings, IconX } from '@tabler/icons'
+import React, { useEffect, useState } from 'react'
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import * as styles from "./styles/Settings.module.scss"
 
@@ -8,6 +8,14 @@ import { motion } from "framer-motion"
 const Settings = ({ prevRoute }) => {
 
     const navigate = useNavigate();
+
+    const location = useLocation();
+
+    useEffect(() => {
+        if (location.pathname === ('/settings')) {
+            navigate("/settings/general")
+        }
+    }, [location.pathname]);
 
 
     return (
@@ -27,13 +35,13 @@ const Settings = ({ prevRoute }) => {
                 <span>Accessibility</span>
             </Link> */}
                 <div className={styles.SettingLinks}>
+                    <Link to="general" className={styles.SideLink}>
+                        <IconDialpad size={20} />
+                        <span>General</span>
+                    </Link>
                     <Link to="theme" className={styles.SideLink}>
                         <IconColorSwatch size={20} />
                         <span>Theme</span>
-                    </Link>
-                    <Link to="notifications" className={styles.SideLink}>
-                        <IconNotification size={20} />
-                        <span>Notifications</span>
                     </Link>
                     <Link to="help" className={styles.SideLink}>
                         <IconHelp size={20} />

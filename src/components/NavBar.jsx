@@ -67,7 +67,7 @@ const NavBar = () => {
         {/* <a href="#" onClick={handleLogin}>Log in</a> */}
 
         {/* {chatMatch ? null : */}
-        <Link to="/settings/theme" className={styles.Btn}>
+        <Link to="/settings/general" className={styles.Btn}>
           <IconSettings size={20} />
           <span>Settings</span>
         </Link>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
-import { CreateRoom, Help, JoinRoom, MainApp, NavBar, NotificationsSettings, Settings, SignIn, SignUp, ThemeSettings } from '../imports'
+import { CreateRoom, Help, JoinRoom, MainApp, NavBar, Settings, SignIn, SignUp, ThemeSettings, GeneralSettings } from '../imports'
 import { useArke } from './Arke.Context'
 import { AnimatePresence } from "framer-motion"
 
@@ -13,7 +13,6 @@ const AppRouters = () => {
 
   // Update the previous main route whenever a new main route is visited
   useEffect(() => {
-    console.log(location.pathname)
     if (!location.pathname.includes('/settings')) {
       setPreviousMainRoute(location.pathname);
     }
@@ -30,7 +29,7 @@ const AppRouters = () => {
           <Route path={"/createroom"} element={<CreateRoom />} />
           <Route path={"/settings"} element={<Settings prevRoute={previousMainRoute} />}>
             <Route path="theme" element={<ThemeSettings />} />
-            <Route path="notifications" element={<NotificationsSettings />} />
+            <Route path="general" element={<GeneralSettings />} />
             <Route path="help" element={<Help />} />
           </Route>
           <Route path="*" element={<Navigate to="/createroom" />} />
