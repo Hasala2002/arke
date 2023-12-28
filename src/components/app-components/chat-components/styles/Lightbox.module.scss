@@ -125,9 +125,20 @@
   opacity: 0;
   height: 0;
   pointer-events: none;
+  .ImageContainer {
+    pointer-events: none;
+  }
+  .Header {
+    pointer-events: none;
+  }
+  .Selector {
+    pointer-events: none;
+  }
   .Image {
+    pointer-events: none;
     img {
       display: none;
+      pointer-events: none;
     }
   }
 }

@@ -37,7 +37,6 @@ const ChatOut = ({ noLabel, noTime, message }) => {
           message.image ?
             <img onClick={() => {
               setSelectedImage(message.image)
-              console.log(message)
             }} src={message.image.imageURL} alt={`message-image-${(message.message).trim()}`} ></img>
             :
             null
