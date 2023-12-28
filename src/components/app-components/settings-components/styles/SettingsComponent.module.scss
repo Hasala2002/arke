@@ -109,8 +109,11 @@ input:checked + label:after {
   transform: translateX(-100%);
 }
 
+$thumb-radius: 26px;
+$point-radius: 8px;
+
 .fontSizeSliderContainer {
-  width: 200px;
+  width: 20rem;
   position: relative;
   display: flex;
   align-items: center;
@@ -124,16 +127,20 @@ input:checked + label:after {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    z-index: 5;
+    padding-inline: calc(($thumb-radius - $point-radius) / 2);
+
     .fontBlock {
-      height: 15px;
-      width: 15px;
+      height: $point-radius;
+      width: $point-radius;
       border-radius: 50%;
-      background-color: #1d1d1d;
+      background-color: #ffffff;
       position: relative;
+
       span {
         position: absolute;
         left: 50%;
-        translate: -50% 0;
+        translate: -50% 150%;
         bottom: -150%;
         font-size: 0.65em;
       }
@@ -142,7 +149,7 @@ input:checked + label:after {
 }
 
 .fontSizeSlider {
-  width: 200px;
+  width: 100%;
   -webkit-appearance: none;
   -webkit-transition: 0.2s;
   transition: opacity 0.2s;
@@ -155,8 +162,8 @@ input:checked + label:after {
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 15px;
-    height: 15px;
+    width: $thumb-radius;
+    height: $thumb-radius;
     border-radius: 50%;
     background: main-gradient(315deg);
     cursor: pointer;
