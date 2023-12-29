@@ -12,6 +12,7 @@ export const SettingsProvider = ({ children }) => {
 
     const [toastState, setToastState] = useState(true)
     const [soundState, setSoundState] = useState(true)
+    const [twelveHrClock, setTwelveHrClock] = useState(false)
 
     const [textSize, setTextSize] = useState(3)
 
@@ -27,8 +28,11 @@ export const SettingsProvider = ({ children }) => {
         setSoundState,
         textSize,
         setTextSize,
+        twelveHrClock,
+        setTwelveHrClock,
         TEXTSIZE_CONFIG
     }
+
 
     useEffect(() => {
         const theme = localStorage.getItem("theme")
@@ -40,7 +44,7 @@ export const SettingsProvider = ({ children }) => {
     }, [theme])
 
     useEffect(() => {
-        const sounds = localStorage.getItem("theme")
+        const sounds = localStorage.getItem("sounds")
         if (sounds) {
             let state = sounds === "on"
             setSoundState(state)
@@ -51,12 +55,19 @@ export const SettingsProvider = ({ children }) => {
             let state = toasts === "on"
             setToastState(state)
         }
+
+        const twelve_hour = localStorage.getItem("twelve_hour")
+        if (twelve_hour) {
+            let state = twelve_hour === "on"
+            setTwelveHrClock(state)
+        }
+
+        const text_size = localStorage.getItem("text_size")
+        if (text_size) {
+            setTextSize(parseInt(text_size))
+        }
     }, [])
 
-    // useEffect(() => {
-    //     let values = { 1: 85, 2: 92.5, 3: 100, 4: 107.5, 5: 115 }
-    //     document.getElementById("chatbox").style.fontSize = values[textSize] + "%"
-    // }, [textSize])
 
 
 

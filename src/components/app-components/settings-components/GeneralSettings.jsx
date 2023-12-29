@@ -6,7 +6,7 @@ import ChatOut from '../chat-components/ChatOut'
 
 const GeneralSettings = () => {
 
-  const { toastState, setToastState, soundState, setSoundState, textSize, setTextSize } = useSettings()
+  const { toastState, setToastState, soundState, setSoundState, textSize, setTextSize, setTwelveHrClock, twelveHrClock } = useSettings()
 
   return (
     <div className={styles.SettingsContainer}>
@@ -33,15 +33,26 @@ const GeneralSettings = () => {
         <div className={styles.fontBlocks}>
           {
             ["85%", "92.5%", "100%", "107.5%", "115%"].map((number) => {
-              return (<div className={styles.fontBlock}><span>{number}</span></div>)
+              return (<div className={styles.fontBlock} key={number}><span>{number}</span></div>)
             })
           }
         </div>
-        <input className={styles.fontSizeSlider} type="range" min="1" max="5" value={textSize} onChange={(e) => { setTextSize(parseInt(e.target.value)) }} />
+        <input className={styles.fontSizeSlider} type="range" min="1" max="5" value={textSize} onChange={(e) => {
+          setTextSize(parseInt(e.target.value))
+          localStorage.setItem("text_size", parseInt(e.target.value))
+        }} />
       </div>
+      <h3>Time Format</h3>
+      <span>You can enable 12-hour format timestamps here.</span>
+      <input type="checkbox" checked={twelveHrClock} onChange={() => {
+        localStorage.setItem("twelve_hour", twelveHrClock ? "off" : "on")
+        setTwelveHrClock(!twelveHrClock)
+      }} id="twelvehour" /><label htmlFor="twelvehour">Toggle</label>
       <div className={styles.fontPreview}>
-        <span>font size preview</span>
-        <ChatOut noLabel={false} noTime={true} message={{ message: "You Shall Not Pass!", timeStamp: Date.now() }} />
+        <span className={styles.fontPreviewTitle}>chat bubble preview</span>
+        <div>
+          <ChatOut noLabel={false} noTime={false} message={{ message: "You Shall Not Pass! 🧙🏼‍♂️", timeStamp: Date.now() }} />
+        </div>
       </div>
 
     </div>

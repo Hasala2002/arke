@@ -8,14 +8,14 @@ import { useSettings } from '../../utilities/Settings.Context';
 
 const ChatOut = ({ noLabel, noTime, message }) => {
 
-  const { textSize, TEXTSIZE_CONFIG } = useSettings()
+  const { textSize, twelveHrClock, TEXTSIZE_CONFIG } = useSettings()
 
   const hrefDecorator = (href, text, key) => (
     <a href={href} key={key} target="_blank" className={styles.urlDecor}>
       {text}
     </a>);
 
-  let timeStamp = dayjs(message.timeStamp).format("HH:mm")
+  let timeStamp = dayjs(message.timeStamp).format(twelveHrClock ? "hh:mm a" : "HH:mm")
 
   const { setSelectedReply, setSelectedImage } = useArke()
 

@@ -4,6 +4,7 @@ import Linkify from "react-linkify";
 import dayjs from 'dayjs';
 import { IconArrowBack } from '@tabler/icons';
 import { useArke } from '../../utilities/Arke.Context';
+import { useSettings } from '../../utilities/Settings.Context';
 
 const ChatIn = ({ noLabel, noTime, message }) => {
 
@@ -11,6 +12,8 @@ const ChatIn = ({ noLabel, noTime, message }) => {
     <a href={href} key={key} target="_blank" className={styles.urlDecor}>
       {text}
     </a>);
+
+  const { textSize, twelveHrClock, TEXTSIZE_CONFIG } = useSettings()
 
   const { setSelectedReply, setSelectedImage } = useArke()
 
@@ -21,10 +24,10 @@ const ChatIn = ({ noLabel, noTime, message }) => {
     })
   }
 
-  let timeStamp = dayjs(message.timeStamp).format("HH:mm")
+  let timeStamp = dayjs(message.timeStamp).format(twelveHrClock ? "hh:mm a" : "HH:mm")
 
   return (
-    <div className={styles.ChatIn}>
+    <div className={styles.ChatIn} style={{ fontSize: `${TEXTSIZE_CONFIG[textSize]}%` }}>
       {noLabel ? null : <span className={styles.ChatLabel}>{message.senderName}</span>}
       <div className={styles.ChatMessage}>
         {
