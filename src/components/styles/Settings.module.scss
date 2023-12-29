@@ -69,7 +69,7 @@
 
 .SettingsPage {
   // height: 100%;
-  overflow-y: hidden;
+  overflow-y: auto;
   flex: 1;
   padding: 25px;
   padding-bottom: 50px;
@@ -87,7 +87,7 @@
     width: 5px !important;
   }
 
-  &:-webkit-scrollbar-thumb {
+  &::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.25) !important;
     border-radius: 50px !important;
     width: 5px !important;

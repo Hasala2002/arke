@@ -2,10 +2,10 @@
 
 .SettingsContainer {
   width: 100%;
-  height: calc(100% - 50px);
-  margin-top: 50px;
+  // height: calc(100% - 50px);
+  // margin-top: 50px;
   padding-right: 10px;
-  overflow-y: auto;
+  // overflow-y: auto;
 
   @media screen and (min-width: 864px) {
     &::-webkit-scrollbar {
