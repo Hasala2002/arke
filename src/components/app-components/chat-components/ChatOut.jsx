@@ -4,8 +4,11 @@ import Linkify from "react-linkify";
 import dayjs from 'dayjs';
 import { IconArrowBack } from '@tabler/icons';
 import { useArke } from '../../utilities/Arke.Context';
+import { useSettings } from '../../utilities/Settings.Context';
 
 const ChatOut = ({ noLabel, noTime, message }) => {
+
+  const { textSize, TEXTSIZE_CONFIG } = useSettings()
 
   const hrefDecorator = (href, text, key) => (
     <a href={href} key={key} target="_blank" className={styles.urlDecor}>
@@ -24,7 +27,7 @@ const ChatOut = ({ noLabel, noTime, message }) => {
   }
 
   return (
-    <div className={styles.ChatOut}>
+    <div className={styles.ChatOut} style={{ fontSize: `${TEXTSIZE_CONFIG[textSize]}%` }}>
       {noLabel ? null : <span className={styles.ChatLabel}>You</span>}
 
       {/* {image ? <img src={"https://raw.githubusercontent.com/Hasala2002/arke/main/public/screenshots/architecture.png"} alt="message-image" ></img> : null} */}

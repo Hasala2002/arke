@@ -9,7 +9,7 @@ const ChatBox = () => {
 
   const { roomMessages, playSMSSound, currentUser } = useArke()
 
-  const { soundState } = useSettings()
+  const { soundState, textSize, TEXTSIZE_CONFIG } = useSettings()
 
   const messagesEndRef = useRef(null)
 
@@ -30,7 +30,7 @@ const ChatBox = () => {
   }, [roomMessages]);
 
   return (
-    <div className={styles.ChatBox}>
+    <div className={styles.ChatBox} style={{ fontSize: `${TEXTSIZE_CONFIG[textSize]}%` }}>
       <TransitionGroup>
         {roomMessages.map((message, index, messages) => {
           // console.log(message.message)

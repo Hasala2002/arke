@@ -109,15 +109,16 @@ input:checked + label:after {
   transform: translateX(-100%);
 }
 
-$thumb-radius: 26px;
-$point-radius: 8px;
+$thumb-radius: 15px;
+$point-radius: 5px;
 
 .fontSizeSliderContainer {
-  width: 20rem;
+  width: 15rem;
   position: relative;
   display: flex;
   align-items: center;
   margin-top: 25px;
+  margin-left: 5px;
   .fontBlocks {
     width: 100%;
     height: 100%;
@@ -127,7 +128,6 @@ $point-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    z-index: 5;
     padding-inline: calc(($thumb-radius - $point-radius) / 2);
 
     .fontBlock {
@@ -136,6 +136,8 @@ $point-radius: 8px;
       border-radius: 50%;
       background-color: #ffffff;
       position: relative;
+      pointer-events: none;
+      z-index: 5;
 
       span {
         position: absolute;
@@ -183,4 +185,19 @@ $point-radius: 8px;
 
   // &::-webkit-slider-runnable-track {
   // }
+}
+
+.fontPreview {
+  margin-top: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  border-radius: 10px;
+  width: fit-content;
+  min-width: 15rem;
+  min-height: 120px;
+  span {
+    text-transform: uppercase;
+    font-size: 0.6em;
+    padding: 0 10px;
+  }
 }

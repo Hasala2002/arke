@@ -15,6 +15,9 @@ export const SettingsProvider = ({ children }) => {
 
     const [textSize, setTextSize] = useState(3)
 
+    const TEXTSIZE_CONFIG = { 1: 85, 2: 92.5, 3: 100, 4: 107.5, 5: 115 }
+
+
     const value = {
         theme,
         setTheme,
@@ -23,7 +26,8 @@ export const SettingsProvider = ({ children }) => {
         soundState,
         setSoundState,
         textSize,
-        setTextSize
+        setTextSize,
+        TEXTSIZE_CONFIG
     }
 
     useEffect(() => {
@@ -49,10 +53,10 @@ export const SettingsProvider = ({ children }) => {
         }
     }, [])
 
-    useEffect(() => {
-        let values = { 1: 85, 2: 92.5, 3: 100, 4: 107.5, 5: 115 }
-        document.body.style.fontSize = values[textSize] + "%"
-    }, [textSize])
+    // useEffect(() => {
+    //     let values = { 1: 85, 2: 92.5, 3: 100, 4: 107.5, 5: 115 }
+    //     document.getElementById("chatbox").style.fontSize = values[textSize] + "%"
+    // }, [textSize])
 
 
 
