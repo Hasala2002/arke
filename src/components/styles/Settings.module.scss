@@ -73,26 +73,27 @@
   flex: 1;
   padding: 25px;
   padding-bottom: 50px;
+  @media screen and (min-width: 864px) {
+    &::-webkit-scrollbar {
+      width: 5px !important;
+      // padding: 2.5px;
+    }
 
-  &::-webkit-scrollbar {
-    width: 5px !important;
-    // padding: 2.5px;
-  }
+    &::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05) !important;
+      border-radius: 50px !important;
+      // padding: 2.5px;
+      // margin: 40px;
+      width: 5px !important;
+    }
 
-  &::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05) !important;
-    border-radius: 50px !important;
-    // padding: 2.5px;
-    // margin: 40px;
-    width: 5px !important;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.25) !important;
-    border-radius: 50px !important;
-    width: 5px !important;
-    // border-right: 5px rgba(255, 255, 255, 0.25) solid;
-    background-clip: padding-box !important;
+    &::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.25) !important;
+      border-radius: 50px !important;
+      width: 5px !important;
+      // border-right: 5px rgba(255, 255, 255, 0.25) solid;
+      background-clip: padding-box !important;
+    }
   }
 }
 
