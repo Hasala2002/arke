@@ -2,17 +2,42 @@
 
 .SettingsContainer {
   width: 100%;
+  height: calc(100% - 50px);
+  margin-top: 50px;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 5px !important;
+    // padding: 2.5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 50px !important;
+    // padding: 2.5px;
+    // margin: 40px;
+    width: 5px !important;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25) !important;
+    border-radius: 50px !important;
+    width: 5px !important;
+    // border-right: 5px rgba(255, 255, 255, 0.25) solid;
+    background-clip: padding-box !important;
+  }
   // height: 100%;
   h2 {
     background: main-gradient(45deg);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    margin-bottom: 25px;
   }
 
   h3 {
     opacity: 0.8;
-    margin-top: 25px;
+    // margin-top: 25px;
     margin-bottom: 10px;
   }
 
