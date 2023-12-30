@@ -9,6 +9,7 @@ export const useSettings = () => {
 export const SettingsProvider = ({ children }) => {
 
     const [theme, setTheme] = useState("default")
+    const [font, setFont] = useState("default")
 
     const [toastState, setToastState] = useState(true)
     const [soundState, setSoundState] = useState(true)
@@ -22,6 +23,8 @@ export const SettingsProvider = ({ children }) => {
     const value = {
         theme,
         setTheme,
+        font,
+        setFont,
         toastState,
         setToastState,
         soundState,
@@ -42,6 +45,15 @@ export const SettingsProvider = ({ children }) => {
             document.documentElement.setAttribute("data-theme", "default")
         }
     }, [theme])
+
+    useEffect(() => {
+        const font_saved = localStorage.getItem("font")
+        if (font_saved) {
+            document.documentElement.setAttribute("data-font", font_saved)
+        } else {
+            document.documentElement.setAttribute("data-font", "default")
+        }
+    }, [font])
 
     useEffect(() => {
         const sounds = localStorage.getItem("sounds")

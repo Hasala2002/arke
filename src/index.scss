@@ -1,5 +1,9 @@
 @import url("https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/plus-jakarta-display.min.css");
 @import "./assets/colors.scss";
+@import "./assets/fonts.scss";
+
+@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap");
+@import url("https://fonts.cdnfonts.com/css/cascadia-code");
 
 $page-padding-default: 32px;
 $page-padding-default: 32px;
@@ -16,7 +20,9 @@ $page-padding-right: max(env(safe-area-inset-right), $page-padding-default);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Plus Jakarta Display", sans-serif;
+  // font-family: "Plus Jakarta Display", sans-serif;
+  // font-family: "Kalam", cursive;
+  // font-family: "Cascadia Code", sans-serif;
   color: #fff;
   scroll-behavior: smooth;
 }

@@ -94,6 +94,29 @@
       font-size: 0.9rem;
     }
   }
+  .ThemeFont {
+    min-width: 200px;
+    // height: 150px;
+    border-radius: 10px;
+    // border: 1px solid rgba(255, 255, 255, 0.1);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.1);
+    transition: border-color 0.3s cubic-bezier(1, -0.03, 0.29, 0.96);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    span {
+      font-weight: 300;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+    p {
+      margin-top: 0;
+    }
+  }
 }
 
 input[type="checkbox"] {
