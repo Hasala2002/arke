@@ -48,7 +48,7 @@ const ThemeSettings = () => {
                     style={{ borderColor: font === "default" ? "rgba(255, 255, 255, 0.5)" : "rgba(255, 255, 255, 0.1)" }}
                     onClick={() => { setSelectedFont("default") }}>
                     <span style={{ fontFamily: `"Plus Jakarta Display", sans-serif` }}>Plus Jakarta</span>
-                    <p>{"("}Default{")"}</p>
+                    <p style={{ fontFamily: `"Plus Jakarta Display", sans-serif` }}>{"("}Default{")"}</p>
                 </div>
                 <div className={styles.ThemeFont}
                     style={{ borderColor: font === "kalam" ? "rgba(255, 255, 255, 0.5)" : "rgba(255, 255, 255, 0.1)" }}

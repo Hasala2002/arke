@@ -92,6 +92,7 @@
       text-transform: uppercase;
       letter-spacing: 1.5px;
       font-size: 0.9rem;
+      cursor: pointer;
     }
   }
   .ThemeFont {
@@ -108,13 +109,16 @@
     align-items: center;
     justify-content: center;
     padding: 15px;
+    cursor: pointer;
     span {
       font-weight: 300;
       font-size: 1.1rem;
       font-weight: 500;
+      cursor: pointer;
     }
     p {
       margin-top: 0;
+      cursor: pointer;
     }
   }
 }

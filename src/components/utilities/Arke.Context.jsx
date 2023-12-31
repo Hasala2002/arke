@@ -98,6 +98,8 @@ export const ArkeProvider = ({ children }) => {
 
   const [dialogState, setDialogState] = useState(false)
 
+  const [arkeTitle, setArkeTitle] = useState("Arkē")
+
   const [dialog, setDialog] = useState({
     title: "",
     content: "",
@@ -182,6 +184,10 @@ export const ArkeProvider = ({ children }) => {
   }
 
   useEffect(() => {
+    document.title = arkeTitle
+  }, [arkeTitle])
+
+  useEffect(() => {
     socket.on('user-connected', () => {
       arkeToasteer({
         type: "success",
@@ -238,6 +244,8 @@ export const ArkeProvider = ({ children }) => {
   }, [])
 
   const value = {
+    arkeTitle,
+    setArkeTitle,
     MAX_FILE_SIZE,
     roomMessages,
     setRoomMessages,

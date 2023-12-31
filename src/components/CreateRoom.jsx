@@ -1,5 +1,5 @@
 import { IconDoor, IconHomePlus, IconSignature } from '@tabler/icons'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import * as styles from "./styles/Auth.module.scss"
 import { useArke } from './utilities/Arke.Context'
 import Divider from './utilities/Divider'
@@ -15,7 +15,13 @@ const CreateRoom = () => {
     const [displayName, setDisplayName] = useState("")
     const [displayNameFocus, setDisplayNameFocus] = useState(false)
 
-    const { arkeToasteer, setCurrentUser, connectToRoom } = useArke()
+    const { arkeToasteer, currentUser, setCurrentUser, connectToRoom, setArkeTitle } = useArke()
+
+    useEffect(() => {
+        if (!currentUser.roomName) {
+            setArkeTitle("Arkē")
+        }
+    }, [currentUser])
 
     const handleCreateRoom = (e) => {
         e.preventDefault()

@@ -10,7 +10,7 @@ const MainApp = () => {
 
   const MainContainer = useRef()
 
-  const { currentUser } = useArke()
+  const { currentUser, setArkeTitle } = useArke()
 
   const [toggleSideBar, setToggleSideBar] = useState(true)
 
@@ -25,6 +25,12 @@ const MainApp = () => {
   //       return '';
 
   //   };
+
+  useEffect(() => {
+    if (currentUser.roomName) {
+      setArkeTitle(`Arkē | @${currentUser.roomName}`)
+    }
+  }, [currentUser])
 
   //   window.addEventListener("beforeunload", unloadCallback);
   //   return () => {

@@ -11,12 +11,18 @@ const JoinRoom = () => {
 
     const { id } = useParams()
 
-    const { connectToExistingRoom, setCurrentUser, checkIfRoomExists, socket } = useArke()
+    const { connectToExistingRoom, currentUser, setCurrentUser, checkIfRoomExists, socket, setArkeTitle } = useArke()
 
     const [displayName, setDisplayName] = useState("")
 
     const [roomStatus, setRoomStatus] = useState(null)
     const [roomInfo, setRoomInfo] = useState(null)
+
+    useEffect(() => {
+        if (roomInfo) {
+            setArkeTitle(`Arkē | Ready to join @${roomInfo.roomName}`)
+        }
+    }, [roomInfo])
 
     const handleJoinRoom = (e) => {
         e.preventDefault()

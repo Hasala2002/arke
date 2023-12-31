@@ -11,9 +11,16 @@ const Settings = ({ prevRoute }) => {
 
     const location = useLocation();
 
+    const [selectedThemePage, setSelectedThemePage] = useState();
+
     useEffect(() => {
         if (location.pathname === ('/settings')) {
             navigate("/settings/general")
+        }
+        const currentPath = location.pathname;
+        if (currentPath.startsWith("/settings")) {
+            let locArray = currentPath.split("/")
+            setSelectedThemePage(locArray[2])
         }
     }, [location.pathname]);
 
@@ -35,15 +42,15 @@ const Settings = ({ prevRoute }) => {
                 <span>Accessibility</span>
             </Link> */}
                 <div className={styles.SettingLinks}>
-                    <Link to="general" className={styles.SideLink}>
+                    <Link to="general" className={`${styles.SideLink} ${selectedThemePage === "general" ? styles.SelectedSideLink : ""}`}>
                         <IconDialpad size={20} />
                         <span>General</span>
                     </Link>
-                    <Link to="theme" className={styles.SideLink}>
+                    <Link to="theme" className={`${styles.SideLink} ${selectedThemePage === "theme" ? styles.SelectedSideLink : ""}`}>
                         <IconColorSwatch size={20} />
                         <span>Theme</span>
                     </Link>
-                    <Link to="help" className={styles.SideLink}>
+                    <Link to="help" className={`${styles.SideLink} ${selectedThemePage === "help" ? styles.SelectedSideLink : ""}`}>
                         <IconHelp size={20} />
                         <span>Help</span>
                     </Link>

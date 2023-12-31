@@ -65,6 +65,10 @@
     align-items: center;
     gap: 10px;
   }
+
+  .SelectedSideLink {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
 }
 
 .SettingsPage {
@@ -139,6 +143,12 @@
 
         &:nth-last-child(1) {
           border-right: none;
+        }
+      }
+
+      .SelectedSideLink {
+        span {
+          text-decoration: underline;
         }
       }
     }
