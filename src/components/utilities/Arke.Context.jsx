@@ -13,6 +13,7 @@ import { io } from 'socket.io-client'
 import { IconBellRinging, IconCircleCheck } from '@tabler/icons';
 
 import { useSettings } from './Settings.Context'
+import DynamicFavicon from './DynamicFavicon';
 
 const socket = io.connect("https://arke-backend.fly.dev")
 // const socket = io.connect("http://localhost:3000")
@@ -99,6 +100,8 @@ export const ArkeProvider = ({ children }) => {
   const [dialogState, setDialogState] = useState(false)
 
   const [arkeTitle, setArkeTitle] = useState("Arkē")
+
+  const [faviconBadge, setFaviconBadge] = useState(null)
 
   const [dialog, setDialog] = useState({
     title: "",
@@ -274,12 +277,15 @@ export const ArkeProvider = ({ children }) => {
     dialogState,
     setDialogState,
     arkeDialog,
-    customSWClass
+    customSWClass,
+    faviconBadge,
+    setFaviconBadge
   }
 
 
   return (
     <ArkeContext.Provider value={value}>
+      <DynamicFavicon imageSrc="/arke.svg" notfication={faviconBadge} />
       <audio ref={smsElem} src={smsSFX} preload="true" />
       <audio ref={enterElem} src={enterSFX} preload="true" />
       {children}

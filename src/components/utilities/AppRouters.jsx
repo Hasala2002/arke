@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
-import { CreateRoom, Help, JoinRoom, MainApp, NavBar, Settings, SignIn, SignUp, ThemeSettings, GeneralSettings } from '../imports'
+import { CreateRoom, Help, JoinRoom, MainApp, NavBar, Settings, SignIn, SignUp, ThemeSettings, GeneralSettings, Playground } from '../imports'
 import { useArke } from './Arke.Context'
 import { AnimatePresence } from "framer-motion"
+import DynamicFavicon from './DynamicFavicon'
 
 const AppRouters = () => {
 
@@ -27,6 +28,7 @@ const AppRouters = () => {
           <Route path={"/chat/:id"} element={<MainApp />} />
           <Route path={"/join/:id"} element={<JoinRoom />} />
           <Route path={"/createroom"} element={<CreateRoom />} />
+          <Route path={"/playground"} element={<Playground />} />
           <Route path={"/settings"} element={<Settings prevRoute={previousMainRoute} />}>
             <Route path="theme" element={<ThemeSettings />} />
             <Route path="general" element={<GeneralSettings />} />

@@ -29,6 +29,12 @@
   }
 }
 
+.favicon-canvas {
+  width: 16px;
+  height: 16px;
+  display: none;
+}
+
 @keyframes flutter {
   0% {
     transform: rotateY(0deg);

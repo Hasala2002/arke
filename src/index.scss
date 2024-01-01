@@ -438,3 +438,15 @@ $warning: #ffbf00;
   backdrop-filter: blur(5px);
   font-size: small;
 }
+
+.Page {
+  margin-top: 48px;
+  width: 100%;
+  padding-top: 25px;
+  display: flex;
+  flex-direction: column;
+  // align-items: stretch;
+  justify-content: center;
+  position: relative;
+  // gap: 30px;
+}
