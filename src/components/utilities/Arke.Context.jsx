@@ -15,8 +15,8 @@ import { IconBellRinging, IconCircleCheck } from '@tabler/icons';
 import { useSettings } from './Settings.Context'
 import DynamicFavicon from './DynamicFavicon';
 
-const socket = io.connect("https://arke-backend.fly.dev")
-// const socket = io.connect("http://localhost:3000")
+// const socket = io.connect("https://arke-backend.fly.dev")
+const socket = io.connect("http://localhost:3000")
 
 export const useArke = () => {
   return useContext(ArkeContext)
@@ -56,6 +56,7 @@ export const ArkeProvider = ({ children }) => {
   }
 
   const arkeToasteer = (options) => {
+    console.log("Hello")
     const toast = document.getElementById("toast")
     const toastMessage = document.getElementById("toastMessage")
     toastMessage.innerText = options.message
@@ -286,8 +287,8 @@ export const ArkeProvider = ({ children }) => {
   return (
     <ArkeContext.Provider value={value}>
       <DynamicFavicon imageSrc="/arke.svg" notfication={faviconBadge} />
-      <audio ref={smsElem} src={smsSFX} preload="true" />
-      <audio ref={enterElem} src={enterSFX} preload="true" />
+      <audio ref={smsElem} src={smsSFX} preload="true" muted={!soundState} />
+      <audio ref={enterElem} src={enterSFX} preload="true" muted={!soundState} />
       {children}
     </ArkeContext.Provider>
   )
