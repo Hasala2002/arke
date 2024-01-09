@@ -92,7 +92,7 @@ export const ArkeProvider = ({ children }) => {
 
   const [currentUser, setCurrentUser] = useState({})
 
-  const [secretKey, setSecretKey] = useState(null)
+  const [secretKey, setSecretKey] = useState(generateSecretKey())
 
   const [selectedReply, setSelectedReply] = useState(null)
 
