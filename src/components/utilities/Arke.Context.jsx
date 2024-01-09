@@ -16,8 +16,8 @@ import { useSettings } from './Settings.Context'
 import DynamicFavicon from './DynamicFavicon';
 import { generateSecretKey } from './Encryption';
 
-// const socket = io.connect("https://arke-backend.fly.dev")
-const socket = io.connect("http://localhost:3000")
+const socket = io.connect("https://arke-backend.fly.dev")
+// const socket = io.connect("http://localhost:3000")
 
 export const useArke = () => {
   return useContext(ArkeContext)
