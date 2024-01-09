@@ -1,0 +1,91 @@
+@import "../../../../assets/colors.scss";
+
+$max-chat-width: 400px;
+
+.PollContainer {
+  width: 100%;
+  //   height: 100px;
+  display: flex;
+  justify-content: center;
+
+  .Poll {
+    min-width: 300px;
+    max-width: $max-chat-width;
+    // height: 100px;
+    padding: 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    position: relative;
+    .Title {
+      position: absolute;
+      top: -10px;
+      left: 10px;
+      font-size: 0.55em;
+      background: #000;
+      padding: 0 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .Question {
+      font-size: 0.85em;
+    }
+  }
+}
+
+.PollOptions {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  width: 100%;
+  gap: 10px;
+  .PollOption {
+    border: 1px solid transparent;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 10px 10px 0 10px;
+    width: 100%;
+    // height: 20px;
+    display: flex;
+    flex-direction: column;
+    .AnswerTitle {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      .Answer {
+        font-size: 0.85em;
+      }
+      .AnswerPercentage {
+        font-size: 0.85em;
+      }
+    }
+
+    .ProgressBar {
+      width: 100%;
+      margin: 10px 0;
+      min-height: 7.5px;
+      height: 7.5px;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.1);
+      .Progress {
+        height: 100%;
+        width: 25%;
+        background: main-gradient(90deg);
+        border-radius: 5px;
+        transition: width 0.3s ease-in-out;
+      }
+    }
+  }
+}
+
+.PollOptionSelected {
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.PollOptionOutOfSelect {
+  opacity: 0.5;
+  cursor: unset;
+}

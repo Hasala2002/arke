@@ -4,13 +4,16 @@ import { useArke } from '../../utilities/Arke.Context'
 import * as styles from "./styles/SendArea.module.scss"
 import { v4 as uuidv4 } from 'uuid';
 
+import { encryptMessage, decryptMessage } from '../../utilities/Encryption';
+
 import data from '@emoji-mart/data'
+
 import EmojiPicker, { Theme } from 'emoji-picker-react'
 
 const SendArea = ({ imageConfirm, setImageCaption, mainSendArea }) => {
 
   const input = useRef(null)
-  const { selectedReply, setSelectedReply, currentUser, sendTextMessage, readyToSendImage, setReadyToSendImage, MAX_FILE_SIZE, arkeToasteer } = useArke()
+  const { selectedReply, setSelectedReply, currentUser, sendTextMessage, readyToSendImage, setReadyToSendImage, MAX_FILE_SIZE, arkeToasteer, secretKey } = useArke()
 
   const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
 
@@ -23,6 +26,13 @@ const SendArea = ({ imageConfirm, setImageCaption, mainSendArea }) => {
   const toggleEmojiPicker = () => {
     setEmojiPickerVisible(prevVisible => !prevVisible);
   };
+
+  // const encryptMessage = (message) => {
+  //   const cryptr = new Cryptr('myTotallySecretKey');
+  //   const encryptedMessage = cryptr.encrypt(message);
+
+  //   return message
+  // }
 
 
   useEffect(() => {
@@ -56,7 +66,7 @@ const SendArea = ({ imageConfirm, setImageCaption, mainSendArea }) => {
         let message = {
           senderName: currentUser.senderName,
           senderId: currentUser.senderId,
-          message: input.current.value,
+          message: encryptMessage(input.current.value, secretKey),
           type: "textMessage",
           timeStamp: new Date(),
           image: readyToSendImage,
@@ -77,7 +87,7 @@ const SendArea = ({ imageConfirm, setImageCaption, mainSendArea }) => {
       let message = {
         senderName: currentUser.senderName,
         senderId: currentUser.senderId,
-        message: input.current.value,
+        message: encryptMessage(input.current.value, secretKey),
         type: "textMessage",
         timeStamp: new Date(),
         image: readyToSendImage,
@@ -178,7 +188,7 @@ const SendArea = ({ imageConfirm, setImageCaption, mainSendArea }) => {
           <div className={selectedReply ? styles.ReplyContainer : styles.ReplyContainerClosed}>
             <div className={styles.chatMessage}>
               <span className={styles.sender}>{selectedReply ? selectedReply.senderName : ""}</span>
-              <span className={styles.message}>{selectedReply ? selectedReply.message : ""}</span>
+              <span className={styles.message}>{selectedReply ? decryptMessage(selectedReply.message, secretKey) : ""}</span>
             </div>
             <div className={styles.closeReply} onClick={handleCloseReplyDialog}>
               <IconX stroke={0.5} size={20} />

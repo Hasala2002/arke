@@ -46,7 +46,7 @@ const Chat = ({ setToggleSideBar }) => {
         </div>
         <div className={styles.Title}>
           <span>{currentUser ? currentUser.roomName : ""}</span>
-          <p>chatroom is live and active</p>
+          <p>chatroom is live</p>
         </div>
         <div className={styles.chatStats}>
           <div className={styles.Chip}>

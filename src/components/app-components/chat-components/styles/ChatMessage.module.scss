@@ -104,6 +104,7 @@ $max-chat-width: 350px;
   .ReplyContainer {
     position: absolute;
     backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     top: 0px;
     right: 0px;
     height: 30px;

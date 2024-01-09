@@ -4,6 +4,7 @@ import * as styles from "./styles/ChatBox.module.scss"
 import ChatMessage from './ChatMessage'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { useSettings } from '../../utilities/Settings.Context'
+import ChatPoll from './ChatPoll'
 
 const ChatBox = () => {
 
@@ -54,9 +55,10 @@ const ChatBox = () => {
 
   return (
     <div className={styles.ChatBox} style={{ fontSize: `${TEXTSIZE_CONFIG[textSize]}%` }}>
+      {/* <ChatPoll /> */}
       <TransitionGroup>
         {roomMessages.map((message, index, messages) => {
-          // console.log(message.message)
+          // console.log(message)
           return (
             <CSSTransition
               key={index}

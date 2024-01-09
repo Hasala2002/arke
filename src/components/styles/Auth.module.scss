@@ -85,6 +85,7 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     background-color: rgba(255, 255, 255, 0.01);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 50px 25px 25px 25px;
 
     display: flex;
@@ -114,6 +115,7 @@
   background-color: rgba(255, 255, 255, 0.05);
   transition: border-color 0.3s ease-in-out;
   backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   border-radius: 5px;
   display: flex;
   align-items: center;

@@ -150,6 +150,7 @@ $warning: #ffbf00;
   border: 0.5px solid rgba(255, 255, 255, 0.1);
   background-color: rgba(255, 255, 255, 0.01);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: #fff;
   font-size: 0.9em;
   position: fixed;
@@ -185,6 +186,7 @@ $warning: #ffbf00;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   background-color: rgba(255, 255, 255, 0.01) !important;
   backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
   border-radius: 10px !important;
   padding: 25px !important;
   &::before {
@@ -436,6 +438,7 @@ $warning: #ffbf00;
 .epr-emoji-category-label {
   background-color: rgba(0, 0, 0, 0.5) !important;
   backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   font-size: small;
 }
 

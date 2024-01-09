@@ -10,7 +10,7 @@ const MainApp = () => {
 
   const MainContainer = useRef()
 
-  const { currentUser, setArkeTitle } = useArke()
+  const { currentUser, setArkeTitle, secretKey } = useArke()
 
   const [toggleSideBar, setToggleSideBar] = useState(true)
 

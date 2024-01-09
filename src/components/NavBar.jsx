@@ -6,6 +6,7 @@ import Swal from 'sweetalert2'
 import * as styles from "./styles/NavBar.module.scss"
 import { useArke } from './utilities/Arke.Context'
 import AnimatedLogo from './utilities/AnimatedLogo'
+import ArkeToolTip from './utilities/ArkeToolTip'
 
 const NavBar = () => {
 
@@ -58,10 +59,12 @@ const NavBar = () => {
       <div className={styles.AccountStatus}>
         {/* <IconUserCircle stroke={2} size={22} /> */}
         {/* <span>S</span> */}
-        <div className={styles.Chip}>
-          <IconChecks stroke={2} size={16} />
-          <span>{`HTTPS Encrypted`}</span>
-        </div>
+        <ArkeToolTip content={`Your chats are private and encrypted.`} align="bottom">
+          <div className={styles.Chip}>
+            <IconChecks stroke={2} size={16} />
+            <span>{`E2E Encrypted`}</span>
+          </div>
+        </ArkeToolTip>
       </div>
       <div className={styles.NavAuth}>
         {/* <a href="#" onClick={handleLogin}>Log in</a> */}

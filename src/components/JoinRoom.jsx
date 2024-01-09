@@ -1,7 +1,7 @@
 import { IconDoor, IconSignature } from '@tabler/icons'
 import React, { useEffect, useState } from 'react'
 import * as styles from "./styles/Auth.module.scss"
-import { Navigate, useParams } from 'react-router-dom'
+import { Navigate, useParams, useSearchParams } from 'react-router-dom'
 import { useArke } from './utilities/Arke.Context'
 import { v4 as uuidv4 } from 'uuid';
 
@@ -10,6 +10,8 @@ import { motion } from "framer-motion"
 const JoinRoom = () => {
 
     const { id } = useParams()
+
+    const [searchParams] = useSearchParams();
 
     const { connectToExistingRoom, currentUser, setCurrentUser, checkIfRoomExists, socket, setArkeTitle } = useArke()
 
@@ -25,19 +27,26 @@ const JoinRoom = () => {
     }, [roomInfo])
 
     const handleJoinRoom = (e) => {
+
+        // let roomId = id.split("&")[0]
+        // let secretKey = id.split("&")[1]
+
+        let roomId = searchParams.get('rid');
+        let secretKey = searchParams.get('sky');
+
         e.preventDefault()
         if (displayName !== "") {
             let currentUserObj = {
                 senderName: displayName,
                 senderId: uuidv4(),
                 roomName: roomInfo.roomName,
-                roomId: id,
+                roomId: roomId,
                 newRoom: false
             }
             setCurrentUser({
                 ...currentUserObj
             })
-            connectToExistingRoom(id, currentUserObj)
+            connectToExistingRoom(roomId, currentUserObj, secretKey)
         } else {
             arkeToasteer({
                 type: "error",
@@ -47,8 +56,11 @@ const JoinRoom = () => {
     }
 
     useEffect(() => {
+
+        let roomId = searchParams.get('rid');
+
         const getRoomData = async () => {
-            await checkIfRoomExists(id)
+            await checkIfRoomExists(roomId)
         }
 
         socket.on('room-data', (roomData) => {

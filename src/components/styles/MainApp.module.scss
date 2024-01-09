@@ -24,6 +24,7 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   background-color: rgba(255, 255, 255, 0.01);
   backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   padding: 25px;
 
   display: flex;
@@ -41,6 +42,7 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   background-color: rgba(255, 255, 255, 0.01);
   backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -65,6 +67,7 @@
     height: 100%;
     z-index: 2;
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     transition: all 0.3s cubic-bezier(1, -0.03, 0.29, 0.96);
   }
   .SideBarClosed {
@@ -73,6 +76,7 @@
     height: 100%;
     z-index: 2;
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     transform: translateX(-150%);
     transition: all 0.3s cubic-bezier(1, -0.03, 0.29, 0.96);
   }

@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
 
 const ArkeToolTip = ({ content, align, children, tooltipClassName = '', tooltipStyle = {} }) => {
-    const [isTooltipVisible, setIsTooltipVisible] = useState(false);
+  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
-    const showTooltip = () => {
-        setIsTooltipVisible(true);
-    };
+  const showTooltip = () => {
+    setIsTooltipVisible(true);
+  };
 
-    const hideTooltip = () => {
-        setIsTooltipVisible(false);
-    };
+  const hideTooltip = () => {
+    setIsTooltipVisible(false);
+  };
 
-    return (
-        <div className="tooltip-container" onMouseEnter={showTooltip} onMouseLeave={hideTooltip}>
-            {children}
-            {isTooltipVisible && (
-                <div className={`tooltip tooltip-${align} ${tooltipClassName}`} style={tooltipStyle}>
-                    {content}
-                </div>
-            )}
-            <style>
-                {`
+  return (
+    <div className="tooltip-container" onMouseEnter={showTooltip} onMouseLeave={hideTooltip}>
+      {children}
+      {isTooltipVisible && (
+        <div className={`tooltip tooltip-${align} ${tooltipClassName}`} style={tooltipStyle}>
+          {content}
+        </div>
+      )}
+      <style>
+        {`
           .tooltip-container {
             position: relative;
             display: inline-block;
@@ -32,6 +32,7 @@ const ArkeToolTip = ({ content, align, children, tooltipClassName = '', tooltipS
             background-color: #000;
             color: #fff;
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             font-weight: 300;
             font-size:12px;
             border-radius: 4px;
@@ -52,7 +53,7 @@ const ArkeToolTip = ({ content, align, children, tooltipClassName = '', tooltipS
           }
         
           .tooltip-bottom {
-            bottom: -5px;
+            bottom: -40px;
             left: 50%;
             transform: translate(-50%, 0);
           }
@@ -63,9 +64,9 @@ const ArkeToolTip = ({ content, align, children, tooltipClassName = '', tooltipS
             transform: translate(0, -50%);
           }
         `}
-            </style>
-        </div>
-    );
+      </style>
+    </div>
+  );
 };
 
 export default ArkeToolTip;

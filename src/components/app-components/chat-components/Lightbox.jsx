@@ -8,6 +8,7 @@ import Loader from "../../utilities/Loader"
 import { useState } from "react"
 import dayjs from "dayjs"
 import { saveAs } from 'file-saver';
+import { decryptMessage } from "../../utilities/Encryption"
 
 
 const Lightbox = ({ readyToSendImage }) => {
@@ -15,7 +16,7 @@ const Lightbox = ({ readyToSendImage }) => {
     const [imageLoaded, setImageLoaded] = useState(false)
     const [imageCaption, setImageCaption] = useState("")
 
-    const { selectedImage, setSelectedImage, roomImages, currentUser } = useArke()
+    const { selectedImage, setSelectedImage, roomImages, currentUser, secretKey } = useArke()
     const [selectedThumbnail, setSelectedThumbnail] = useState(null);
 
     const handleClick = (event) => {
@@ -119,7 +120,7 @@ const Lightbox = ({ readyToSendImage }) => {
                 <div className={styles.ImageContainer}>
                     {imageLoaded ? null : <Loader />}
                     <img src={selectedImage ? selectedImage.imageURL : null} onClick={(e) => e.stopPropagation()} alt="message-image" onLoad={() => { setImageLoaded(true) }} ></img>
-                    {imageLoaded ? <span onClick={(e) => e.stopPropagation()}>{imageCaption}</span> : null}
+                    {imageLoaded ? <span onClick={(e) => e.stopPropagation()}>{decryptMessage(imageCaption, secretKey)}</span> : null}
                 </div>
             </div>
             <div className={`${styles.Selector} ${imageLoaded ? null : styles.SelectorClosed}`}>

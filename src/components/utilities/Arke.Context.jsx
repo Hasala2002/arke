@@ -14,6 +14,7 @@ import { IconBellRinging, IconCircleCheck } from '@tabler/icons';
 
 import { useSettings } from './Settings.Context'
 import DynamicFavicon from './DynamicFavicon';
+import { generateSecretKey } from './Encryption';
 
 // const socket = io.connect("https://arke-backend.fly.dev")
 const socket = io.connect("http://localhost:3000")
@@ -56,7 +57,6 @@ export const ArkeProvider = ({ children }) => {
   }
 
   const arkeToasteer = (options) => {
-    console.log("Hello")
     const toast = document.getElementById("toast")
     const toastMessage = document.getElementById("toastMessage")
     toastMessage.innerText = options.message
@@ -91,6 +91,8 @@ export const ArkeProvider = ({ children }) => {
   const [roomCount, setRoomCount] = useState(null)
 
   const [currentUser, setCurrentUser] = useState({})
+
+  const [secretKey, setSecretKey] = useState(null)
 
   const [selectedReply, setSelectedReply] = useState(null)
 
@@ -157,11 +159,13 @@ export const ArkeProvider = ({ children }) => {
   const connectToRoom = async (roomId, currentUserObj) => {
     await socket.emit('join-room', roomId, currentUserObj)
     setRoomCount(pad2(1))
+    setSecretKey(generateSecretKey())
     navigate(`/chat/${roomId}`)
   }
 
-  const connectToExistingRoom = async (roomId, currentUserObj) => {
+  const connectToExistingRoom = async (roomId, currentUserObj, secretKey) => {
     await socket.emit('join-room', roomId, currentUserObj)
+    setSecretKey(secretKey)
     navigate(`/chat/${roomId}`)
   }
 
@@ -257,6 +261,8 @@ export const ArkeProvider = ({ children }) => {
     setRoomImages,
     currentUser,
     setCurrentUser,
+    secretKey,
+    setSecretKey,
     connectToRoom,
     ArkeToast,
     arkeToasteer,

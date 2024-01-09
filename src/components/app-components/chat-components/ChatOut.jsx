@@ -5,6 +5,7 @@ import dayjs from 'dayjs';
 import { IconArrowBack } from '@tabler/icons';
 import { useArke } from '../../utilities/Arke.Context';
 import { useSettings } from '../../utilities/Settings.Context';
+import { decryptMessage } from '../../utilities/Encryption';
 
 const ChatOut = ({ noLabel, noTime, message }) => {
 
@@ -17,7 +18,7 @@ const ChatOut = ({ noLabel, noTime, message }) => {
 
   let timeStamp = dayjs(message.timeStamp).format(twelveHrClock ? "hh:mm a" : "HH:mm")
 
-  const { setSelectedReply, setSelectedImage } = useArke()
+  const { setSelectedReply, setSelectedImage, secretKey } = useArke()
 
   const handleSelectReply = () => {
     setSelectedReply({
@@ -48,7 +49,7 @@ const ChatOut = ({ noLabel, noTime, message }) => {
           ?
           <div className={styles.ReplyMessage}>
             <span className={styles.sender}>{message.reply.senderName}</span>
-            <div className={styles.message}>{message.reply.message}</div>
+            <div className={styles.message}>{decryptMessage(message.reply.message, secretKey)}</div>
           </div>
           :
           null
@@ -56,7 +57,7 @@ const ChatOut = ({ noLabel, noTime, message }) => {
         <div className={styles.ReplyContainer} onClick={handleSelectReply}>
           <IconArrowBack size={15} />
         </div>
-        <Linkify componentDecorator={hrefDecorator}>{message.message}</Linkify>
+        <Linkify componentDecorator={hrefDecorator}>{decryptMessage(message.message, secretKey)}</Linkify>
       </div>
       {noTime ? null :
         <span className={styles.ChatTimeStamp}>

@@ -1,6 +1,6 @@
 import { IconAlignRight, IconArrowLeft, IconCheck, IconClipboardCopy, IconCopy, IconX } from '@tabler/icons'
 import React, { useState } from 'react'
-import useClipboard from 'react-hook-clipboard'
+// import useClipboard from 'react-hook-clipboard'
 import { useArke } from '../utilities/Arke.Context'
 import QRCode from "react-qr-code";
 import Swal from 'sweetalert2'
@@ -9,10 +9,36 @@ import EditableInput from '../utilities/EditableInput';
 
 const SideBar = ({ setToggleSideBar }) => {
 
-    const { currentUser, arkeToasteer, customSWClass, leaveRoom, setCurrentUser } = useArke()
+    const { currentUser, arkeToasteer, customSWClass, leaveRoom, setCurrentUser, secretKey } = useArke()
 
-    const [clipboard, copyToClipboard] = useClipboard()
-    const toClipboard = `${window.location.origin}/join/${currentUser.roomId}`
+    async function copyToClipboard() {
+
+        const payload = {
+            rid: currentUser.roomId,
+            sky: secretKey
+        };
+
+
+        const secret = new TextEncoder().encode(
+            "ThisIsntTheActualKey"
+        );
+
+        let joinUrl = new URL(`${window.location.origin}/join`);
+        joinUrl.searchParams.set('rid', currentUser.roomId);
+        joinUrl.searchParams.set('sky', secretKey);
+        // let joinUrl = `${window.location.origin}/join/${currentUser.roomId}&${secretKey}`
+        // let url = `${window.location.origin}/join/${token}`
+
+        let url = joinUrl.toString();
+
+        try {
+            await navigator.clipboard.writeText(url);
+            //   console.log('Token copied to clipboard!');
+        } catch (error) {
+            console.error('Failed to copy token:', error);
+            // Consider providing alternative feedback to the user
+        }
+    }
 
 
     const [userEditMode, setUserEditMode] = useState(false);
@@ -88,9 +114,9 @@ const SideBar = ({ setToggleSideBar }) => {
                     value={`${window.location.origin}/join/${currentUser.roomId}`}
                 />
                 <div className={styles.LinkCopy}>
-                    <span>{(`${window.location.origin}/join/${currentUser.roomId}`).substring(0, 20) + "..."}</span>
+                    <span>{(`${window.location.origin}/join/${currentUser.roomId}&${secretKey}`).substring(0, 20) + "..."}</span>
                     <div className={styles.icon} onClick={() => {
-                        copyToClipboard(toClipboard)
+                        copyToClipboard()
                         arkeToasteer({
                             type: "success",
                             message: "Copied Link to Room"

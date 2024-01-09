@@ -18,6 +18,7 @@
   padding-left: $page-padding-left;
   padding-right: $page-padding-right;
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .NavBar::after {
@@ -100,6 +101,7 @@
   background-color: rgb(0, 0, 0, 0.9);
   transform: translateX(-50%);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   transition: 0.2s ease-in-out;
   display: none;
   flex-direction: column;

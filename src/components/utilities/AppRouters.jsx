@@ -26,7 +26,7 @@ const AppRouters = () => {
       <AnimatePresence mode="wait">
         <Routes>
           <Route path={"/chat/:id"} element={<MainApp />} />
-          <Route path={"/join/:id"} element={<JoinRoom />} />
+          <Route path={"/join"} element={<JoinRoom />} />
           <Route path={"/createroom"} element={<CreateRoom />} />
           <Route path={"/playground"} element={<Playground />} />
           <Route path={"/settings"} element={<Settings prevRoute={previousMainRoute} />}>
