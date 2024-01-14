@@ -1,3 +1,5 @@
+@import "../../assets/colors.scss";
+
 #arke-loader {
   animation: floating 2s infinite ease-in-out;
 
@@ -26,6 +28,18 @@
   &:hover > #left-wing {
     transform-origin: 50% 50% 0;
     animation: flutter 0.1s ease 6 alternate;
+  }
+}
+
+.infiniteLogoAnim {
+  #right-wing {
+    transform-origin: 50% 50% 0;
+    animation: flutter 0.25s ease infinite alternate !important;
+  }
+
+  #left-wing {
+    transform-origin: 50% 50% 0;
+    animation: flutter 0.25s ease infinite alternate !important;
   }
 }
 
@@ -71,5 +85,149 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+.ArkeDialogWrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 998;
+  // translate: 0 -100%;
+  opacity: 0;
+  pointer-events: none;
+  background-color: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+  transition: 0.2s ease-in;
+}
+
+.ArkeDialogWrapperOpen {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.ArkeDialog {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -125%;
+  width: 90%;
+  max-width: 500px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  // box-shadow: 0px 0px 50px 1px rgba(var(--primary-color-rgb), 0.25);
+  box-shadow: 0px 0px 50px 1px var(--primary-color-rgb);
+  -webkit-box-shadow: 0px 0px 50px 1px var(--primary-color-rgb);
+  // box-shadow: 0px 0px 50px 1px
+  //   transparentize($color: var(--primary-color-rgb), $amount: 0.25);
+  // background-color: rgba(255, 255, 255, 0.01) !important;
+  background-color: #000;
+  border-radius: 10px !important;
+  padding: 25px !important;
+  z-index: 999;
+  .dialog-icon {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    transform: scale(1.5) rotateX(37deg) rotateY(13deg) rotateZ(-24deg);
+  }
+  .dialog-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    // pointer-events: none;
+    .dialog-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: end;
+      button {
+        font-size: 1em;
+        font-weight: 500;
+        padding: 10px 15px;
+        cursor: pointer;
+        // pointer-events: all;
+      }
+    }
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    border: 1px solid transparent;
+    background: main-gradient(315deg) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  h2 {
+    background: main-gradient(45deg);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: unset;
+    margin: unset;
+    width: fit-content;
+    font-size: 1.75em;
+    font-weight: 800;
+  }
+
+  p {
+    // margin-top: 25px;
+    font-weight: 300;
+    color: #fff;
+    font-size: 0.9rem;
+    opacity: 0.75;
+  }
+
+  .ArkeDialogCancel {
+    border-radius: 7.5px;
+    border: none;
+    background-color: transparent;
+    position: relative;
+
+    &:focus {
+      box-shadow: unset;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: inherit;
+      border: 2px solid transparent;
+      background: main-gradient(315deg) border-box;
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+      outline-width: 0px;
+      // border: none;
+    }
+  }
+
+  .ArkeDialogConfirm {
+    background: main-gradient(315deg);
+    border-radius: 7.5px;
+    outline-width: 0px;
+    border: none;
+    &:hover {
+      background: main-gradient(315deg);
+    }
+
+    &:focus {
+      box-shadow: unset;
+    }
   }
 }

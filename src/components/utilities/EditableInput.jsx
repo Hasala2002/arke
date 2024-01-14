@@ -37,6 +37,7 @@ const EditableInput = ({ initialValue, currentUser, setCurrentUser, editMode, se
 
     const handleChange = (e) => {
         setValue(e.target.value);
+
         if (e.target.value !== "") {
             setCurrentUser({
                 ...currentUser,

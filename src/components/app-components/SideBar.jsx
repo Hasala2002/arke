@@ -6,22 +6,16 @@ import QRCode from "react-qr-code";
 import Swal from 'sweetalert2'
 import * as styles from "./styles/SideBar.module.scss"
 import EditableInput from '../utilities/EditableInput';
+import { openDialog } from '../utilities/DialogTrigger';
+import { useDialog } from '../utilities/Dialog.context';
 
 const SideBar = ({ setToggleSideBar }) => {
 
     const { currentUser, arkeToasteer, customSWClass, leaveRoom, setCurrentUser, secretKey } = useArke()
 
+    const { dialogOptions, arkeFire } = useDialog()
+
     async function copyToClipboard() {
-
-        const payload = {
-            rid: currentUser.roomId,
-            sky: secretKey
-        };
-
-
-        const secret = new TextEncoder().encode(
-            "ThisIsntTheActualKey"
-        );
 
         let joinUrl = new URL(`${window.location.origin}/join`);
         joinUrl.searchParams.set('rid', currentUser.roomId);
@@ -45,25 +39,34 @@ const SideBar = ({ setToggleSideBar }) => {
 
 
     const handleLeaveRoom = () => {
-        Swal.fire({
+        // Swal.fire({
+        //     title: 'Are you sure?',
+        //     text: "This is a disposable chatroom! All current chat history will be deleted.",
+        //     showCancelButton: true,
+        //     confirmButtonText: 'Yes I am sure',
+        //     customClass: customSWClass,
+        //     showClass: {
+        //         backdrop: 'swal2-noanimation',
+        //         popup: '',
+        //         icon: ''
+        //     },
+        //     hideClass: {
+        //         popup: '',
+        //     },
+        // }).then((result) => {
+        //     if (result.isConfirmed) {
+        //         leaveRoom(currentUser.roomId)
+        //     }
+        // })
+
+        arkeFire({
+            open: true,
             title: 'Are you sure?',
             text: "This is a disposable chatroom! All current chat history will be deleted.",
             showCancelButton: true,
             confirmButtonText: 'Yes I am sure',
-            customClass: customSWClass,
-            showClass: {
-                backdrop: 'swal2-noanimation', // disable backdrop animation
-                popup: '',                     // disable popup animation
-                icon: ''                       // disable icon animation
-            },
-            hideClass: {
-                popup: '',                     // disable popup fade-out animation
-            },
-        }).then((result) => {
-            if (result.isConfirmed) {
-                leaveRoom(currentUser.roomId)
-            }
-        })
+            onConfirm: () => leaveRoom(currentUser.roomId),
+        });
     }
 
     return (
@@ -128,7 +131,7 @@ const SideBar = ({ setToggleSideBar }) => {
                 <div className={styles.instructionSection}>
                     <div className={styles.instructionPoint}>
                         <div className={styles.bullet}>1</div>
-                        <span className={styles.instructionLine}>You are inside a <b>disposable</b> chatroom. Nothing is saved. It's peer-to-peer.</span>
+                        <span className={styles.instructionLine}>You are inside a <b>disposable</b> chatroom. Nothing is saved and its encrypted too.</span>
                     </div>
                     <div className={styles.instructionPoint}>
                         <div className={styles.bullet}>2</div>

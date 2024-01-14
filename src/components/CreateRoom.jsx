@@ -123,7 +123,7 @@ const CreateRoom = () => {
                     <div className={styles.instructionSection}>
                         <div className={styles.instructionPoint}>
                             <div className={styles.bullet}>1</div>
-                            <span className={styles.instructionLine}>This is a <b>disposable</b> chatroom. Nothing is saved. It's peer-to-peer.</span>
+                            <span className={styles.instructionLine}>This is a <b>disposable</b> chatroom. Nothing is saved and its encrypted too.</span>
                         </div>
                         <div className={styles.instructionPoint}>
                             <div className={styles.bullet}>2</div>

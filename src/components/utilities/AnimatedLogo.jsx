@@ -2,10 +2,10 @@ import React from 'react'
 
 import "./utilityStyles.scss"
 
-const AnimatedLogo = () => {
+const AnimatedLogo = ({ infinite }) => {
     return (
         <>
-            <svg width="35" height="35" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" id="arke-logo">
+            <svg width="35" height="35" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" id="arke-logo" className={`${infinite ? "infiniteLogoAnim" : ""}`}>
                 <g id="left-wing">
                     <path d="M10 12.8554C10 12.3544 10.528 12.0413 10.9504 12.2918L14.6952 14.5125C15.1176 14.763 15.1176 15.3892 14.6952 15.6397L10.9504 17.8604C10.528 18.1109 10 17.7978 10 17.2968L10 12.8554Z" fill="white" />
                     <path d="M23.5629 36.9839C23.9853 37.2344 24.5133 36.9213 24.5133 36.4203V31.9789C24.5133 31.4779 23.9853 31.1648 23.5629 31.4153L19.8181 33.636C19.3957 33.8865 19.3957 34.5127 19.8181 34.7632L23.5629 36.9839Z" fill="white" />

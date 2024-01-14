@@ -1,19 +1,32 @@
-@import 'theme.scss';
+@import "theme.scss";
 
 // $gradient-back: url('/back.png');
-
-
 
 $primary-color: var(--primary-color);
 $secondary-color: var(--secondary-color);
 $offset-color: var(--offset-color);
 $gradient-back: var(--gradient-back);
 
-
-@function main-gradient($deg){
-    @return linear-gradient($deg, $primary-color 0%, $secondary-color 100%);
+@function main-gradient($deg) {
+  @return linear-gradient($deg, $primary-color 0%, $secondary-color 100%);
 }
 
+// @function primary-box-shadow($opacity) {
+//   @return rgba(
+//     red(var(--primary-color)),
+//     green(var(--primary-color)),
+//     blue(var(--primary-color)),
+//     $opacity
+//   );
+// }
+
+// @function primary-box-shadow($opacity) {
+//   $red: red(var(--primary-color));
+//   $green: green(var(--primary-color));
+//   $blue: blue(var(--primary-color));
+
+//   @return rgba(var(--primary-color), $opacity);
+// }
 
 // @mixin magenta-glow{
 //     background: radial-gradient(
@@ -22,7 +35,7 @@ $gradient-back: var(--gradient-back);
 //         transparent 40%
 //       );
 //       background-size: 100% 100%;
-      
+
 // }
 
 // @mixin violet-glow{
