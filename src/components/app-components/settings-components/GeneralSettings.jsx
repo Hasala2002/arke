@@ -4,6 +4,7 @@ import * as styles from "./styles/SettingsComponent.module.scss"
 import ChatMessage from '../chat-components/ChatMessage'
 import ChatOut from '../chat-components/ChatOut'
 import Divider from "../../utilities/Divider"
+import { encryptMessage } from '../../utilities/Encryption'
 
 const GeneralSettings = () => {
 
@@ -61,7 +62,7 @@ const GeneralSettings = () => {
       <div className={styles.fontPreview}>
         <span className={styles.fontPreviewTitle}>chat bubble preview</span>
         <div>
-          <ChatOut noLabel={false} noTime={false} message={{ message: "You Shall Not Pass! 🧙🏼‍♂️", timeStamp: Date.now() }} />
+          <ChatOut noLabel={false} noTime={false} sample message={{ message: "You Shall Not Pass! 🧙🏼‍♂️", timeStamp: Date.now() }} />
         </div>
       </div>
 

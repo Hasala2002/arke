@@ -7,7 +7,7 @@ import { useArke } from '../../utilities/Arke.Context';
 import { useSettings } from '../../utilities/Settings.Context';
 import { decryptMessage } from '../../utilities/Encryption';
 
-const ChatOut = ({ noLabel, noTime, message }) => {
+const ChatOut = ({ noLabel, noTime, sample, message }) => {
 
   const { textSize, twelveHrClock, TEXTSIZE_CONFIG } = useSettings()
 
@@ -57,7 +57,7 @@ const ChatOut = ({ noLabel, noTime, message }) => {
         <div className={styles.ReplyContainer} onClick={handleSelectReply}>
           <IconArrowBack size={15} />
         </div>
-        <Linkify componentDecorator={hrefDecorator}>{decryptMessage(message.message, secretKey)}</Linkify>
+        <Linkify componentDecorator={hrefDecorator}>{sample ? message.message : decryptMessage(message.message, secretKey)}</Linkify>
       </div>
       {noTime ? null :
         <span className={styles.ChatTimeStamp}>
