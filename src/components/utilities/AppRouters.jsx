@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
-import { CreateRoom, Help, JoinRoom, MainApp, NavBar, Settings, SignIn, SignUp, ThemeSettings, GeneralSettings, Playground } from '../imports'
+import { CreateRoom, Help, JoinRoom, MainApp, NavBar, Settings, SignIn, SignUp, ThemeSettings, GeneralSettings, Playground, Encryption } from '../imports'
 import { useArke } from './Arke.Context'
 import { AnimatePresence } from "framer-motion"
 import DynamicFavicon from './DynamicFavicon'
@@ -32,6 +32,7 @@ const AppRouters = () => {
           <Route path={"/settings"} element={<Settings prevRoute={previousMainRoute} />}>
             <Route path="theme" element={<ThemeSettings />} />
             <Route path="general" element={<GeneralSettings />} />
+            <Route path="encryption" element={<Encryption />} />
             <Route path="help" element={<Help />} />
           </Route>
           <Route path="*" element={<Navigate to="/createroom" />} />

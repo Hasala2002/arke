@@ -50,6 +50,80 @@
     opacity: 0.75;
   }
 
+  .SettingsDiagContainer {
+    width: 75%;
+    min-width: 530px;
+    display: flex;
+    margin-bottom: 40px;
+    align-items: center;
+    padding: 20px;
+    border: 2px dashed rgba(255, 255, 255, 0.075);
+    border-radius: 1em;
+
+    .intermediateBox {
+      padding: 10px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 50px;
+      font-size: 0.8rem;
+      height: fit-content;
+      margin-top: 15px;
+      position: relative;
+
+      .disclaimer {
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        translate: -50% 0;
+        text-transform: uppercase;
+        text-wrap: nowrap;
+        font-size: 0.75em;
+      }
+    }
+
+    .line {
+      // min-width: 75px;
+      flex-grow: 1;
+      height: 1px;
+      background-color: rgba(255, 255, 255, 0.25);
+      margin-top: 15px;
+
+      position: relative;
+
+      .arrow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        translate: -50% -50%;
+        width: 0.75em;
+        height: 0.75em;
+        border-right: 1px solid rgba(255, 255, 255, 0.25);
+        border-top: 1px solid rgba(255, 255, 255, 0.25);
+        transform: rotate(45deg);
+      }
+    }
+  }
+
+  .SettingsExpContainer {
+    width: 75%;
+    min-width: 280px;
+    display: flex;
+    margin-bottom: 40px;
+    align-items: center;
+  }
+
+  .SettingsExplaination {
+    font-size: 0.9rem;
+    line-height: 1.5em;
+    b {
+      font-weight: 800;
+      background: $primary-color;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-right: 5px;
+    }
+  }
+
   p {
     margin-top: 25px;
     // margin-bottom: 25px;
@@ -262,5 +336,28 @@ $point-radius: 5px;
     top: -5px;
     left: 10px;
     background-color: #000;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .SettingsDiagContainer {
+    flex-direction: column;
+    width: 100% !important;
+    min-width: 0px !important;
+
+    .line {
+      width: 1px;
+      height: 50px !important;
+      flex: none;
+      // margin-top: 0px !important;
+      .arrow {
+        border-top: 0px !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+      }
+    }
+  }
+
+  .SettingsExpContainer {
+    width: 100% !important;
   }
 }

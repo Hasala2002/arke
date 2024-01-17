@@ -1,4 +1,4 @@
-import { IconColorSwatch, IconDialpad, IconHelp, IconSettings, IconX } from '@tabler/icons'
+import { IconColorSwatch, IconDialpad, IconHelp, IconLock, IconSettings, IconX } from '@tabler/icons'
 import React, { useEffect, useState } from 'react'
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import * as styles from "./styles/Settings.module.scss"
@@ -49,6 +49,10 @@ const Settings = ({ prevRoute }) => {
                     <Link to="theme" className={`${styles.SideLink} ${selectedThemePage === "theme" ? styles.SelectedSideLink : ""}`}>
                         <IconColorSwatch size={20} />
                         <span>Theme</span>
+                    </Link>
+                    <Link to="encryption" className={`${styles.SideLink} ${selectedThemePage === "encryption" ? styles.SelectedSideLink : ""}`}>
+                        <IconLock size={20} />
+                        <span>Encryption</span>
                     </Link>
                     <Link to="help" className={`${styles.SideLink} ${selectedThemePage === "help" ? styles.SelectedSideLink : ""}`}>
                         <IconHelp size={20} />
