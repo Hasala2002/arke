@@ -20,8 +20,15 @@ export const DialogProvider = ({ children }) => {
 
     const [dialogOptions, arkeFire] = useState(null)
 
+    const IMPORTANT_URLS = {
+        "https://arkechat.live/terms-of-service": "Terms of Service",
+        "https://arkechat.live/privacy-policy": "Privacy Policy",
+        // Add more entries as needed
+    };
+
     const value = {
         dialogOptions,
+        IMPORTANT_URLS,
         arkeFire
     }
 

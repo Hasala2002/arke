@@ -22,7 +22,6 @@ const AppRouters = () => {
   return (
     <>
       <NavBar />
-      <ArkeToast />
       <AnimatePresence mode="wait">
         <Routes>
           <Route path={"/chat/:id"} element={<MainApp />} />

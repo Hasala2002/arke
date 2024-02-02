@@ -21,7 +21,7 @@ function changeColorWithStagger(
 ) {
     selectedCircles.forEach((index, i) => {
         setTimeout(() => {
-            circles[index].style.transition = "fill 1s ease-in-out";
+            circles[index].style.transition = "all 1s ease-in-out";
             circles[index].setAttribute("fill", targetColor);
         }, i * delayBetweenCircles);
     });
@@ -35,7 +35,7 @@ function resetColorWithStagger(
 ) {
     selectedCircles.forEach((index, i) => {
         setTimeout(() => {
-            circles[index].style.transition = "fill 1s ease-in-out";
+            circles[index].style.transition = "all 1s ease-in-out";
             circles[index].setAttribute("fill", originalColor);
         }, i * delayBetweenCircles);
     });
@@ -88,6 +88,7 @@ const AnimatedBackground = () => {
                 viewBox="0 0 800 800"
                 width="800"
                 height="800"
+                id="animatedBackground"
                 ref={svgRef}
             >
                 <circle

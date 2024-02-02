@@ -137,11 +137,12 @@
   .dialog-content {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
     // pointer-events: none;
     .dialog-buttons {
       display: flex;
       gap: 10px;
+      margin-top: 10px;
       justify-content: end;
       button {
         font-size: 1em;
@@ -189,6 +190,65 @@
     opacity: 0.75;
   }
 
+  .ArkeConfirmText {
+    margin-top: 10px;
+    font-weight: 300;
+    color: #fff;
+    font-size: 0.75rem;
+    opacity: 0.75;
+    display: flex;
+    align-items: start;
+    .ArkeCheckBox {
+      width: 20px;
+      position: relative;
+      padding: 0 15px;
+      // margin: 20px auto;
+      .ArkeCheckBoxLabel {
+        width: 15px;
+        height: 15px;
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: black !important;
+        border-radius: 4px;
+        // box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5),
+        //   0px 1px 0px rgba(255, 255, 255, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        margin-top: 3px;
+        transition: none !important;
+        &:after {
+          content: "";
+          width: 7px;
+          height: 3px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          // transform: translate(-50%, -50%);
+          border: 2px solid #fff;
+          border-top: none;
+          border-right: none;
+          background: transparent;
+          opacity: 0;
+          transform: rotate(-45deg) translate(-10%, -90%);
+          transition: none !important;
+          border-radius: 0px;
+        }
+        &:hover::after {
+          opacity: 0.3;
+          transition: none !important;
+        }
+      }
+      .ArkeCheckBoxInput[type="checkbox"] {
+        all: initial;
+        visibility: hidden;
+        &:checked + label:after {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
   .ArkeDialogCancel {
     border-radius: 7.5px;
     border: none;
@@ -231,3 +291,12 @@
     }
   }
 }
+
+// #animatedBackground {
+//   circle {
+//     transform-origin: 0 0;
+//     &:hover {
+//       transform: scale(5);
+//     }
+//   }
+// }

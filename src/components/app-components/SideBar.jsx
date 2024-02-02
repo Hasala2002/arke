@@ -13,7 +13,7 @@ const SideBar = ({ setToggleSideBar }) => {
 
     const { currentUser, arkeToasteer, customSWClass, leaveRoom, setCurrentUser, secretKey } = useArke()
 
-    const { dialogOptions, arkeFire } = useDialog()
+    const { arkeFire } = useDialog()
 
     async function copyToClipboard() {
 

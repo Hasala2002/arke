@@ -9,16 +9,16 @@ import { DialogProvider } from './components/utilities/Dialog.context.jsx'
 function App() {
   return (
     <Router>
-      <DialogProvider>
-        <SettingsProvider>
-          <ArkeProvider>
+      <SettingsProvider>
+        <ArkeProvider>
+          <DialogProvider>
             <div className="App">
               <AppRouters />
               {/* <CursorAnimation /> */}
             </div>
-          </ArkeProvider>
-        </SettingsProvider>
-      </DialogProvider>
+          </DialogProvider>
+        </ArkeProvider>
+      </SettingsProvider>
     </Router>
   )
 }

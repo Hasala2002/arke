@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import AnimatedBackground from './utilities/AnimatedBackground'
 
 import { motion } from "framer-motion"
+import { useDialog } from './utilities/Dialog.context'
 
 const CreateRoom = () => {
 
@@ -17,14 +18,74 @@ const CreateRoom = () => {
 
     const { arkeToasteer, currentUser, setCurrentUser, connectToRoom, setArkeTitle } = useArke()
 
+    const { arkeFire } = useDialog()
+
     useEffect(() => {
         if (!currentUser.roomName) {
             setArkeTitle("Arkē")
         }
     }, [currentUser])
 
+    // const handleCreateRoom = (e) => {
+    //     const policies = localStorage.getItem("policies")
+    //     if (roomName !== "" && displayName !== "" || !(policies === "accepted")) {
+    //         e.preventDefault()
+    //         arkeFire({
+    //             open: true,
+    //             title: `Wait ${displayName}...`,
+    //             text: "Please confirm that you have read and accept Arkē Chat policies before proceeding!",
+    //             confirmBoxText: 'I certify that I am at least 18 years and of lawful age, and I have read and accept the Arkē Chat https://arkechat.live/terms-of-service and https://arkechat.live/privacy-policy.',
+    //             unconfirmedError: "Please accept our policies to proceed!",
+    //             showCancelButton: false,
+    //             confirmButtonText: 'Confirm',
+    //             onConfirm: () => {
+    //                 createRoom()
+    //                 localStorage.setItem("polices", "accepted")
+    //             },
+    //         });
+    //     } else if (roomName !== "" && displayName !== "" && (policies === "accepted")) {
+    //         createRoom()
+    //     }
+    //     else {
+    //         arkeToasteer({
+    //             type: "error",
+    //             message: "Fields cannot be empty!"
+    //         })
+    //     }
+    //     // createRoom(e)
+    // }
+
     const handleCreateRoom = (e) => {
-        e.preventDefault()
+        e.preventDefault();
+        const policies = localStorage.getItem("policies")
+        if (roomName !== "" && displayName !== "") {
+            console.log(policies)
+            if (!(policies === "accepted")) {
+                arkeFire({
+                    open: true,
+                    title: `Wait ${displayName}...`,
+                    text: "Please confirm that you have read and accept Arkē Chat policies before proceeding!",
+                    confirmBoxText: 'I certify that I am at least 18 years and of lawful age, and I have read and accept the Arkē Chat https://arkechat.live/terms-of-service and https://arkechat.live/privacy-policy.',
+                    unconfirmedError: "Please accept our policies to proceed!",
+                    showCancelButton: false,
+                    confirmButtonText: 'Confirm',
+                    onConfirm: () => {
+                        createRoom()
+                        localStorage.setItem("policies", "accepted")
+                    },
+                });
+            } else {
+                createRoom()
+            }
+        } else {
+            arkeToasteer({
+                type: "error",
+                message: "Fields cannot be empty!"
+            })
+        }
+    }
+
+    const createRoom = () => {
         let roomId = uuidv4()
         if (roomName !== "" && displayName !== "") {
             let currentUserObj = {
