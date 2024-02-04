@@ -300,3 +300,9 @@
 //     }
 //   }
 // }
+
+@media screen and (max-width: 900px) {
+  .ArkeDialog {
+    translate: -50% -50%;
+  }
+}
