@@ -1,4 +1,6 @@
 @import "../../assets/colors.scss";
+@import "../../index.scss";
+
 .Auth {
   margin-top: 48px;
   width: 100%;
@@ -468,6 +470,11 @@
     width: 100%;
     min-width: unset;
     padding: 25px 0;
+
+    form {
+      border: 0px;
+      padding: 30px 33px 0px 33px;
+    }
   }
 }
 

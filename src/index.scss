@@ -90,8 +90,9 @@ $dot-space: 75px;
 
 @media screen and (max-width: 420px) {
   .App {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 18px;
   }
 }
 
