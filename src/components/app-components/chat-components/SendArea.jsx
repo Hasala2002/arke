@@ -236,6 +236,7 @@ const SendArea = ({ imageConfirm, setImageCaption, mainSendArea }) => {
         <EmojiPicker
           theme={Theme.DARK}
           onEmojiClick={onClick}
+          lazyLoadEmojis={true}
         />
       </div>
     </>

@@ -454,3 +454,8 @@ $warning: #ffbf00;
   position: relative;
   // gap: 30px;
 }
+
+.poly-line {
+  stroke: $primary-color;
+  opacity: 0.25;
+}

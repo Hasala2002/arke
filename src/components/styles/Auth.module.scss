@@ -257,7 +257,7 @@
 }
 
 .BtnGroup {
-  width: 100%;
+  width: fit-content;
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
@@ -390,10 +390,12 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+    width: fit-content;
   }
 
   h2 {
     z-index: 3;
+    width: fit-content;
   }
 
   p {
