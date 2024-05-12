@@ -2,11 +2,8 @@ import { IconMoodTongueWink2, IconPhotoUp, IconSend, IconX } from '@tabler/icons
 import React, { useEffect, useRef, useState } from 'react'
 import { useArke } from '../../utilities/Arke.Context'
 import * as styles from "./styles/SendArea.module.scss"
-import { v4 as uuidv4 } from 'uuid';
 
 import { encryptMessage, decryptMessage } from '../../utilities/Encryption';
-
-import data from '@emoji-mart/data'
 
 import EmojiPicker, { Theme } from 'emoji-picker-react'
 
@@ -236,6 +233,7 @@ const SendArea = ({ imageConfirm, setImageCaption, mainSendArea }) => {
         <EmojiPicker
           theme={Theme.DARK}
           onEmojiClick={onClick}
+          emojiStyle="google"
           lazyLoadEmojis={true}
         />
       </div>

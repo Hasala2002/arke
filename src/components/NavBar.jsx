@@ -2,7 +2,6 @@ import { IconAlignRight, IconChecks, IconSettings, IconUserCircle, IconX } from 
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { Link, useMatch } from 'react-router-dom'
-import Swal from 'sweetalert2'
 import * as styles from "./styles/NavBar.module.scss"
 import { useArke } from './utilities/Arke.Context'
 import AnimatedLogo from './utilities/AnimatedLogo'
@@ -12,28 +11,9 @@ const NavBar = () => {
 
   const [open, setOpen] = useState(true)
 
-  const { customSWClass } = useArke()
 
   const chatMatch = useMatch('/chat/:id');
 
-  const handleLogin = () => {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      // icon: 'error',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      customClass: customSWClass
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
-        )
-      }
-    })
-  }
 
   return (
     <div

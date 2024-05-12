@@ -1,8 +1,8 @@
 import * as styles from "./styles/ImageConfirm.module.scss"
 import { IconSquareRoundedX } from "@tabler/icons-react"
-import { IconDownload, IconLock } from "@tabler/icons"
+import { IconLock } from "@tabler/icons-react"
 import { useArke } from "../../utilities/Arke.Context"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import SendArea from "./SendArea"
 import Loader from "../../utilities/Loader"
 

@@ -247,16 +247,6 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
-"@emoji-mart/data@^1.1.2":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@emoji-mart/data/-/data-1.1.2.tgz#777c976f8f143df47cbb23a7077c9ca9fe5fc513"
-  integrity sha512-1HP8BxD2azjqWJvxIaWAMyTySeZY0Osr83ukYjltPVkNXeJvTz7yDrPLBtnrD5uqJ3tg4CcLuuBW09wahqL/fg==
-
-"@emoji-mart/react@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@emoji-mart/react/-/react-1.1.1.tgz#ddad52f93a25baf31c5383c3e7e4c6e05554312a"
-  integrity sha512-NMlFNeWgv1//uPsvLxvGQoIerPuVdXwK/EUek8OOkJ6wVOWPUizRBJU0hDqWZCOROVpfBgCemaC3m6jDOXi03g==
-
 "@emotion/is-prop-valid@^0.8.2":
   version "0.8.8"
   resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-0.8.8.tgz#db28b1c4368a259b60a97311d6a952d4fd01ac1a"
@@ -341,11 +331,6 @@
   version "2.40.0"
   resolved "https://registry.yarnpkg.com/@tabler/icons/-/icons-2.40.0.tgz#96cecc990a03412b88194ce3765280d2e63c1be6"
   integrity sha512-VqKsBSX159cLFTnCzkCmGhZtSPJHNN0lM2sC4xe0HPOfPUnjiex7rDHDdut4oe4iKRecDDpwXwM9BcU6xCPlCg==
-
-"@tabler/icons@^1.116.1":
-  version "1.119.0"
-  resolved "https://registry.yarnpkg.com/@tabler/icons/-/icons-1.119.0.tgz#8c590bc5a563c8673a78ccd451bedabd584b376e"
-  integrity sha512-Fk3Qq4w2SXcTjc/n1cuL5bccPkylrOMo7cYpQIf/yw6zP76LQV9dtLcHQUjFiUnaYuswR645CnURIhlafyAh9g==
 
 "@types/prop-types@*":
   version "15.7.5"
@@ -503,11 +488,6 @@ electron-to-chromium@^1.4.251:
   version "1.4.284"
   resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.4.284.tgz"
   integrity sha512-M8WEXFuKXMYMVr45fo8mq0wUrrJHheiKZf6BArTKk9ZBYCKJEOU5H8cdWgDT+qCVZf7Na4lVUaZsA+h6uA9+PA==
-
-emoji-mart@^5.5.2:
-  version "5.5.2"
-  resolved "https://registry.yarnpkg.com/emoji-mart/-/emoji-mart-5.5.2.tgz#3ddbaf053139cf4aa217650078bc1c50ca8381af"
-  integrity sha512-Sqc/nso4cjxhOwWJsp9xkVm8OF5c+mJLZJFoFfzRuKO+yWiN7K8c96xmtughYb0d/fZ8UC6cLIQ/p4BR6Pv3/A==
 
 emoji-picker-react@^4.9.2:
   version "4.9.2"
@@ -878,11 +858,6 @@ react-dom@^18.2.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
 
-react-hook-clipboard@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/react-hook-clipboard/-/react-hook-clipboard-1.0.3.tgz#f0aeaa8b5cde67be9269e5a12ed67cc6095a8e08"
-  integrity sha512-LuvMPkvX9FWhudrkjQ/AJGtnRkGdjbF6F2OySukMb29KLCXKhocxEzCRu0vQu8rC8pn2bwFyfR67rHnbcYbexg==
-
 react-is@^16.13.1:
   version "16.13.1"
   resolved "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
@@ -1029,11 +1004,6 @@ supports-preserve-symlinks-flag@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
-
-sweetalert2@^11.7.0:
-  version "11.7.0"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.7.0.tgz#17e55d6a1901a84391b6f1b576d156c475a5bcaf"
-  integrity sha512-ICeeGhIsmzCwRD/XjZrBYk+SDQzwfGvIdxkeSpPFgkPwbnoaGnaZ4cOb7AD/iC5o50snQUF6w23MfFAGk1+J7A==
 
 tlds@^1.199.0:
   version "1.235.0"

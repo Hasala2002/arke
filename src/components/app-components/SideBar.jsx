@@ -1,9 +1,7 @@
 import { IconAlignRight, IconArrowLeft, IconCheck, IconClipboardCopy, IconCopy, IconX } from '@tabler/icons'
 import React, { useState } from 'react'
-// import useClipboard from 'react-hook-clipboard'
 import { useArke } from '../utilities/Arke.Context'
 import QRCode from "react-qr-code";
-import Swal from 'sweetalert2'
 import * as styles from "./styles/SideBar.module.scss"
 import EditableInput from '../utilities/EditableInput';
 import { openDialog } from '../utilities/DialogTrigger';
