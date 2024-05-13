@@ -139,3 +139,105 @@ $max-chat-width: 350px;
     }
   }
 }
+
+.CodeMessage {
+  margin: 10px 0;
+  position: relative;
+}
+
+.CodeHeader {
+  // position: absolute;
+  left: 10px;
+  width: 100%;
+  // transform: translateY(-50%);
+  // top: 20px;
+  display: flex;
+  align-items: center;
+  height: 25px;
+  gap: 5px;
+}
+
+.CopyButton {
+  background-color: rgba(255, 255, 255, 0.25);
+  display: grid;
+  place-items: center;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.LanguageTag {
+  background-color: rgba(255, 255, 255, 0.25);
+  display: grid;
+  place-items: center;
+  padding: 5px;
+  border-radius: 5px;
+  height: 25px;
+  font-weight: 600;
+  font-size: x-small;
+  text-transform: uppercase;
+}
+
+p code {
+  background-color: rgba(255, 255, 255, 0.25);
+  padding: 2px;
+  border-radius: 2px;
+}
+
+.ChatMessage {
+  ul {
+    list-style-position: inside;
+    padding-right: 10px;
+  }
+  li {
+    // list-style-image: url(/arke-bullet.svg);
+    list-style-type: "◘    ";
+    // padding-inline-end: 1ch;
+    // list-style-type: none;
+    // background-image: url(/arke-bullet.svg);
+    // background-repeat: no-repeat;
+  }
+
+  code {
+    font-family: "Cascadia Code", sans-serif !important;
+  }
+
+  blockquote {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    border-left: 5px solid rgba(255, 255, 255, 0.5);
+    margin: 5px 0;
+  }
+
+  pre {
+    position: relative;
+    overflow-x: auto;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    border-top: 10px solid rgba(255, 255, 255, 0.5);
+    margin: 5px 0;
+    // margin-top: 35px;
+    &::-webkit-scrollbar {
+      height: 5px !important;
+      // padding: 2.5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05) !important;
+      border-radius: 50px !important;
+      // padding: 2.5px;
+      // margin: 40px;
+      height: 5px !important;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.25) !important;
+      border-radius: 50px !important;
+      height: 5px !important;
+      // border-right: 5px rgba(255, 255, 255, 0.25) solid;
+      background-clip: padding-box !important;
+    }
+  }
+}

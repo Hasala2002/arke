@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 const ArkeContext = createContext()
 
 import { io } from 'socket.io-client'
-import { IconBellRinging, IconCircleCheck } from '@tabler/icons';
+import { IconBellRinging, IconCircleCheck } from '@tabler/icons-react';
 
 import { useSettings } from './Settings.Context'
 import DynamicFavicon from './DynamicFavicon';

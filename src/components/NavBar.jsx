@@ -1,4 +1,4 @@
-import { IconAlignRight, IconChecks, IconSettings, IconUserCircle, IconX } from '@tabler/icons'
+import { IconAlignRight, IconChecks, IconSettings, IconUserCircle, IconX } from '@tabler/icons-react'
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { Link, useMatch } from 'react-router-dom'

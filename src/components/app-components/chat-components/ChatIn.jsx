@@ -2,10 +2,11 @@ import React from 'react'
 import * as styles from "./styles/ChatMessage.module.scss"
 import Linkify from "react-linkify";
 import dayjs from 'dayjs';
-import { IconArrowBack } from '@tabler/icons';
+import { IconArrowBack } from '@tabler/icons-react';
 import { useArke } from '../../utilities/Arke.Context';
 import { useSettings } from '../../utilities/Settings.Context';
 import { decryptMessage } from '../../utilities/Encryption';
+import MarkdownWrapper from './MardownWrapper'
 
 const ChatIn = ({ noLabel, noTime, message }) => {
 
@@ -43,7 +44,7 @@ const ChatIn = ({ noLabel, noTime, message }) => {
           ?
           <div className={styles.ReplyMessage}>
             <span className={styles.sender}>{message.reply.senderName}</span>
-            <div className={styles.message}>{decryptMessage(message.reply.message, secretKey)}</div>
+            <div className={styles.message}><MarkdownWrapper>{decryptMessage(message.reply.message, secretKey)}</MarkdownWrapper></div>
           </div>
           :
           null
@@ -51,7 +52,7 @@ const ChatIn = ({ noLabel, noTime, message }) => {
         <div className={styles.ReplyContainer} onClick={handleSelectReply}>
           <IconArrowBack size={15} />
         </div>
-        <Linkify componentDecorator={hrefDecorator}>{decryptMessage(message.message, secretKey)}</Linkify>
+        <MarkdownWrapper>{decryptMessage(message.message, secretKey)}</MarkdownWrapper>
       </div>
       {noTime ? null : <span className={styles.ChatTimeStamp}>{timeStamp}</span>}
     </div>

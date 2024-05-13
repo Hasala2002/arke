@@ -1,4 +1,4 @@
-import { IconGridDots, IconGridPattern, IconInfoSquare, IconMessages, IconUserCircle } from '@tabler/icons'
+import { IconGridDots, IconGridPattern, IconInfoSquare, IconMessages, IconUserCircle } from '@tabler/icons-react'
 import React, { useEffect } from 'react'
 import { useArke } from '../utilities/Arke.Context'
 import ChatBox from './chat-components/ChatBox'

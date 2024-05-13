@@ -1,4 +1,4 @@
-import { IconDoor, IconHomePlus, IconSignature } from '@tabler/icons'
+import { IconDoor, IconHomePlus, IconSignature } from '@tabler/icons-react'
 import React, { useEffect, useState } from 'react'
 import * as styles from "./styles/Auth.module.scss"
 import { useArke } from './utilities/Arke.Context'

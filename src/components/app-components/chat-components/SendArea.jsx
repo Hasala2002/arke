@@ -1,4 +1,4 @@
-import { IconMoodTongueWink2, IconPhotoUp, IconSend, IconX } from '@tabler/icons'
+import { IconMoodTongueWink2, IconPhotoUp, IconSend, IconX } from '@tabler/icons-react'
 import React, { useEffect, useRef, useState } from 'react'
 import { useArke } from '../../utilities/Arke.Context'
 import * as styles from "./styles/SendArea.module.scss"
@@ -54,6 +54,11 @@ const SendArea = ({ imageConfirm, setImageCaption, mainSendArea }) => {
   }, [readyToSendImage])
 
   const handleKeyPress = (e) => {
+
+    if (e.key === "ArrowUp" && e.shiftKey) {
+      console.log("Triggered")
+    }
+
     if (imageConfirm) {
       setImageCaption(input.current.value)
     }

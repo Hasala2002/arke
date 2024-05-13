@@ -1,4 +1,4 @@
-import { IconAlignRight, IconArrowLeft, IconCheck, IconClipboardCopy, IconCopy, IconX } from '@tabler/icons'
+import { IconAlignRight, IconArrowLeft, IconCheck, IconClipboardCopy, IconCopy, IconX } from '@tabler/icons-react'
 import React, { useState } from 'react'
 import { useArke } from '../utilities/Arke.Context'
 import QRCode from "react-qr-code";

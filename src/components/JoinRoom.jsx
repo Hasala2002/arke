@@ -1,4 +1,4 @@
-import { IconDoor, IconSignature } from '@tabler/icons'
+import { IconDoor, IconSignature } from '@tabler/icons-react'
 import React, { useEffect, useState } from 'react'
 import * as styles from "./styles/Auth.module.scss"
 import { Navigate, useParams, useSearchParams } from 'react-router-dom'

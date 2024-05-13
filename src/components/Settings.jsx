@@ -1,4 +1,4 @@
-import { IconColorSwatch, IconDialpad, IconHelp, IconLock, IconSettings, IconX } from '@tabler/icons'
+import { IconColorSwatch, IconDialpad, IconHelp, IconLock, IconSettings, IconX } from '@tabler/icons-react'
 import React, { useEffect, useState } from 'react'
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import * as styles from "./styles/Settings.module.scss"
