@@ -24,7 +24,6 @@ const Lightbox = ({ readyToSendImage }) => {
         setImageLoaded(false)
         setImageCaption("")
         setSelectedThumbnail(null)
-        console.log("helllo")
     }
 
     const containerRef = useRef();

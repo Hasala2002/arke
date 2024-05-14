@@ -59,7 +59,7 @@ const CreateRoom = () => {
         e.preventDefault();
         const policies = localStorage.getItem("policies")
         if (roomName !== "" && displayName !== "") {
-            console.log(policies)
+            // console.log(policies)
             if (!(policies === "accepted")) {
                 arkeFire({
                     open: true,

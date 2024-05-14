@@ -14,6 +14,9 @@ const SendArea = ({ imageConfirm, setImageCaption, mainSendArea }) => {
 
   const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
 
+  const [sentMessages, setSentMessages] = useState([])
+  const [historyCounter, setHistoryCounter] = useState(0)
+
   useEffect(() => {
     if (readyToSendImage && imageConfirm) {
       setEmojiPickerVisible(false)
@@ -55,12 +58,24 @@ const SendArea = ({ imageConfirm, setImageCaption, mainSendArea }) => {
 
   const handleKeyPress = (e) => {
 
-    if (e.key === "ArrowUp" && e.shiftKey) {
-      console.log("Triggered")
+    if (e.key === "ArrowUp" && e.shiftKey && historyCounter < sentMessages.length) {
+      // let currentCount = -1 - historyCounter
+      input.current.value = sentMessages[sentMessages.length - 1 - historyCounter]
+      if ((historyCounter + 1 < sentMessages.length)) {
+        setHistoryCounter(historyCounter + 1)
+      }
+    }
+
+    if (e.key === "ArrowDown" && e.shiftKey && historyCounter <= sentMessages.length && !(historyCounter === 0)) {
+      let tempCount = historyCounter - 1
+      input.current.value = sentMessages[sentMessages.length - 1 - tempCount]
+      setHistoryCounter(historyCounter - 1)
     }
 
     if (imageConfirm) {
       setImageCaption(input.current.value)
+      setSentMessages([...sentMessages, input.current.value])
+      setHistoryCounter(0)
     }
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault()
@@ -74,8 +89,9 @@ const SendArea = ({ imageConfirm, setImageCaption, mainSendArea }) => {
           image: readyToSendImage,
           reply: selectedReply
         }
-        // console.log(message)
         sendTextMessage(message)
+        setSentMessages([...sentMessages, input.current.value])
+        setHistoryCounter(0)
         input.current.value = ""
         input.current.style.height = `${18}px`
         handleCloseReplyDialog()
@@ -97,6 +113,8 @@ const SendArea = ({ imageConfirm, setImageCaption, mainSendArea }) => {
       }
       // setRoomMessages((roomMessages) => [...roomMessages,message])
       sendTextMessage(message)
+      setSentMessages([...sentMessages, input.current.value])
+      setHistoryCounter(0)
       input.current.value = ""
       input.current.style.height = `${18}px`
       handleCloseReplyDialog()
@@ -200,6 +218,7 @@ const SendArea = ({ imageConfirm, setImageCaption, mainSendArea }) => {
             ref={input}
             style={{ height: 18 }}
             onKeyDown={(e) => { handleKeyPress(e) }}
+            onBlur={() => { setHistoryCounter(0) }}
             resize="none"
             disabled={mainSendArea && readyToSendImage}
             placeholder={getPlaceHolder()} />

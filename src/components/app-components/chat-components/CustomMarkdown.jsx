@@ -51,10 +51,10 @@ export const CodeMessage = ({ children }) => {
     );
 };
 
-export const Text = ({ children }) => {
+export const Text = ({ children, ...props }) => {
     return (
         <>
-            {children}
+            {"#".repeat(props.value)}{children}
         </>
     )
 }
