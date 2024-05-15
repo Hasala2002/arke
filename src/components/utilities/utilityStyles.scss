@@ -344,6 +344,42 @@
   }
 }
 
+.logo-box {
+  width: 35px;
+  height: 35px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  display: grid;
+  place-items: center;
+  &::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    z-index: -1;
+    background-image: $gradient-back;
+    background-size: cover;
+    transition: transform 2s ease-in-out;
+    animation: none;
+  }
+
+  &:hover::before {
+    // -webkit-animation: logo-rotating 2s linear infinite forwards;
+    // -moz-animation: logo-rotating 2s linear infinite forwards;
+    // -ms-animation: logo-rotating 2s linear infinite forwards;
+    // -o-animation: logo-rotating 2s linear infinite forwards;
+    // animation: logo-rotating 2s linear infinite forwards;
+    transform: rotate(720deg);
+  }
+
+  * {
+    opacity: 0.74;
+  }
+}
+
 @keyframes glitch-loop-1 {
   0% {
     clip: rect(36px, 9999px, 9px, 0);

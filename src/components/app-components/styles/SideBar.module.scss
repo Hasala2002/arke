@@ -11,11 +11,36 @@
   .Logo {
     width: 35px;
     height: 35px;
-    background-image: $gradient-back;
-    background-size: cover;
+    // background-image: $gradient-back;
+    // background-size: cover;
     border-radius: 5px;
     display: grid;
     place-items: center;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      z-index: -1;
+      background-image: $gradient-back;
+      background-size: cover;
+      // transition: all 2s ease;
+      // -webkit-transition: all 2s ease;
+    }
+
+    &:hover::before {
+      -webkit-animation: logo-rotating 2s linear infinite;
+      -moz-animation: logo-rotating 2s linear infinite;
+      -ms-animation: logo-rotating 2s linear infinite;
+      -o-animation: logo-rotating 2s linear infinite;
+      animation: logo-rotating 2s linear infinite;
+    }
+
     img {
       width: 20px;
       height: auto;
@@ -243,6 +268,11 @@
   }
 }
 
+.LogoBoxImage {
+  width: 20px;
+  height: auto;
+}
+
 @media screen and (max-width: 864px) {
   .Title {
     .OptionsBtn {
@@ -254,5 +284,34 @@
 @media screen and (max-width: 420px) {
   .RoomInfo {
     padding: 30px 16px;
+  }
+}
+
+@-webkit-keyframes logo-rotating /* Safari and Chrome */ {
+  from {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes logo-rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }

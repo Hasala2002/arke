@@ -8,6 +8,7 @@ import AnimatedBackground from './utilities/AnimatedBackground'
 
 import { motion } from "framer-motion"
 import { useDialog } from './utilities/Dialog.context'
+import LogoBox from './utilities/LogoBox'
 
 const CreateRoom = () => {
 
@@ -146,9 +147,9 @@ const CreateRoom = () => {
             <div className={styles.Form}>
                 <form action="">
                     <div className={styles.Title}>
-                        <div className={styles.Logo}>
+                        <LogoBox>
                             <IconHomePlus size={22} />
-                        </div>
+                        </LogoBox>
                         <span>Create Arkē Room</span>
                     </div>
                     <span className={styles.Label}>Room Name</span>

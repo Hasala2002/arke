@@ -2,6 +2,7 @@ import { IconColorSwatch, IconDialpad, IconHelp, IconLock, IconSettings, IconX }
 import React, { useEffect, useState } from 'react'
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import * as styles from "./styles/Settings.module.scss"
+import LogoBox from "./utilities/LogoBox"
 
 import { motion } from "framer-motion"
 
@@ -32,9 +33,9 @@ const Settings = ({ prevRoute }) => {
             transition={{ type: "tween", duration: 0.25 }} className={styles.Settings}>
             <div className={styles.SideMenu}>
                 <div className={styles.Title}>
-                    <div className={styles.Logo}>
+                    <LogoBox>
                         <IconSettings size={22} stroke={2.5} />
-                    </div>
+                    </LogoBox>
                     <h2>Settings</h2>
                 </div>
                 {/* <Link to="/createroom" className={styles.SideLink}>

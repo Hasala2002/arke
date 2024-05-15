@@ -6,6 +6,7 @@ import * as styles from "./styles/SideBar.module.scss"
 import EditableInput from '../utilities/EditableInput';
 import { openDialog } from '../utilities/DialogTrigger';
 import { useDialog } from '../utilities/Dialog.context';
+import LogoBox from "../utilities/LogoBox"
 
 const SideBar = ({ setToggleSideBar }) => {
 
@@ -70,9 +71,9 @@ const SideBar = ({ setToggleSideBar }) => {
     return (
         <>
             <div className={styles.Title}>
-                <div className={styles.Logo}>
-                    <img src="/arke.svg" alt="Logo" />
-                </div>
+                <LogoBox>
+                    <img src="/arke.svg" alt="Logo" className={styles.LogoBoxImage} />
+                </LogoBox>
                 <span>Welcome to Arkē</span>
                 <button className={styles.OptionsBtn} onClick={() => { setToggleSideBar(false) }}>
                     <IconArrowLeft stroke={0.5} size={20} />
