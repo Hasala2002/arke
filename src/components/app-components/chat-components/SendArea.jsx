@@ -9,6 +9,8 @@ import EmojiPicker, { Theme } from 'emoji-picker-react'
 
 const SendArea = ({ imageConfirm, setImageCaption, mainSendArea }) => {
 
+  // const [messageValue, setMessageValue] = useState('');
+
   const input = useRef(null)
   const { selectedReply, setSelectedReply, currentUser, sendTextMessage, readyToSendImage, setReadyToSendImage, MAX_FILE_SIZE, arkeToasteer, secretKey } = useArke()
 
@@ -35,14 +37,14 @@ const SendArea = ({ imageConfirm, setImageCaption, mainSendArea }) => {
   // }
 
 
-  useEffect(() => {
-    input.current.addEventListener("input", () => {
-      let currentLines = ((input.current.value).split("\n")).length
-      if (currentLines < 3) {
-        input.current.style.height = `${18 * currentLines}px`
-      }
-    })
-  }, [])
+  // useEffect(() => {
+  //   input.current.addEventListener("input", () => {
+  //     let currentLines = ((input.current.value).split("\n")).length
+  //     if (currentLines < 3) {
+  //       input.current.style.height = `${18 * currentLines}px`
+  //     }
+  //   })
+  // }, [])
 
   useEffect(() => {
     if (selectedReply) {
@@ -61,6 +63,10 @@ const SendArea = ({ imageConfirm, setImageCaption, mainSendArea }) => {
     if (e.key === "ArrowUp" && e.shiftKey && historyCounter < sentMessages.length) {
       // let currentCount = -1 - historyCounter
       input.current.value = sentMessages[sentMessages.length - 1 - historyCounter]
+      const currentLines = sentMessages[sentMessages.length - 1 - historyCounter].split('\n').length;
+      if (lines !== currentLines && (60 + 10 * (lines - 1)) < 190) {
+        setLines(currentLines)
+      }
       if ((historyCounter + 1 < sentMessages.length)) {
         setHistoryCounter(historyCounter + 1)
       }
@@ -69,12 +75,17 @@ const SendArea = ({ imageConfirm, setImageCaption, mainSendArea }) => {
     if (e.key === "ArrowDown" && e.shiftKey && historyCounter <= sentMessages.length && !(historyCounter === 0)) {
       let tempCount = historyCounter - 1
       input.current.value = sentMessages[sentMessages.length - 1 - tempCount]
+      const currentLines = sentMessages[sentMessages.length - 1 - tempCount].split('\n').length;
+      if (lines !== currentLines && (60 + 10 * (lines - 1)) < 190) {
+        setLines(currentLines)
+      }
       setHistoryCounter(historyCounter - 1)
     }
 
     if (imageConfirm) {
       setImageCaption(input.current.value)
       setSentMessages([...sentMessages, input.current.value])
+      setLines(1)
       setHistoryCounter(0)
     }
     if (e.key === "Enter" && !e.shiftKey) {
@@ -91,9 +102,10 @@ const SendArea = ({ imageConfirm, setImageCaption, mainSendArea }) => {
         }
         sendTextMessage(message)
         setSentMessages([...sentMessages, input.current.value])
+        setLines(1)
         setHistoryCounter(0)
         input.current.value = ""
-        input.current.style.height = `${18}px`
+        // input.current.style.height = `${18}px`
         handleCloseReplyDialog()
         setReadyToSendImage(null)
       }
@@ -114,9 +126,10 @@ const SendArea = ({ imageConfirm, setImageCaption, mainSendArea }) => {
       // setRoomMessages((roomMessages) => [...roomMessages,message])
       sendTextMessage(message)
       setSentMessages([...sentMessages, input.current.value])
+      setLines(1)
       setHistoryCounter(0)
       input.current.value = ""
-      input.current.style.height = `${18}px`
+      // input.current.style.height = `${18}px`
       handleCloseReplyDialog()
       setReadyToSendImage(null)
     }
@@ -201,9 +214,22 @@ const SendArea = ({ imageConfirm, setImageCaption, mainSendArea }) => {
     imageInputRef.current.value = "";
   }
 
+  const [lines, setLines] = useState(1);
+
+  const handleValueChange = (event) => {
+    const currentLines = event.target.value.split('\n').length;
+    if (lines !== currentLines && (60 + 10 * (lines - 1)) < 190) {
+      setLines(currentLines)
+    }
+  };
+
+  // useEffect(() => {
+  //   // console.log("Lines Changed:", lines)
+  // }, [lines])
+
   return (
     <>
-      <div className={styles.sendAreaMain}>
+      <div className={styles.sendAreaMain} style={{ minHeight: `${60 + 10 * (lines - 1)}px` }}>
         <div className={styles.sendTextArea}>
           <div className={selectedReply ? styles.ReplyContainer : styles.ReplyContainerClosed}>
             <div className={styles.chatMessage}>
@@ -216,10 +242,12 @@ const SendArea = ({ imageConfirm, setImageCaption, mainSendArea }) => {
           </div>
           <textarea
             ref={input}
-            style={{ height: 18 }}
+            style={{ height: `${20 + 10 * (lines - 1)}px` }}
             onKeyDown={(e) => { handleKeyPress(e) }}
             onBlur={() => { setHistoryCounter(0) }}
             resize="none"
+            // value={messageValue}
+            onChange={handleValueChange}
             disabled={mainSendArea && readyToSendImage}
             placeholder={getPlaceHolder()} />
         </div>
