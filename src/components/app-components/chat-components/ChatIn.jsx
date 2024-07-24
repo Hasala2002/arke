@@ -15,9 +15,17 @@ const ChatIn = ({ noLabel, noTime, message }) => {
       {text}
     </a>);
 
+  const isSingleEmoji = str =>
+    /^\p{Emoji}\uFE0F?$/u.test(str) && str.length === 2;
+
+  const isHeartEmoji = str =>
+    str === "❤️";
+
   const { textSize, twelveHrClock, TEXTSIZE_CONFIG } = useSettings()
 
   const { setSelectedReply, setSelectedImage, secretKey } = useArke()
+
+  let decryptedMessage = decryptMessage(message.message, secretKey)
 
   const handleSelectReply = () => {
     setSelectedReply({
@@ -26,7 +34,8 @@ const ChatIn = ({ noLabel, noTime, message }) => {
     })
   }
 
-  let timeStamp = dayjs(message.timeStamp).format(twelveHrClock ? "hh:mm a" : "HH:mm")
+  // let timeStamp = dayjs(message.timeStamp).format(twelveHrClock ? "hh:mm a" : "HH:mm")
+  let timeStamp = dayjs(new Date()).format(twelveHrClock ? "hh:mm a" : "HH:mm")
 
   return (
     <div className={styles.ChatIn} style={{ fontSize: `${TEXTSIZE_CONFIG[textSize]}%` }}>
@@ -52,7 +61,9 @@ const ChatIn = ({ noLabel, noTime, message }) => {
         <div className={styles.ReplyContainer} onClick={handleSelectReply}>
           <IconArrowBack size={15} />
         </div>
-        <MarkdownWrapper>{decryptMessage(message.message, secretKey)}</MarkdownWrapper>
+        <span className={isSingleEmoji(decryptedMessage) ? isHeartEmoji(decryptedMessage) ? styles.ChatEmojiHeart : styles.ChatOneEmoji : ""}>
+          <MarkdownWrapper>{decryptedMessage}</MarkdownWrapper>
+        </span>
       </div>
       {noTime ? null : <span className={styles.ChatTimeStamp}>{timeStamp}</span>}
     </div>

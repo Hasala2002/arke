@@ -15,6 +15,8 @@ const Help = () => {
 
       <h3>Information</h3>
       <span><Linkify componentDecorator={hrefDecorator}>Visit https://arkechat.live to learn more about Arke Chat</Linkify></span>
+      <span><Linkify componentDecorator={hrefDecorator}>Visit https://arkechat.live/terms-of-service to learn more about Arke Chat Terms of Service</Linkify></span>
+      <span><Linkify componentDecorator={hrefDecorator}>Visit https://arkechat.live/privacy-policy to learn more about Arke Chat Privacy Policy</Linkify></span>
 
       <h3 style={{ marginTop: 20 }}>Development and Contribution</h3>
       <span><Linkify componentDecorator={hrefDecorator}>• https://github.com/Hasala2002/arke</Linkify></span><br />

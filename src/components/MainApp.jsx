@@ -14,6 +14,21 @@ const MainApp = () => {
 
   const [toggleSideBar, setToggleSideBar] = useState(true)
 
+  const handleMouseMove = e => {
+    // const { currentTarget: target } = e;
+    // const rect = target.getBoundingClientRect(),
+    //   x = e.clientX - rect.left,
+    //   y = e.clientY - rect.top
+
+    // console.log("--mouse-x", `${x}px`);
+    // console.log("--mouse-y", `${y}px`);
+    // target.style.setProperty("--mouse-x", `${x}px`);
+    // target.style.setProperty("--mouse-y", `${y}px`);
+
+
+
+  }
+
   // useEffect(()=>{
   //   const unloadCallback = (event) => {      
   //       const e = event || window.event;
@@ -49,7 +64,7 @@ const MainApp = () => {
       <div className={toggleSideBar ? styles.SideBar : styles.SideBarClosed}>
         <SideBar setToggleSideBar={setToggleSideBar} />
       </div>
-      <div className={styles.App}>
+      <div className={styles.App} onMouseMove={handleMouseMove}>
         <Chat setToggleSideBar={setToggleSideBar} />
       </div>
     </motion.div>

@@ -17,9 +17,18 @@ const ChatOut = ({ noLabel, noTime, sample, message }) => {
       {text}
     </a>);
 
-  let timeStamp = dayjs(message.timeStamp).format(twelveHrClock ? "hh:mm a" : "HH:mm")
+  const isSingleEmoji = str =>
+    /^\p{Emoji}\uFE0F?$/u.test(str) && str.length === 2;
+
+  const isHeartEmoji = str =>
+    str === "❤️";
 
   const { setSelectedReply, setSelectedImage, secretKey } = useArke()
+
+  // let timeStamp = dayjs(message.timeStamp).format(twelveHrClock ? "hh:mm a" : "HH:mm")
+  let timeStamp = dayjs(new Date()).format(twelveHrClock ? "hh:mm a" : "HH:mm")
+
+  let decryptedMessage = sample ? message.message : decryptMessage(message.message, secretKey)
 
   const handleSelectReply = () => {
     setSelectedReply({
@@ -63,7 +72,10 @@ const ChatOut = ({ noLabel, noTime, sample, message }) => {
           <IconArrowBack size={15} />
         </div>
         {/* <Linkify componentDecorator={hrefDecorator}> */}
-        <MarkdownWrapper>{sample ? message.message : decryptMessage(message.message, secretKey)}</MarkdownWrapper>
+        {/* <span className={/^(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/g.test(decryptedMessage) ? styles.ChatOneEmoji : ""}> */}
+        <span className={isSingleEmoji(decryptedMessage) ? isHeartEmoji(decryptedMessage) ? styles.ChatEmojiHeart : styles.ChatOneEmoji : ""}>
+          <MarkdownWrapper>{decryptedMessage}</MarkdownWrapper>
+        </span>
         {/* </Linkify> */}
       </div>
       {noTime ? null :

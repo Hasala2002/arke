@@ -40,7 +40,7 @@ const ThemeSettings = () => {
                     <span>Monarch</span>
                 </div>
             </div>
-            <p>More themes coming soon. Stay upto date using the github repository, or contribute themes to us!</p>
+            <p className={styles.themeDisclaimer}>More themes coming soon. Stay upto date using the github repository, or contribute themes to us!</p>
             <Divider />
             <h3>Font</h3>
             <div className={styles.Themes}>

@@ -8,7 +8,7 @@ import { encryptMessage } from '../../utilities/Encryption'
 
 const GeneralSettings = () => {
 
-  const { toastState, setToastState, soundState, setSoundState, textSize, setTextSize, setTwelveHrClock, twelveHrClock } = useSettings()
+  const { toastState, setToastState, soundState, setSoundState, textSize, TEXTSIZE_CONFIG, setTextSize, setTwelveHrClock, twelveHrClock } = useSettings()
 
   return (
     <div className={styles.SettingsContainer}>
@@ -61,7 +61,7 @@ const GeneralSettings = () => {
 
       <div className={styles.fontPreview}>
         <span className={styles.fontPreviewTitle}>chat bubble preview</span>
-        <div>
+        <div style={{ fontSize: `${TEXTSIZE_CONFIG[textSize]}%` }}>
           <ChatOut noLabel={false} noTime={false} sample message={{ message: "You Shall Not Pass! 🧙🏼‍♂️", timeStamp: Date.now() }} />
         </div>
       </div>

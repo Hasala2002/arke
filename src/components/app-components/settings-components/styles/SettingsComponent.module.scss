@@ -1,5 +1,11 @@
 @import "../../../../assets/colors.scss";
 
+.themeDisclaimer {
+  opacity: 0.6;
+  font-size: 0.9em;
+  font-weight: 300;
+}
+
 .SettingsContainer {
   width: 100%;
   // height: calc(100% - 50px);
@@ -124,7 +130,7 @@
     }
   }
 
-  p {
+  .text {
     margin-top: 25px;
     // margin-bottom: 25px;
     font-weight: 300;
@@ -139,6 +145,7 @@
   flex-wrap: wrap;
   gap: 30px;
   margin-top: 25px;
+  margin-bottom: 25px;
 
   .Theme {
     width: 200px;
