@@ -130,7 +130,7 @@ const SideBar = ({ setToggleSideBar }) => {
         <QRCode
           size={175}
           style={{ margin: "10px 0 20px 0", minHeight: 100 }}
-          value={`${window.location.origin}/join/${currentUser.roomId}&${secretKey}`}
+          value={`${window.location.origin}/join?rid=${currentUser.roomId}&sky=${secretKey}`}
         />
         <div className={styles.LinkCopy}>
           <span>
